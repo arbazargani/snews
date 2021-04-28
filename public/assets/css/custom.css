@@ -1,0 +1,37 @@
+html {
+  width: 100%;
+}
+* {
+    font-family: IRANSans !important;
+}
+.uk-border-top-1 {
+  border-top: 1px solid lightgray;
+}
+.article {
+  width: 95%;
+  padding: 10px;
+}
+.sidebar {
+  padding: 10px;
+}
+.state-published {
+    border-radius: 100%;
+    background-color: green;
+    width: 10px;
+    height: 10px;
+}
+.state-drafted {
+    border-radius: 50%;
+    background-color: darkorange;
+    width: 10px;
+    height: 10px;
+}
+.state-deleted {
+    border-radius: 100%;
+    background-color: red;
+    width: 10px;
+    height: 10px;
+}
+.border-1-light {
+  border: 1px solid lightgray;
+}
