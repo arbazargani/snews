@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
+use Illuminate\Support\Facades\DB;
+
 class TagController extends Controller
 {
     public function Manage()
@@ -61,7 +63,7 @@ class TagController extends Controller
         $currentPageItems = $itemCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
 
         // Create our paginator and pass it to the view
-        $paginatedItems= new LengthAwarePaginator($currentPageItems , count($itemCollection), $perPage);
+        $paginatedItems = new LengthAwarePaginator($currentPageItems , count($itemCollection), $perPage);
 
         // set url path for generted links
         $paginatedItems->setPath($request->url());
@@ -69,5 +71,24 @@ class TagController extends Controller
         $PaginatedTags = $paginatedItems;
   
         return view('public.tag.archive', compact('tag', 'PaginatedTags'));
+    }
+
+    public function oldEngine($slug) {
+        $tag = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_tags` WHERE `alias` = '$slug'");
+        
+        if (!count($tag)) {
+            return abort('404');
+        } else {
+            $tag_id = $tag[0]->id;
+        };
+
+        $articles_id = DB::connection('mysql_sec')->select("SELECT DISTINCT `content_item_id` as `id` FROM `smtnw6_contentitem_tag_map` WHERE `tag_id` = '$tag_id' LIMIT 10");
+
+        $articles = [];
+        foreach ($articles_id as $article_id) {
+            array_push ($articles, DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `id` = {$article_id->id}")[0]);
+        }
+
+        return $articles;
     }
 }

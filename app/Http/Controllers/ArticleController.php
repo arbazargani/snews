@@ -92,6 +92,7 @@ class ArticleController extends Controller
             $fileName = $imageName . '_' . time() . '.' . $imageExtention;
             // Store for public uses
             $path = $request->file('cover')->storeAs('public/uploads/articles/images', $fileName);
+
         }
 
         $article = new Article();
@@ -367,12 +368,32 @@ class ArticleController extends Controller
             'tags' => $this->GetPostTagsFromID($article->id),
         ];
 
+        // return (object) $article_info;
         return $article_info;
     }
 
-
-    public function OldEngineComplex ($param_1, $param_2, $id, $slug) {
+    public function OldEngineComplex ($param_1, $id, $slug) {
         $article = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `id` = $id");
-        return $article;
+        if (!count($article)) {
+            return abort('404');
+        } else {
+            $article = $article[0];
+        }
+        
+        $article_info = [
+            'id' => $article->id,
+            'title' => $article->title,
+            'content' => $article->fulltext,
+            'cover' => json_decode($article->images)->image_intro,
+            'views' => $article->hits,
+            'created_by' => $article->created_by_alias,
+            'created_at' => $article->created,
+            'published_at' => $article->publish_up,
+            'category' => $this->GetCategoriesFromID($article->catid)->title,
+            'tags' => $this->GetPostTagsFromID($article->id),
+        ];
+
+        return $article_info;
     }
+
 }

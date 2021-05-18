@@ -99,7 +99,25 @@ Route::get('/tag-sitemap.xml', 'SitemapController@Tag')->name('Sitemap > Tags');
 
 Route::get('/rss', 'FeedController@Index')->name('Rss');
 
-Route::get('/{param_1}/{id}-{slug}.html', 'ArticleController@OldEngineSimple')->where(['id' => '[0-9]+'])->name('Old cms > News > Simple');
-Route::get('/{param_1}/{param_2}/{id}-{slug}.html', 'ArticleController@OldEngineComplex')->where(['id' => '[0-9]+'])->name('Old cms > News > Complex');
 
+/*
+* old cms news router
+*/
+Route::get('/{param_1}/{id}-{slug}.html', 'ArticleController@OldEngineSimple')->where(['id' => '[0-9]+'])->name('Old cms > News > Simple');
+Route::get('/{param_1}/{id}', 'ArticleController@OldEngineSimple')->where(['id' => '[0-9]+'])->name('Old cms > News > Simple > Short');
+
+Route::get('/{param_1}/{param_2}/{id}-{slug}.html', 'ArticleController@OldEngineComplex')->where(['id' => '[0-9]+'])->name('Old cms > News > Complex');
+Route::get('/{param_1}/{param_2}/{id}', 'ArticleController@OldEngineComplex')->where(['id' => '[0-9]+'])->name('Old cms > News > Complex > Short');
+
+/*
+* old cms tags router
+*/
+Route::get('/component/tags/tag/{slug}.html', 'TagController@oldEngine')->name('Old cms > Tags');
 Route::get('/tags/{id}', 'ArticleController@GetPostTagsFromID');
+
+
+/*
+* old cms categories router
+*/
+Route::get('/{param_1}/{param_2}.html', 'CategoryController@OldEngineComplex')->name('Old cms > Categories > Complex');
+Route::get('/{param_1}.html', 'CategoryController@OldEngineComplex')->name('Old cms > Categories > Short');

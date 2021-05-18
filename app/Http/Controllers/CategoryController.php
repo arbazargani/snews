@@ -9,6 +9,8 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
+use Illuminate\Support\Facades\DB;
+
 class CategoryController extends Controller
 {
     public function Manage()
@@ -74,5 +76,50 @@ class CategoryController extends Controller
         $PaginatedCategories = $paginatedItems;
 
         return view('public.category.archive', compact('category', 'PaginatedCategories'));
+    }
+
+/*
+    public function oldEngine($slug) {
+        $tag = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `alias` = '$slug'");
+        
+        if (!count($tag)) {
+            return abort('404');
+        } else {
+            $category_id = $tag[0]->id;
+        };
+
+        $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `catid` = 'category_id' LIMIT 10");        
+
+        return $articles;
+    }
+*/
+    public function OldEngineSimple ($param_1) {
+        $category = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `alias` = '$param_1'");
+        
+        if (!count($category)) {
+            return abort('404');
+        } else {
+            $category_id = $category[0]->id;
+        };
+
+        $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `catid` = $category_id LIMIT 10");
+
+        // return (object) $article_info;
+        return $articles;
+    }
+
+    public function OldEngineComplex ($param_2) {
+        $category = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `alias` = '$param_2'");
+        
+        if (!count($category)) {
+            return abort('404');
+        } else {
+            $category_id = $category[0]->id;
+        };
+
+        $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `catid` = $category_id LIMIT 10");
+
+        // return (object) $article_info;
+        return $articles;
     }
 }
