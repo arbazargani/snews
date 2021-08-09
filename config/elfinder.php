@@ -26,12 +26,9 @@ return array(
     |        'alias' => 'Local storage',
     |    ]
     */
-
     'disks' => [
         'public' => [
-            'driver' => 'local',
-            'root'   => base_path().'/public',
-//            'glideURL' => '/glide',
+            'glideURL' => '',
         ],
     ],
 
