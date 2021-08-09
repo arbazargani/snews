@@ -125,11 +125,9 @@
                     <hr class="uk-divider-icon">
                     <div class="uk-container">
                         <h4 class="uk-h4 tm-heading-fragment">برچسب‌ها</h4>
-                        <select name="tags[]" id="tags" class="uk-select" multiple>
-                            @foreach($tags as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                            @endforeach
-                        </select>
+
+                        @include('admin.template-parts.tomSelectDotjs')
+
 
                         <hr class="uk-divider-small">
 
@@ -163,7 +161,44 @@
                     <div class="uk-container">
                       <div class="uk-card uk-card-secondary uk-card-body uk-border-rounded">
                         <h4 class="uk-h4 tm-heading-fragment">تصویر نوشته</h4>
-                        <input type="file" name="cover" id="cover">
+{{--                        <input type="file" name="cover" id="cover">--}}
+
+                        <input type="text" id="image_label" class="uk-input uk-text-meta" name="cover"
+                             aria-label="Image" aria-describedby="button-image">
+                        <div class="input-group-append">
+                          <button class="uk-button uk-button-secondary" type="button" id="button-image" name="cover">انتخاب</button>
+                        </div>
+                          <script>
+                              document.addEventListener("DOMContentLoaded", function() {
+
+                                  document.getElementById('button-image').addEventListener('click', (event) => {
+                                      event.preventDefault();
+
+                                      window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+                                  });
+                              });
+
+                              // set file link
+                              function fmSetLink($url) {
+                                  document.getElementById('image_label').value = $url;
+                              }
+                          </script>
+
+
+{{--                          <hr class="uk-divider">--}}
+{{--                          --}}
+{{--                          --}}
+{{--                          <link href="/assets/css/colorbox.css" rel="stylesheet">--}}
+{{--                          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>--}}
+
+{{--                          <script type="text/javascript" src="/assets/js/jquery.colorbox-min.js"></script>--}}
+{{--                          <script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.min.js"></script>--}}
+
+
+{{--                          <label for="feature_image">Feature Image</label>--}}
+{{--                          <input type="text" id="feature_image" name="feature_image" value="">--}}
+{{--                          <a href="" class="popup_selector" data-inputid="feature_image">Select Image</a>--}}
+
                       </div>
                     </div>
                 </div>

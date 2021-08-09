@@ -12,7 +12,7 @@
 
 @section('content')
 <ul class="uk-breadcrumb" style="
-                                                        text-overflow: ellipsis;    
+                                                        text-overflow: ellipsis;
                                                         white-space: nowrap;
                                                         overflow: hidden;
                                                         width: 100%;

@@ -143,17 +143,18 @@
                     <hr class="uk-divider-icon">
                     <div class="uk-container">
                         <h4 class="uk-h4 tm-heading-fragment">برچسب‌ها</h4>
-                        <select name="tags[]" id="tags" class="uk-select" multiple>
-                            @foreach($tags as $tag)
-                                <option value="{{ $tag->id }}"
-                                                                    @foreach($article->tag()->get() as $activeTag)
-                                                                        @if($activeTag->id == $tag->id )
-                                                                            selected="selected"
-                                                                        @endif
-                                                                    @endforeach
-                                >{{ $tag->name }}</option>
-                            @endforeach
-                        </select>
+{{--                        <select name="tags[]" id="tags" class="uk-select" multiple>--}}
+{{--                            @foreach($tags as $tag)--}}
+{{--                                <option value="{{ $tag->id }}"--}}
+{{--                                                                    @foreach($article->tag()->get() as $activeTag)--}}
+{{--                                                                        @if($activeTag->id == $tag->id )--}}
+{{--                                                                            selected="selected"--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endforeach--}}
+{{--                                >{{ $tag->name }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+                        @include('admin.template-parts.tomSelectDotjs')
 
                         <hr class="uk-divider-small">
 

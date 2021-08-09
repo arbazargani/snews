@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Tag;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -69,13 +71,13 @@ class TagController extends Controller
         $paginatedItems->setPath($request->url());
 
         $PaginatedTags = $paginatedItems;
-  
+
         return view('public.tag.archive', compact('tag', 'PaginatedTags'));
     }
 
     public function oldEngine($slug) {
         $tag = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_tags` WHERE `alias` = '$slug'");
-        
+
         if (!count($tag)) {
             return abort('404');
         } else {
@@ -89,6 +91,39 @@ class TagController extends Controller
             array_push ($articles, DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `id` = {$article_id->id}")[0]);
         }
 
-        return $articles;
+//        return $articles;
+        return view('old.theme.tag', compact(['tag', 'articles']));
+    }
+
+    public function Ajax(Request $request) {
+        if ($request->isMethod('get')) {
+            if ($request->has('q')) {
+                $result = DB::table('tags')
+                ->whereRaw("`slug` LIKE '%" . urldecode($request->q) . "%'")
+                ->orWhereRaw("`name` LIKE '%" . urldecode($request->q) . "%'")
+                ->get();
+//                echo json_encode($result[0]);
+                $result_array = [];
+                foreach ($result as $item) {
+                    $result_array[] = (object) [
+                        'id' => $item->id,
+                        'label'=> $item->name,
+                        'type' => ['category']
+                    ];
+                }
+
+                $response = [
+                    'request' => $request->fullUrl(),
+                    'result' => [
+                        'code' => 200,
+                        'msg' => 'Success',
+                        'list' => $result_array,
+                    ],
+                ];
+                $response = (object) $response;
+
+                return response()->json($response);
+            }
+        }
     }
 }

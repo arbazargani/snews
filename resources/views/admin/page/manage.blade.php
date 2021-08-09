@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="tm-main uk-section uk-section-secondary">
-        <div class="uk-container uk-container-small">
+        <div class="uk-container uk-container-large">
             <h2 id="lightbox" class="uk-h2 tm-heading-fragment">
                 مدیریت برگه‌ها
             </h2>

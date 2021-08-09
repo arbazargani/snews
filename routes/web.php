@@ -17,6 +17,10 @@ Route::get('/user/logout', 'UserController@logout')->name('User > Logout');
 
 Route::get('/', 'HomeController@Index')->name('Home');
 
+Route::get('index.html', function () {
+   return redirect()->route('Home');
+});
+
 Route::get('/blog', function() {
     return redirect(route('Home'));
 })->name('Blog');
@@ -67,6 +71,7 @@ Route::prefix('admin')->middleware('auth', 'HasAdminAccess', 'CheckPageState')->
     Route::post('page/restore/{id}', 'PageController@Restore')->name('Page > Restore');
 
     Route::get('tag', 'TagController@Manage')->name('Tag > Manage');
+    Route::get('tag/ajax', 'TagController@Ajax')->name('Tag > Ajax');
     Route::post('tag/new/submit', 'TagController@Submit')->name('Tag > Submit');
     Route::post('tag/delete/{id}', 'TagController@Delete')->name('Tag > Delete');
 
@@ -120,4 +125,15 @@ Route::get('/tags/{id}', 'ArticleController@GetPostTagsFromID');
 * old cms categories router
 */
 Route::get('/{param_1}/{param_2}.html', 'CategoryController@OldEngineComplex')->name('Old cms > Categories > Complex');
-Route::get('/{param_1}.html', 'CategoryController@OldEngineComplex')->name('Old cms > Categories > Short');
+Route::get('/{param_1}.html', 'CategoryController@OldEngineSimple')->name('Old cms > Categories > Short');
+
+Route::get('faker', 'HomeController@Faker');
+
+Route::get('glide/{path}', function($path){
+    $server = \League\Glide\ServerFactory::create([
+        'source' => app('filesystem')->disk('public')->getDriver(),
+        'cache' => storage_path('glide'),
+    ]);
+    return $server->getImageResponse($path, Input::query());
+})->where('path', '.+');
+

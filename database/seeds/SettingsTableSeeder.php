@@ -71,5 +71,15 @@ class SettingsTableSeeder extends Seeder
             'updated_at' => now()
         ]);
 
+        // site logo
+        DB::table('settings')->insert([
+            'name' => 'logo_src',
+            'title' => 'آدرس عکس لوگو',
+            'type' => 'text',
+            'value' => '',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
     }
 }

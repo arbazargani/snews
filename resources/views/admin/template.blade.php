@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
     <script src="{{ asset('assets/js/uikit.min.js') }}"></script>
     <script src="{{ asset('assets/js/uikit-icons.min.js') }}"></script>
+    <!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 
     {{-- Bootstrap --}}
     {{--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">--}}
@@ -26,14 +29,17 @@
 
     <style>
         *:not(i) {
-            font-family: IRANSans !important;
+            font-family: Vazir-light !important;
+        }
+        body {
+            min-height: 100vh;
         }
     </style>
 </head>
 <body>
 @include('admin.template-parts.topbar')
-<div class="uk-background-secondary" uk-grid>
-    <div class="uk-visible@m" style="border: 1px solid lightgray;">
+<div class="uk-background-muted" uk-grid>
+    <div class="uk-visible@m uk-background-secondary" style="border: 1px solid lightgray;">
         @include('admin.template-parts.sidebar')
     </div>
     <div class="uk-hidden@m uk-width-1-1">

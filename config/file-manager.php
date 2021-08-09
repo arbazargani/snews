@@ -40,21 +40,21 @@ return [
      *
      * null - auto select the first disk in the disk list
      */
-    'rightDisk' => null,
+    'rightDisk' => 'public',
 
     /**
      * Default path for left manager
      *
      * null - root directory
      */
-    'leftPath' => null,
+    'leftPath' => 'uploads/articles/images',
 
     /**
      * Default path for right manager
      *
      * null - root directory
      */
-    'rightPath' => null,
+    'rightPath' => 'uploads/articles/images',
 
     /**
      * Image cache ( Intervention Image Cache )

@@ -1,5 +1,7 @@
 {{-- Jquery --}}
 <script src="{{ asset('assets/js/jquery-3.5.0.min.js') }}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 
 {{-- TinyMCE --}}
 <script src="{{ asset('assets/js/tinymce.min.js') }}" referrerpolicy="origin"></script>
@@ -15,16 +17,86 @@
             let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight
 
             tinymce.activeEditor.windowManager.openUrl({
-                url : '/file-manager/tinymce5',
+                // url : '/file-manager/tinymce5',
+                url : '{{ route('elfinder.tinymce5') }}',
                 title : 'FileManager',
                 width : x * 0.8,
                 height : y * 0.8,
-                onMessage: (api, message) => {
-                    callback(message.content, { text: message.text })
+                // onMessage: (api, message) => {
+                //     callback(message.content, { text: message.text })
+                // }
+
+                onMessage: function (dialogApi, details) {
+                    if (details.mceAction === 'fileSelected') {
+                        const file = details.data.file;
+
+                        // Make file info
+                        const info = file.name;
+
+                        // Provide file and text for the link dialog
+                        if (meta.filetype === 'file') {
+                            callback(file.url, {text: info, title: info});
+                        }
+
+                        // Provide image and alt text for the image dialog
+                        if (meta.filetype === 'image') {
+                            callback(file.url, {alt: info});
+                        }
+
+                        // Provide alternative source and posted for the media dialog
+                        if (meta.filetype === 'media') {
+                            callback(file.url);
+                        }
+
+                        dialogApi.close();
+                    }
                 }
+
             })
         }
     });
+</script>
+
+<script>
+    function elFinderBrowser (callback, value, meta) {
+        tinymce.activeEditor.windowManager.openUrl({
+            title: 'File Manager',
+            url: '{{ route('elfinder.tinymce5') }}',
+            /**
+             * On message will be triggered by the child window
+             *
+             * @param dialogApi
+             * @param details
+             * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
+             */
+            onMessage: function (dialogApi, details) {
+                if (details.mceAction === 'fileSelected') {
+                    const file = details.data.file;
+
+                    // Make file info
+                    const info = file.name;
+
+                    // Provide file and text for the link dialog
+                    if (meta.filetype === 'file') {
+                        callback(file.url, {text: info, title: info});
+                    }
+
+                    // Provide image and alt text for the image dialog
+                    if (meta.filetype === 'image') {
+                        callback(file.url, {alt: info});
+                    }
+
+                    // Provide alternative source and posted for the media dialog
+                    if (meta.filetype === 'media') {
+                        callback(file.url);
+                    }
+
+                    dialogApi.close();
+                }
+            }
+        });
+    }
+
 </script>
 
 
@@ -63,8 +135,10 @@
         }
 
     }
+
+    switch_theme('light');
 </script>
-    
+
 {{-- Persian Datepicker --}}
 <!-- dependes on jquery -->
 <script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>

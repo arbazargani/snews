@@ -45,6 +45,8 @@ class AppServiceProvider extends ServiceProvider
 
         $settings['title_delimiter'] = Setting::where('name', 'title_delimiter')->first();
 
+        $settings['logo_src'] = Setting::where('name', 'logo_src')->first();
+
         view()->share( compact( [
             'latestArticles',
             'categories',

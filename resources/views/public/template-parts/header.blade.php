@@ -1,10 +1,12 @@
 <nav class="uk-navbar-container uk-margin uk-box-shadow-small" id="navbar" uk-navbar>
 {{--    <a class="uk-navbar-item uk-logo" href="#">{{ $settings['website_name']->value }}</a>--}}
     <a class="uk-navbar-item uk-logo uk-visible@m" href="#">
-        <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS">
+        <!-- <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS"> -->
+        <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
     </a>
     <a class="uk-navbar-item uk-logo uk-hidden@m" href="#">
-        <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; margin: 3px 0px 3px 0px; vertical-align: middle;" alt="MAMOOT CMS">
+        <!-- <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; margin: 3px 0px 3px 0px; vertical-align: middle;" alt="MAMOOT CMS"> -->
+        <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; margin: 3px 0px 3px 0px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
     </a>
     <div class="uk-navbar-right uk-margin-small-right uk-visible@m">
         <ul class="uk-navbar-nav">

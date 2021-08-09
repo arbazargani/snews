@@ -81,21 +81,22 @@ class CategoryController extends Controller
 /*
     public function oldEngine($slug) {
         $tag = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `alias` = '$slug'");
-        
+
         if (!count($tag)) {
             return abort('404');
         } else {
             $category_id = $tag[0]->id;
         };
 
-        $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `catid` = 'category_id' LIMIT 10");        
+        $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `catid` = 'category_id' LIMIT 10");
 
         return $articles;
     }
 */
     public function OldEngineSimple ($param_1) {
         $category = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `alias` = '$param_1'");
-        
+//        return $param_1;
+
         if (!count($category)) {
             return abort('404');
         } else {
@@ -105,12 +106,15 @@ class CategoryController extends Controller
         $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `catid` = $category_id LIMIT 10");
 
         // return (object) $article_info;
-        return $articles;
+        // return $articles;
+        // die('408');
+        return view('old.theme.archive', compact(['category', 'articles']));
+
     }
 
     public function OldEngineComplex ($param_2) {
         $category = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `alias` = '$param_2'");
-        
+
         if (!count($category)) {
             return abort('404');
         } else {
@@ -120,6 +124,8 @@ class CategoryController extends Controller
         $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `catid` = $category_id LIMIT 10");
 
         // return (object) $article_info;
-        return $articles;
+        // return $articles;
+        // return $category[0]->path;
+        return view('old.theme.archive', compact(['category', 'articles']));
     }
 }

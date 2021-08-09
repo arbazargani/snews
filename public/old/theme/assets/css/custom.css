@@ -1,0 +1,79 @@
+#sp-main-body{padding:20px 0;}
+#sppb-addon-1539869385137 .sppb-addon-article .sppb-article-info-wrap{padding:10px 15px 5px 15px;height:110px;}
+.allmode-box.allmode-default.notes .allmode-img img{float:right;margin:0 0 2px 10px;border:none;padding:0;}
+.allmode-box.allmode-default.notes .allmode-title > a{font-size:14px;line-height:20px;border-bottom:none;color:#1A1A1A !important;font-family:wsans;border:none;}
+.allmode-box.allmode-default.notes .allmode-item{border:none;padding:10px;border:none;margin-bottom:3px;background:#fff;}
+.allmode-box.allmode-default.notes .allmode-itemsbox{margin:0;}
+.sppb-addon-title{color:#c00000;font-family:shabnam;font-size:15px;margin:0 0 10px 0;border-right:2px solid #1C499A;padding-right:6px;font-weight: 700;}
+.allmode-box.allmode-default.notes{margin:0;}
+.ns2-row.ns2-first.ns2-odd{background:#fff;}
+.sp-module._menu li{border-bottom:medium none;border-left:1px solid #ddd;display:inline-block;font-size:13px;padding:0 7px;}
+ul.menu{margin-bottom:0;padding:0;}
+.sp-megamenu-parent > li > a, .sp-megamenu-parent > li > span{padding:0 6px;font-family:wsans;font-weight: 500;}
+#sp-footer ul.menu li{margin:0 4px;padding:0 0 0 6px;}
+#sp-top-bar a:hover{color:#fff;}
+.camera_caption a{font-family:wsans!important;font-size:20px!important;}
+.article-details .article-header{padding:0 15px;}
+.article-details .article-full-image{margin-bottom:20px;}
+.article-details .article-info{margin-bottom:10px;padding:0 15px;}
+.article-details{background:#fff;}
+.article-details p{padding:0 15px;font-size:14px;line-height:30px;text-align:justify;font-weight: 500;}
+#sp-left .sp-module, #sp-right .sp-module{padding:0;margin:0 0 30px 0;}
+#sp-left .sp-module.mostread h3.sp-module-title, #sp-right .sp-module.mostread h3.sp-module-title, #sp-right .sp-module h3.sp-module-title, #sp-left .sp-module h3.sp-module-title{color:#c00000;font-family:shabnam;font-size:15px;margin:0 0 10px 0;border-right:2px solid #1C499A;padding:0 6px 0 0;}
+.blog .article-intro-image.float-right{float:right!important;width:150px;margin:1px 1px 20px 15px;}
+.article-list .article{margin-bottom:20px;padding:15px;border:none;border-radius:3px;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+main#sp-component .article-header h2{font-size:18px;font-weight:600;margin-bottom:12px;font-family:wsans;}
+.article-introtext{font-size:14px;line-height:24px;}
+.article-introtext p{margin-bottom:5px;font-family:wsans;}
+span.published, span.category-name, span.createdby{font-size:12px;color:#999;}
+span.published, span.hits{font-family:wsansnum;}
+div#column-id-1487943732398 h4.ns2-title{font-size:12px;padding:10px 5px 0 5px;}
+div#column-id-1487943732398 .ns2-column.flt-left.col-1{padding:5px;}
+div#column-id-1487943732398 h4.ns2-title a{color:#000;line-height:25px;}
+div#column-id-1487943732398 h4.ns2-title a:hover{color:#ce2027}
+.layout-fluid .body-innerwrapper{overflow-y:hidden;}
+.np-thumbnail{display:inline-block;}
+.gallerycontainer{position:relative;}
+.np-thumbnail img{border:1px solid #CCC;margin:5px;}
+.np-thumbnail:hover{background-color:transparent;}
+.np-thumbnail:hover img{border:1px solid #CCC;}
+.np-thumbnail span{position:absolute;background-color:#fff;padding:10px 0 0 10px;border:1px dotted gray;visibility:hidden;color:black;text-decoration:none;}
+.np-thumbnail span img{border-width:0;padding:2px;}
+.np-thumbnail:hover span{visibility:visible;right:450px;z-index:50;margin-top:-140px;}
+.pull-right{margin-left:15px;}
+.container-fluid.blog-featured ul.tags.list-inline{display:none;}
+main#sp-component .article-header h1{font-size:23px;font-family:wsans;font-weight:600;margin-bottom:20px;line-height:30px;}
+.tags > li a{padding:10px 15px;border-radius:1px;margin:0 10px 10px 0;}
+h3.frontpage{color:#c00000;font-family:shabnam;font-size:15px;margin:0 0 10px 0;border-right:2px solid #1C499A;padding:0 6px 0 0;font-weight: 700;}
+.sp-module.frontpage h4.ns2-title{font-size:12px;padding:10px 5px 0 5px;}
+.sp-module.frontpage .ns2-column.flt-left.col-1{padding:5px;}
+.sp-module.frontpage h4.ns2-title a{color:#000}
+.sp-module.frontpage h4.ns2-title a:hover{color:#ce2027}
+.sp-megamenu-parent .sp-dropdown .sp-dropdown-inner{padding:0;}
+.sp-megamenu-parent .sp-dropdown li.sp-menu-item > a, .sp-megamenu-parent .sp-dropdown li.sp-menu-item span:not(.sp-menu-badge){font-size:14px;line-height:1;display:inline-block;padding:10px 20px;cursor:pointer;border-top:1px solid #ededed;}
+p.ns2-introtext{font-size:14px;padding:5px;margin-bottom:5px;}
+.camera_wrap{margin:0 0 5px !important;}
+.acfilter-item{margin:10px auto;border:1px solid #eee;padding:15px 15px 0 15px;border-radius:3px;box-shadow:none;-moz-box-shadow:none;transition:0.5s;min-height:300px !important;background-color:#fff;}
+.acfilter-item a{font-family:wsans;font-size:15px;line-height:23px;font-weight:600;}
+.acfilter-info a span{color:#cc0000;}
+.acfilter-info a span:hover{font-weight:bold;}
+.acfilter-desc{min-height:110px;font-size:14px;}
+.acfilter-readmore{display:none;}
+.acfilter-item h4{line-height:23px;}
+.acfilter-info span{font-family:wsansnum;}
+.rutitr{font-size:14px;color:#777;padding-bottom:10px;}
+i.fa.fa-newspaper-o{padding:0 0 0 10px;font-size:16px;color:#777;}
+#sppb-addon-1539869385137 .sppb-addon-article h3 a:hover{color:#cc0000;}
+td.list-author{font-size:12px;color:#333;}
+table.category thead>tr th, table.category tbody>tr th, table.category thead>tr td, table.category tbody>tr td{padding:5px;}
+input#start_date{width:47%;float:right;margin:0 0 15px 6px;}
+input#end_date{float:right;width:47%;margin:0 6px 15px 0;}
+#acfilter-form .form-group{margin-bottom:0;}
+#acfilter-form .btn.btn-default{margin:10px 0;border:1px solid #e8e8e8;}
+.allmode-box.allmode-default.notes span.allmode-author { border-right: 3px solid #CE2027; padding: 0 8px 0 0;}
+.allmode-default .allmode-item .allmode-info {margin-top: 14px;font-size: 11px;}
+.sppb-article-introtext {font-size: 14px;padding: 0 10px;}
+.ui-widget-shadow { padding: 3px!important; background: #555 50% 50% repeat-x!important; opacity: 0.9!important;}
+.ui-widget { font-family: wsans,Helvetica,Arial,sans-serif!important;font-size: 13px!important;}
+.ui-widget-content { color: #fff!important;}
+div.nssp2 .col-1 { max-width: 100%; width: 100%;}

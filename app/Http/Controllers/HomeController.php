@@ -56,4 +56,9 @@ class HomeController extends Controller
     public function Search($query) {
 
     }
+
+    public function Faker()
+    {
+        $article = factory(Article::class, 100)->create();
+    }
 }

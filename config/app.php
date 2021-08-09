@@ -67,7 +67,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    // 'timezone' => 'UTC',
+    'timezone' => 'Asia/Tehran',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +167,8 @@ return [
          * Package Service Providers...
          */
         Hekmatinasser\Verta\VertaServiceProvider::class,
+        Ybazli\Faker\FakerServiceProvider::class,
+        Barryvdh\Elfinder\ElfinderServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -229,6 +232,7 @@ return [
          * Package Service Aliases...
          */
         'Verta' => Hekmatinasser\Verta\Verta::class,
+        'Faker' => Ybazli\Faker\Facades\Faker::class,
     ],
 
 ];

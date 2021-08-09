@@ -17,7 +17,7 @@ class AdminController extends Controller
 {
     public function Index(Request $request) {
         $articles = [
-            'all' => Article::all()->count(),
+            'all' => Article::count(),
             'published' => Article::where('state', 1)->count(),
             'drafts' => Article::where('state', 0)->count(),
             'deleted' => Article::where('state', -1)->count(),
@@ -25,14 +25,14 @@ class AdminController extends Controller
         ];
 
         $pages = [
-            'all' => Page::all()->count(),
+            'all' => Page::count(),
             'published' => Page::where('state', 1)->count(),
             'drafts' => Page::where('state', 0)->count(),
             'deleted' => Page::where('state', -1)->count()
         ];
 
         $comments = [
-            'all' => Comment::all()->count(),
+            'all' => Comment::count(),
             'approved' => Comment::where('approved', 1)->count(),
             'unapproved' => Comment::where('approved', 0)->count(),
         ];

@@ -47,10 +47,11 @@ class ArticleController extends Controller
 
     public function Submit(Request $request)
     {
+
         $request->validate([
             'title' => 'required|min:1|max:400',
             'content' => 'required|min:1',
-            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+//            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if($request->has('new_categories') && count($request['new_categories']) > 0) {
@@ -81,18 +82,22 @@ class ArticleController extends Controller
 
 
         $fileName = 'ghost.png';
-        if ($request->hasFile('cover')) {
-            // Get filename.extention
-            $image = $request->file('cover')->getClientOriginalName();
-            // Get just file name
-            $imageName = pathinfo($image, PATHINFO_FILENAME);
-            // Get just file extention
-            $imageExtention = $request->file('cover')->getClientOriginalExtension();
-            // Make unique file name
-            $fileName = $imageName . '_' . time() . '.' . $imageExtention;
-            // Store for public uses
-            $path = $request->file('cover')->storeAs('public/uploads/articles/images', $fileName);
+//        if ($request->hasFile('cover')) {
+//            // Get filename.extention
+//            $image = $request->file('cover')->getClientOriginalName();
+//            // Get just file name
+//            $imageName = pathinfo($image, PATHINFO_FILENAME);
+//            // Get just file extention
+//            $imageExtention = $request->file('cover')->getClientOriginalExtension();
+//            // Make unique file name
+//            $fileName = $imageName . '_' . time() . '.' . $imageExtention;
+//            // Store for public uses
+//            $path = $request->file('cover')->storeAs('public/uploads/articles/images', $fileName);
+//
+//        }
 
+        if ($request->has('cover') && !is_null($request->cover)) {
+            $fileName = $request->cover;
         }
 
         $article = new Article();
@@ -348,8 +353,10 @@ class ArticleController extends Controller
         return $tags;
     }
 
-    public function OldEngineSimple ($param_1, $id, $slug) {
+    // public function OldEngineSimple ($param_1, $id, $slug) {
+        public function OldEngineSimple ($param_1, $id) {
         $article = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `id` = $id");
+        // return $article;
         if (!count($article)) {
             return abort('404');
         } else {
@@ -367,19 +374,31 @@ class ArticleController extends Controller
             'category' => $this->GetCategoriesFromID($article->catid)->title,
             'tags' => $this->GetPostTagsFromID($article->id),
         ];
+
+//        $route = urldecode(route('Old cms > News > Simple', [$param_1, $id, $article->alias]));
+//        header("Location: $route");
+//        exit();
+
+
+//        return redirect()->route('Old cms > News > Simple', [$param_1, $id, $article->alias]);
 
         // return (object) $article_info;
-        return $article_info;
+        // return $article_info;
+        if (isset($_GET['json'])) {
+            return $article_info;
+        }
+        return view('old.theme.single', compact('article_info'));
     }
 
-    public function OldEngineComplex ($param_1, $id, $slug) {
+//    public function OldEngineComplex ($param_1, $param_2, $id, $slug) {
+    public function OldEngineComplex ($param_1, $param_2, $id) {
         $article = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `id` = $id");
         if (!count($article)) {
             return abort('404');
         } else {
             $article = $article[0];
         }
-        
+
         $article_info = [
             'id' => $article->id,
             'title' => $article->title,
@@ -393,7 +412,11 @@ class ArticleController extends Controller
             'tags' => $this->GetPostTagsFromID($article->id),
         ];
 
-        return $article_info;
+        // return $article_info;
+        if (isset($_GET['json'])) {
+            return $article_info;
+        }
+        return view('old.theme.single', compact('article_info'));
     }
 
 }

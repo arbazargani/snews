@@ -10,12 +10,14 @@
     "require": {
         "php": "^7.2",
         "alexusmai/laravel-file-manager": "^2.4",
+        "barryvdh/laravel-elfinder": "^0.4.7",
         "cviebrock/eloquent-sluggable": "^6.0",
         "fideloper/proxy": "^4.0",
         "hekmatinasser/verta": "^1.10",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-sitemap": "^5.6"
+        "spatie/laravel-sitemap": "^5.6",
+        "ybazli/faker": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
