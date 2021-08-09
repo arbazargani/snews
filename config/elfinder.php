@@ -26,11 +26,17 @@ return array(
     |        'alias' => 'Local storage',
     |    ]
     */
-    'disks' => [
-        'public' => [
-            'glideURL' => '/glide',
-        ],
+
+    'public' => [
+        'driver' => 'local',
+        'root'   => base_path().'/public',
     ],
+
+//    'disks' => [
+//        'public' => [
+//            'glideURL' => '/glide',
+//        ],
+//    ],
 
     /*
     |--------------------------------------------------------------------------

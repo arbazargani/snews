@@ -129,11 +129,11 @@ Route::get('/{param_1}.html', 'CategoryController@OldEngineSimple')->name('Old c
 
 Route::get('faker', 'HomeController@Faker');
 
-Route::get('glide/{path}', function($path){
-    $server = \League\Glide\ServerFactory::create([
-        'source' => app('filesystem')->disk('public')->getDriver(),
-        'cache' => storage_path('glide'),
-    ]);
-    return $server->getImageResponse($path, Input::query());
-})->where('path', '.+');
+//Route::get('glide/{path}', function($path){
+//    $server = \League\Glide\ServerFactory::create([
+//        'source' => app('filesystem')->disk('public')->getDriver(),
+//        'cache' => storage_path('glide'),
+//    ]);
+//    return $server->getImageResponse($path, Input::query());
+//})->where('path', '.+');
 
