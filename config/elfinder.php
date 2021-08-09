@@ -27,16 +27,13 @@ return array(
     |    ]
     */
 
-    'public' => [
-        'driver' => 'local',
-        'root'   => base_path().'/public',
-    ],
-
-//    'disks' => [
-//        'public' => [
+    'disks' => [
+        'public' => [
+            'driver' => 'local',
+            'root'   => base_path().'/public',
 //            'glideURL' => '/glide',
-//        ],
-//    ],
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
