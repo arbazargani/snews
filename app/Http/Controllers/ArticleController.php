@@ -35,7 +35,8 @@ class ArticleController extends Controller
         $relative = 'src="../../';
         $absolute = 'src="'.ENV('APP_URL')."/";
         $output = str_replace($relative, $absolute , $input);
-        return $output;
+//        return $output;
+        return $input;
     }
 
     public function New()
