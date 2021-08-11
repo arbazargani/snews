@@ -14,7 +14,7 @@ class AddParentToCategories extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->text('parent')->default('-1');
+            $table->string('parent')->default('-1');
         });
     }
 
