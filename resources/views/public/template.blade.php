@@ -20,17 +20,17 @@
         <link rel="stylesheet" href="{{ asset('assets/css/prism.css') }}" />
 
 
-        <!-- Hotjar Tracking Code for arbazargani.ir -->
-        <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:1753147,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
+        <!-- Hotjar Tracking Code -->
+{{--        <script>--}}
+{{--            (function(h,o,t,j,a,r){--}}
+{{--                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};--}}
+{{--                h._hjSettings={hjid:1753147,hjsv:6};--}}
+{{--                a=o.getElementsByTagName('head')[0];--}}
+{{--                r=o.createElement('script');r.async=1;--}}
+{{--                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;--}}
+{{--                a.appendChild(r);--}}
+{{--            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');--}}
+{{--        </script>--}}
 
         {{--  video js  --}}
         <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet" />
@@ -55,7 +55,51 @@
 				font-size: 16px!important;
 			}
 		}
+
+        .pulse {
+            /*margin:100px;*/
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0F7AE5;
+            cursor: pointer;
+            box-shadow: #004c9b;
+            animation: pulse 2s infinite;
+        }
+        .pulse:hover {
+            animation: none;
+        }
+
+        @-webkit-keyframes pulse {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgb(88, 169, 248);
+            }
+            70% {
+                -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+            }
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+            }
+        }
+        @keyframes pulse {
+            0% {
+                -moz-box-shadow: 0 0 0 0 rgb(88, 169, 248);
+                box-shadow: 0 0 0 0 rgb(88, 169, 248);
+            }
+            70% {
+                -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+                box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+            }
+            100% {
+                -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+                box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+            }
+        }
 		</style>
+        {{ $settings['before_body_codes']->value }}
 </head>
 <body class="uk-background-muted" id="top">
 	<div class="uk-section-primary uk-preserve-color">
@@ -115,5 +159,6 @@
 		<!-- Advertise socket - position fixed -->
 		@include('public.template-parts.footer')
 		@include('public.template-parts.scripts')
+        {{ $settings['end_body_codes']->value }}
 </body>
 </html>

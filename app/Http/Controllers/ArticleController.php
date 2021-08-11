@@ -211,7 +211,7 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required|min:1|max:400',
             'content' => 'required|min:1|',
-            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+//            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if($request->has('new_categories') && count($request['new_categories']) > 0) {
@@ -240,17 +240,20 @@ class ArticleController extends Controller
             }
         }
 
-        if ($request->hasFile('cover')) {
-            // Get filename.extention
-            $image = $request->file('cover')->getClientOriginalName();
-            // Get just file name
-            $imageName = pathinfo($image, PATHINFO_FILENAME);
-            // Get just file extention
-            $imageExtention = $request->file('cover')->getClientOriginalExtension();
-            // Make unique file name
-            $fileName = $imageName . '_' . time() . '.' . $imageExtention;
-            // Store for public uses
-            $path = $request->file('cover')->storeAs('public/uploads/articles/images', $fileName);
+//        if ($request->hasFile('cover')) {
+//            // Get filename.extention
+//            $image = $request->file('cover')->getClientOriginalName();
+//            // Get just file name
+//            $imageName = pathinfo($image, PATHINFO_FILENAME);
+//            // Get just file extention
+//            $imageExtention = $request->file('cover')->getClientOriginalExtension();
+//            // Make unique file name
+//            $fileName = $imageName . '_' . time() . '.' . $imageExtention;
+//            // Store for public uses
+//            $path = $request->file('cover')->storeAs('public/uploads/articles/images', $fileName);
+//        }
+        if ($request->has('cover') && !is_null($request->cover)) {
+            $fileName = $request->cover;
         }
 
         $article = Article::find($id);
@@ -262,7 +265,7 @@ class ArticleController extends Controller
         $article->meta_description = isset($request['meta-description']) ? $this->NoArabic($request['meta-description']) : '';
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';
 
-        if ($request->hasFile('cover')) {
+        if ($request->has('cover')) {
             $article->cover = $fileName;
         }
         if ($request['draft']) {

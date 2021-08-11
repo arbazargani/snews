@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Article;
 use App\Category;
 use App\Setting;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -60,5 +61,11 @@ class HomeController extends Controller
     public function Faker()
     {
         $article = factory(Article::class, 100)->create();
+    }
+
+    public function MenuStructure()
+    {
+        $menu_structure = Category::get()->groupBy('parent');
+        return $menu_structure;
     }
 }

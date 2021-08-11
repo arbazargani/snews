@@ -52,7 +52,7 @@
     <div class="uk-hidden@m">
         @if($article[0]->cover)
             <img class="uk-align-center uk-border-rounded"
-                 src="/storage/uploads/articles/images/{{ $article[0]->cover }}"
+                 src="{{ $article[0]->cover }}"
                  alt="{{ $article['0']->meta_title }}"
                  uk-img>
         @endif
@@ -99,7 +99,7 @@
 
             <div class="uk-inline uk-width-1-1">
                 <img class="uk-margin-remove uk-align-center uk-border-rounded"
-                     src="/storage/uploads/articles/images/{{ $article[0]->cover }}"
+                     src="{{ $article[0]->cover }}"
                      alt="{{ $article['0']->meta_title }}" style="min-width: 100%;" uk-img>
                 <div class="uk-position-top-left uk-label uk-margin uk-margin-left">
                     بازدید: {{ $article[0]->views }}</div>
@@ -108,9 +108,11 @@
                         <!-- title -->
                         <div class="uk-padding-remove" uk-grid>
                             <div>
-                                <img class="uk-border-pill uk-float-right"
-                                     src="{{ asset('/assets/image/smlarbavaconprd.png') }}"
-                                     style="width:55px; height:55px;">
+{{--                                <img class="uk-border-pill uk-float-right"--}}
+{{--                                     src="{{ asset('/assets/image/smlarbavaconprd.png') }}"--}}
+{{--                                     style="width:55px; height:55px;">--}}
+
+                                    <span uk-icon="icon: file-text; ratio: 2"></span>
                             </div>
                             <div class="uk-width-expand">
                                 <h1 class="uk-text-lead uk-margin-remove">{{ $article[0]->title }}</h1>

@@ -25,7 +25,6 @@
         <div class="uk-container">
             <h4 class="uk-text-emphasis">سایر رسانه‌ها</h4>
             <hr class="uk-divider-small">
-            <div id="14730017806"><script type="text/JavaScript" src="https://www.aparat.com/embed/2TmSX?data[rnddiv]=14730017806&data[responsive]=yes"></script></div>
         </div>
         <!-- socket -->
 
@@ -34,14 +33,6 @@
         <div class="uk-container">
             <h4 class="uk-text-emphasis">آب و هوا</h4>
             <hr class="uk-divider-small">
-            <style>
-                iframe {
-                    border: 0px !important;
-                }
-            </style>
-            <!-- Begin Horuph.com Weather code -->
-            <script src="http://weather.horuph.com/frame/?lang=fa&imagesize=1&color0=212121&color1=226699&bgcolor=3599FF&bdcolor=C4C4C4&border=1&curved=7&haveshadow=1&showdetail=1&showsponsors=0&showforcast=1&city=Tehran" type="text/javascript" language="javascript"></script>
-            <!-- End Horuph.com Weather code -->
         </div>
         <!-- socket -->
 
@@ -75,17 +66,26 @@
 {{--            </a>--}}
 {{--        </div>--}}
         <div class="uk-width-1-2">
-            <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS">
-            <a class="uk-link-reset uk-text-primary" href="{{ route('Home') }}" target="_blank" rel="follow">
-                <span style="font-size: 11px!important;">سیستم مدیریت محتوای 'ماموت'</span>
-            </a>
+            <div class="uk-background-secondary uk-padding-small" style="padding: 10px;" uk-grid>
+                <div class="uk-width-1-2@m">
+                    <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS">
+                    <a class="uk-link-reset uk-text-primary" href="{{ route('Home') }}" target="_blank" rel="follow">
+                        <span style="font-size: 11px!important;">سیستم مدیریت محتوای 'ماموت'</span>
+                    </a>
+                </div>
+                <div class="uk-width-1-2@m">
+                    <img src="https://primerstudio.io/assets/primer-studio-mini.png" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="Primer Studio">
+                    <a class="uk-link-reset uk-text-primary" href="https://primerstudio.io" target="_blank" rel="follow">
+                        <span style="font-size: 11px!important;">طراحی توسط استودیو پرایمر</span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="uk-width-1-2">
             <a class="uk-float-left" href="{{ route('Rss') }}" target="_blank" class="uk-icon-link" uk-icon="rss"></a>
             <span class="uk-float-left"> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
             <a class="uk-float-left" href="" target="_blank" class="uk-icon-link" uk-icon="twitter"></a>
         </div>
-
     </div>
     <!-- sockets holder -->
 

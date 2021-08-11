@@ -137,3 +137,5 @@ Route::get('faker', 'HomeController@Faker');
 //    return $server->getImageResponse($path, Input::query());
 //})->where('path', '.+');
 
+Route::get('menu', 'HomeController@MenuStructure');
+

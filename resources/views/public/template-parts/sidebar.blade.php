@@ -36,7 +36,10 @@
     <!-- socket - latest/popular -->
     <div class="sidebar-element">
         <div class="uk-card uk-card-hover uk-card-body">
-            <h3 class="uk-card-title uk-text-meta">بخوانید</h3>
+            <h3 class="uk-card-title uk-text-meta">
+                <span class="pulse"></span>
+                <span>بخوانید</span>
+            </h3>
             <hr class="uk-divider-small">
 
             <!-- tabs -->
@@ -112,7 +115,10 @@
     <!-- socket - categories -->
     <div class="sidebar-element">
         <div class="uk-card uk-card-hover uk-card-body">
-            <h3 class="uk-card-title uk-text-meta">دسته‌بندی مطالب</h3>
+            <h3 class="uk-card-title uk-text-meta">
+                <span class="pulse"></span>
+                <span>دسته‌بندی مطالب</span>
+            </h3>
             <hr class="uk-divider-small">
             @if(count($categories) > 0)
                 <ul class="uk-list">
@@ -148,7 +154,10 @@
     <!-- socket - mail -->
     <div class="sidebar-element">
         <div class="uk-card uk-card-hover uk-card-body">
-            <h3 class="uk-card-title uk-text-meta">خبرنامه</h3>
+            <h3 class="uk-card-title uk-text-meta">
+                <span class="pulse"></span>
+                <span>خبرنامه</span>
+            </h3>
             <hr class="uk-divider-small">
             <img class="uk-border-rounded" src="/assets/image/newsletter-marketing-email.jpg" alt="خبرنامه ایمیلی">
             <hr>

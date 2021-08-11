@@ -17,7 +17,7 @@
                     <ul class="uk-slideshow-items uk-border-rounded">
                         @foreach($sliderArticles as $article)
                         <li>
-                            <img src="/storage/uploads/articles/images/{{ $article->cover }}" alt="{{ $article->title }}" uk-cover>
+                            <img src="{{ $article->cover }}" alt="{{ $article->title }}" uk-cover>
                             <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-right uk-transition-slide-bottom">
                                 <h3 uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-visible@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon-button" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
                                 <hr class="uk-divider-small">
@@ -49,11 +49,11 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="/storage/uploads/articles/images/{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                 <div class="uk-card-badge uk-label uk-background-default uk-text-meta">بازدید:‌ {{ $article->views }}</div>
-                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5">{{ $article->title }}</h3></a>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:
                                         @foreach($article->category->all() as $category)

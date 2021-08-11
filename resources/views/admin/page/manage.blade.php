@@ -65,7 +65,14 @@
                         @foreach($pages as $page)
                             <tr>
                                 <td>{{ $page->title }}</td>
-                                <td>{{ $page->created_at }}</td>
+                                @php
+                                    $jalaliDate = new Verta($page->created_at);
+                                    $jalaliDate->timezone('Asia/Tehran');
+                                    Verta::setStringformat('Y/n/j H:i:s');
+                                    $jalaliDate = Verta::instance($page->created_at);
+                                    $jalaliDate = Facades\Verta::instance($page->created_at);
+                                @endphp
+                                <td>{{ $jalaliDate }}</td>
                                 <td>
                                     @if($page->state == 0)
                                         <div class="state-drafted"></div>

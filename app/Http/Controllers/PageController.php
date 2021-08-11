@@ -36,7 +36,7 @@ class PageController extends Controller
 
         $page->title =  $this->NoArabic($request['title']);
         $page->content =  $this->NoArabic($request['content']);
-        $page->content =  $this->noRelative($request['content']);
+        $page->content =  $this->noRelatives($request['content']);
 
         $page->meta_description = isset($request['meta-description']) ?  $this->NoArabic($request['meta-description']) : '';
         $page->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';

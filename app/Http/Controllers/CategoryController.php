@@ -27,6 +27,7 @@ class CategoryController extends Controller
         ]);
         $category = new Category();
         $category->name = $request['name'];
+        $category->parent = ($request->has('parent') && !empty($request['parent'])) ? $request['parent'] : '-1';
         if (isset($request['slug']) && !is_null($request['slug'])) {
             $category->slug = SlugService::createSlug(Category::class, 'slug', $request['slug']);
         }

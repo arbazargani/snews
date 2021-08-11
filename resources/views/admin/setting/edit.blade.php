@@ -25,7 +25,13 @@
                     <div class="uk-width-1-2@m uk-margin-small-bottom">
                         <div class="uk-inline uk-width-1-2    @if($loop->first) uk-first-column @endif">
                             <label for="name">{{ $setting->title }}</label>
-                            <input type="{{ $setting->type }}" name="{{ $setting->name }}" id="{{ $setting->name }}" placeholder="{{ $setting->title }}" class="uk-input form-control" value="{{ $setting->value }}" {{ $setting->required ? 'required' : '' }}>
+                            @if($setting->type == 'text' || $setting->type == 'email')
+                                <input type="{{ $setting->type }}" name="{{ $setting->name }}" id="{{ $setting->name }}" placeholder="{{ $setting->title }}" class="uk-input form-control" value="{{ $setting->value }}" {{ $setting->required ? 'required' : '' }}>
+                            @elseif($setting->type == 'textarea')
+                                <textarea name="{{ $setting->name }}" id="{{ $setting->name }}" placeholder="{{ $setting->title }}" rows="15" class="uk-textarea">{{ $setting->value }}</textarea>
+                            @else
+                                <span>نوع تعریف نشده است.</span>
+                            @endif
                         </div>
                     </div>
                     @endforeach

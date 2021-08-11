@@ -190,12 +190,33 @@
                         <h4 class="uk-h4 tm-heading-fragment">تصویر نوشته</h4>
                         @if($article->cover)
                             <div class="uk-container uk-align-center">
-                                <img src="/storage/uploads/articles/images/{{ $article->cover }}" alt="" style="max-width: 100%;">
+                                <img src="{{ $article->cover }}" alt="" style="max-width: 100%;">
                                 <hr>
-                            </div>
+{{--                            </div>--}}
                         @endif
-                        <input type="file" name="cover" id="cover">
+{{--                        <input type="file" name="cover" id="cover">--}}
                         </div>
+
+                            <input type="text" id="image_label" class="uk-input uk-text-meta" name="cover"
+                                   aria-label="Image" aria-describedby="button-image" content="{{ $article->cover }}">
+                            <div class="input-group-append">
+                                <button class="uk-button uk-button-secondary" type="button" id="button-image" name="cover">انتخاب</button>
+                            </div>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+
+                                    document.getElementById('button-image').addEventListener('click', (event) => {
+                                        event.preventDefault();
+
+                                        window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+                                    });
+                                });
+
+                                // set file link
+                                function fmSetLink($url) {
+                                    document.getElementById('image_label').value = $url;
+                                }
+                            </script>
                     </div>
                 </div>
             </form>

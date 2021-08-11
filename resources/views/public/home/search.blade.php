@@ -15,7 +15,7 @@
 <div class="uk-padding-small" uk-grid>
     <div class="uk-article uk-width-1-1@m">
         <article class="article uk-padding">
-            <h1 class="uk-text-lead">{{ 'نتایج جسنجو: ' . $_REQUEST['query'] }}</h1>
+            <h1 class="uk-text-lead">{{ 'نتایج جستجو: ' . $_REQUEST['query'] }}</h1>
             <hr>
             @if(count($articles))
                 <div class="uk-child-width-1-2@m" uk-grid="masonry: true" uk-grid>
@@ -23,7 +23,7 @@
                     <div>
                         <div class="uk-card uk-card-default uk-card-hover uk-border-rounded">
                             <div class="uk-card-media-top">
-                                <a href="{{ route('Article > Single', $article->slug) }}"><img src="/storage/uploads/articles/images/{{ $article->cover }}" alt="" class="uk-border-rounded" style="width: 100%; height: 180px;"></a>
+                                <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="" class="uk-border-rounded" style="width: 100%; height: 180px;"></a>
                             </div>
                             <div class="uk-card-body">
                                 <div class="uk-card-badge uk-label">{{ $article->views }} بازدید</div>
@@ -41,7 +41,7 @@
                     <p>جستجوی شما نتیجه‌ای نداشت.</p>
                 </div>
             @endif
-            
+
             {{ $articles->links("pagination::uikit") }}
         </article>
     </div>

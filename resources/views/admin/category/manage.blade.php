@@ -29,6 +29,14 @@
                             <input type="text" name="slug" id="slug" placeholder="نامک" class="uk-input form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" style="padding-left: 40px;">
                         </div>
                         <div class="uk-inline uk-width-1-1 uk-first-column">
+                            <select class="uk-select" name="parent" id="parent">
+                                <option></option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="uk-inline uk-width-1-1 uk-first-column">
                             <button type="submit" class="uk-button uk-button-primary uk-border-rounded">انتشار</button>
                         </div>
                     </form>
@@ -40,6 +48,8 @@
                             <thead style="border-top: 1px solid lightgray">
                             <tr>
                                 <th>نام دسته</th>
+                                <th>آیدی</th>
+                                <th>دسته مادر</th>
                                 <th>نامک</th>
                                 <th>حذف</th>
                                 <th>بازدید</th>
@@ -57,6 +67,8 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td>{{ $category->name }}</td>
+                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $category->parent }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td>
                                         <form action="{{ route('Category > Delete', $category->id) }}" method="POST">

@@ -1,7 +1,14 @@
 @foreach($articles as $article)
 <tr>
     <td>{{ $article->title }}</td>
-    <td>{{ $article->created_at }}</td>
+    @php
+        $jalaliDate = new Verta($article->created_at);
+        $jalaliDate->timezone('Asia/Tehran');
+        Verta::setStringformat('Y/n/j H:i:s');
+        $jalaliDate = Verta::instance($article->created_at);
+        $jalaliDate = Facades\Verta::instance($article->created_at);
+    @endphp
+    <td>{{ $jalaliDate }}</td>
     <td>@foreach($article->category as $category) <a href="{{ route('Category > Archive', $category->slug) }}" class="uk-text-meta">{{ $category->name }}@if(!$loop->last) {{', '}} @endif</a> @endforeach</td>
     <td>@foreach($article->tag as $tag) <a href="{{ route('Tag > Archive', $tag->slug) }}" class="uk-text-meta">{{ $tag->name }}@if(!$loop->last) {{', '}} @endif</a>@endforeach</td>
     <td>

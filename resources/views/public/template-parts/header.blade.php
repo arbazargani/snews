@@ -43,6 +43,39 @@
                     </div>
                 </div>
             </li>
+
+
+
+
+
+
+
+            @php
+                $menu = new App\Http\Controllers\HomeController();
+                $menu_structure = $menu->MenuStructure();
+            @endphp
+            @foreach($menu_structure as $menu_parent => $menu_child)
+                @if($menu_parent !== -1)
+                    <li>
+                        <a href="{{ route('Category > Archive', \App\Category::find((int) $menu_parent)->slug) }}">{{ \App\Category::find($menu_parent)->name }}</a>
+                        <div class="uk-navbar-dropdown uk-navbar-dropdown">
+                            <div class="uk-navbar-dropdown-grid" uk-grid>
+                                <div>
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        @foreach($menu_structure[$menu_parent] as $child)
+                                            <li class="uk-margin-right"><a href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @else
+                    @foreach($menu_structure[$menu_parent] as $child)
+                        <li><a href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
+                    @endforeach
+                @endif
+            @endforeach
         </ul>
     </div>
     <div class="uk-navbar-left uk-margin-small-left">
@@ -74,7 +107,7 @@
                 <ul class="uk-nav-sub">
                 @foreach($categories as $category)
                 @if($category->id != 1)
-                <li class="uk-margin-right"><a href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
+                    <li class="uk-margin-right"><a href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
                 @endif
                 @endforeach
                 </ul>

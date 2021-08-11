@@ -47,6 +47,16 @@ class AppServiceProvider extends ServiceProvider
 
         $settings['logo_src'] = Setting::where('name', 'logo_src')->first();
 
+        $settings['before_body_codes'] = Setting::where('name', 'before_body_codes')->first();
+
+        $settings['end_body_codes'] = Setting::where('name', 'end_body_codes')->first();
+
+        $settings['site_down'] = Setting::where('name', 'site_down')->first();
+
+        $settings['menu_structure'] = Setting::where('name', 'menu_structure')->first();
+
+
+
         view()->share( compact( [
             'latestArticles',
             'categories',

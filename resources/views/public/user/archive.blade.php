@@ -43,7 +43,7 @@
     <div class="article uk-margin @if($loop->even) uk-background-default @else uk-background-secondary uk-light @endif uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
         <div class="uk-container" uk-grid>
             <div class="uk-width-1-3@m">
-            <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><img class="uk-border-rounded" src="/storage/uploads/articles/images/{{ $article->cover }}" style="width: auto;"></a>
+            <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><img class="uk-border-rounded" src="{{ $article->cover }}" style="width: auto;"></a>
             </div>
             <div class="uk-width-2-3@m">
                 <p>
@@ -60,7 +60,7 @@
                             <a class="uk-bage uk-badge" href="{{ route('Article > Single', $article->slug) }}"><span uk-icon="arrow-right"></span></a>
                         </div>
                     </div>
-                    
+
                 </p>
             </div>
         </div>
