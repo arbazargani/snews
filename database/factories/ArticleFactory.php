@@ -17,6 +17,6 @@ $factory->define(Article::class, function () {
         'user_id' => 1,
         'views' => rand(1, 500),
         'cover' => 'https://picsum.photos/id/' . rand(1, 270) . '/700/500',
-        'state' => 1,
+        'state' => 1
     ];
 });

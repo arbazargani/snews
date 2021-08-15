@@ -26,6 +26,11 @@
     {{--    <link rel="stylesheet" href="{{ asset('assets/css/file-manager.css') }}">--}}
     {{--    <script src="{{ asset('assets/js/file-manager.js') }}"></script>--}}
 
+    {{-- DatePicker --}}
+    <script src="{{ asset('assets/date_picker/js/datePickerMain.js') }}"></script>
+    <script src="{{ asset('assets/date_picker/js/bootstrap-datepicker.fa.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/date_picker/css/bootstrap-datepicker.css') }}" />
+
 
     <style>
         *:not(i) {

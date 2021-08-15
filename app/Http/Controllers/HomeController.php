@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,7 @@ class HomeController extends Controller
      */
     public function Index(Request $request)
     {
-        $sliderArticles = Article::latest()->where('state', 1)->limit(5)->get();
+        $sliderArticles = Article::latest()->where('state', 1)->where('created_at','<=', Carbon::now())->limit(5)->get();
         $homeTitle = Setting::where('name', 'meta_title')->first();
         $homeDescription = Setting::where('name', 'meta_description')->first();
 
@@ -39,9 +40,11 @@ class HomeController extends Controller
                 $query = $request['query'];
                 $articles = Article::where([
                     ['state', '=', 1],
+                    ['created_at', '<=', Carbon::now()],
                     ['title', 'LIKE', '%' . $query . '%']
                 ])->orWhere([
                     ['state', '=', 1],
+                    ['created_at', '<=', Carbon::now()],
                     ['content', 'LIKE', '%' . $query . '%']
                 ])->paginate(10);
                 return view('public.home.search', compact('articles'));
@@ -65,7 +68,7 @@ class HomeController extends Controller
 
     public function MenuStructure()
     {
-        $menu_structure = Category::get()->groupBy('parent');
+        $menu_structure = Category::where('id', '!=', '1')->get()->groupBy('parent');
         return $menu_structure;
     }
 }

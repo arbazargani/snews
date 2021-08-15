@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Advertise;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Hekmatinasser\Verta\Verta;
 
@@ -33,11 +35,11 @@ class AppServiceProvider extends ServiceProvider
 
         $categories = Category::where('id', '!=', 1)->get();
 
-        $latestArticles = Article::where('state', 1)->latest()->limit(5)->get();
+        $latestArticles = Article::where('state', 1)->where('created_at','<', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->latest()->limit(5)->get();
 
-        $popularArticles = Article::where('state', 1)->orderBy('views', 'desc')->limit(3)->get();
+        $popularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->orderBy('views', 'desc')->limit(3)->get();
 
-        $notPopularArticles = Article::where('state', 1)->orderBy('views', 'asc')->limit(10)->get();
+        $notPopularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->orderBy('views', 'asc')->limit(10)->get();
 
         $advertises = Advertise::where('state', 1)->where('expires_at', '>', $date)->get();
 

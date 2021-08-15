@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Facades\Verta;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -111,6 +112,11 @@ class ArticleController extends Controller
 
         $article->cover = $fileName;
         $article->user_id = Auth::id();
+
+        $v = Verta();
+        $date = Verta::getGregorian($request['created_year'],$request['created_month'],$request['created_day']);
+        $date = $date[0] . '-' . $date[1] . '-' . $date[2];
+        $article->created_at = $date. ' ' . $request['created_hour'] . ':' . $request['created_minute'] . ':00' ;
 
         if ($request['publish']) {
             $article->state = 1;
@@ -240,6 +246,8 @@ class ArticleController extends Controller
             }
         }
 
+        $fileName = 'ghost.png';
+
 //        if ($request->hasFile('cover')) {
 //            // Get filename.extention
 //            $image = $request->file('cover')->getClientOriginalName();
@@ -265,9 +273,11 @@ class ArticleController extends Controller
         $article->meta_description = isset($request['meta-description']) ? $this->NoArabic($request['meta-description']) : '';
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';
 
-        if ($request->has('cover')) {
-            $article->cover = $fileName;
-        }
+        $v = Verta();
+        $date = Verta::getGregorian($request['created_year'],$request['created_month'],$request['created_day']);
+        $date = $date[0] . '-' . $date[1] . '-' . $date[2];
+        $article->created_at = $date. ' ' . $request['created_hour'] . ':' . $request['created_minute'] . ':00' ;
+
         if ($request['draft']) {
             $article->state = $article->previous_state;
             $article->state = 0;

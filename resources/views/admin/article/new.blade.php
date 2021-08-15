@@ -84,6 +84,71 @@
                         <button type="submit" name="publish" class="uk-button uk-button-primary uk-border-rounded" value="1">انتشار</button>
                         <button type="submit" name="draft" class="uk-button uk-button-default uk-border-rounded" value="1">پیش‌نویس</button>
                     </div>
+                    <hr class="uk-divider-icon" uk-grid>
+
+                    <div class="uk-container">
+                        @php
+                            $d = new Verta();
+                        @endphp
+                        <label class="uk-form-label" for="created_year">سال</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select" id="created_year" name="created_year">
+                                @for($i = ($d->year)-10; $i <= ($d->year)+10; $i++)
+                                    <option value="{{ $i }}" @if($d->year == $i) selected @endif>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-container">
+                        <label class="uk-form-label" for="created_month">ماه</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select" id="created_month" name="created_month">
+                                <option value="1" @if($d->month == 1) selected @endif>فروردین</option>
+                                <option value="2" @if($d->month == 2) selected @endif>اردیبهشت</option>
+                                <option value="3" @if($d->month == 3) selected @endif>خرداد</option>
+                                <option value="4" @if($d->month == 4) selected @endif>تیر</option>
+                                <option value="5" @if($d->month == 5) selected @endif>مرداد</option>
+                                <option value="6" @if($d->month == 6) selected @endif>شهریور</option>
+                                <option value="7" @if($d->month == 7) selected @endif>مهر</option>
+                                <option value="8" @if($d->month == 8) selected @endif>آبان</option>
+                                <option value="9" @if($d->month == 9) selected @endif>آذز</option>
+                                <option value="10" @if($d->month == 10) selected @endif>دی</option>
+                                <option value="11" @if($d->month == 11) selected @endif>بهمن</option>
+                                <option value="12" @if($d->month == 12) selected @endif>اسفند</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-container">
+                        <label class="uk-form-label" for="created_day">روز</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select" id="created_day" name="created_day">
+                                @for($i = 1; $i <= 31; $i++)
+                                <option value="{{ $i }}" @if($d->day == $i) selected @endif>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-container">
+                            <label class="uk-form-label" for="created_hour">ساعت</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="created_hour" name="created_hour">
+                                    @for($i = 1; $i <= 24; $i++)
+                                        <option value="{{ $i }}" @if($d->hour == $i) selected @endif>{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+            </div>
+                    <div class="uk-container">
+                        <label class="uk-form-label" for="created_minute">دقیقه</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select" id="created_minute" name="created_minute">
+                                @for($i = 0; $i <= 59; $i++)
+                                    <option value="{{ $i }}" @if($d->minute == $i) selected @endif>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+
                     <hr class="uk-divider-icon">
                     <div class="uk-container">
                         <h4 class="uk-h4 tm-heading-fragment">دسته‌بندی</h4>
