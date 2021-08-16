@@ -18,15 +18,14 @@
                         @foreach($sliderArticles as $article)
                         <li>
                             <img src="{{ $article->cover }}" alt="{{ $article->title }}" uk-cover>
-                            <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-right uk-transition-slide-bottom">
-                                <h3 uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-visible@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon-button" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
-                                <hr class="uk-divider-small">
+                            <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-position-fixed uk-text-right uk-transition-slide-bottom">
+                                <h3 uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-visible@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
                                 @if(count($article->category->all()))
                                 <p uk-slideshow-parallax="x: 200,-200" class="uk-margin-remove uk-text-meta">
                                 در دسته <a href="{{ route('Category > Archive', $article->category->first()->slug) }}">{{ $article->category->first()->name }}</a>
                                 </p>
                                 @endif
-                                <h3 style="font-size: 13px !important;" uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-align-right uk-hidden@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon-button" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
+                                <h3 style="font-size: 13px !important;" uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-align-right uk-hidden@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
                             </div>
                         </li>
                         @endforeach
@@ -43,7 +42,7 @@
 
             <!-- most popular -->
                 <div class="container">
-                    <h2 class="uk-text-lead">محبوب‌ترین مقالات</h2>
+                    <h2 class="uk-text-lead">اخبار پربازدید</h2>
                     @foreach($popularArticles as $article)
                     <div class="uk-card uk-card-small uk-background-muted uk-grid-collapse uk-margin uk-border-rounded">
                         <div>

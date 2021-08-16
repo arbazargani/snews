@@ -6,7 +6,7 @@
     </a>
     <a class="uk-navbar-item uk-logo uk-hidden@m" href="{{ route('Home') }}">
         <!-- <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; margin: 3px 0px 3px 0px; vertical-align: middle;" alt="MAMOOT CMS"> -->
-        <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; margin: 3px 0px 3px 0px; border-radius: 3px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
+        <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; background: #ffffff; padding: 3px; margin: 3px 0px 3px 0px; border-radius: 3px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
     </a>
     <div class="uk-navbar-right uk-margin-small-right uk-visible@m">
         <ul class="uk-navbar-nav">
@@ -83,6 +83,7 @@
                 <ul class="uk-nav-sub">
                     <li class="uk-margin-right"><a href="/page/تماس-با-ما">تماس با ما</a></li>
                     <li class="uk-margin-right"><a href="/page/درباره-ما">درباره ما</a></li>
+                    <li class="uk-margin-right"><a href="{{ route('Sitemap') }}">نقشه سایت</a></li>
                 </ul>
             </li>
             @if(Auth::check())
@@ -102,7 +103,7 @@
             <hr>
             <div class="uk-container">
                 <p>
-                <a href="#" class="uk-icon-button" uk-icon="instagram"></a>
+                <a href="https://www.instagram.com/smtnewspaper/?hl=en" target="_blank" class="uk-icon-button" uk-icon="instagram"></a>
                 </p>
             </div>
         </ul>

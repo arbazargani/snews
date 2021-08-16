@@ -15,13 +15,13 @@
             <hr class="uk-divider-small">
             <ul class="uk-list">
                 <li>
-                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="/page/تماس-با-ما">تماس با ما</a>
+                   <a class="uk-link-reset" href="/page/تماس-با-ما">تماس با ما</a>
                 </li>
                 <li>
-                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="/page/درباره-ما">درباره ما</a>
+                   <a class="uk-link-reset" href="/page/درباره-ما">درباره ما</a>
                 </li>
                 <li>
-                <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="/page/همکاری">همکاری با ما</a>
+                    <a class="uk-link-reset" href="/page/همکاری">همکاری با ما</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
             <ul class="uk-list">
             @foreach($latest as $new)
                 <li>
-                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="">{{ $new->title }}</a>
+                    <span uk-icon="dash"></span> <a class="uk-link-reset" href="">{{ $new->title }}</a>
                 </li>
             @endforeach
             </ul>
@@ -93,7 +93,7 @@
         <div class="uk-width-1-2@m">
             <a class="uk-float-left" href="{{ route('Rss') }}" target="_blank" class="uk-icon-link" uk-icon="rss"></a>
             <span class="uk-float-left"> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
-            <a class="uk-float-left uk-text-meta" href="{{ route('Sitemap') }}" target="_blank">نقشه سایت</a>
+            <a href="https://www.instagram.com/smtnewspaper/?hl=en" target="_blank" class="uk-float-left" uk-icon="instagram"></a>
         </div>
     </div>
     <!-- sockets holder -->

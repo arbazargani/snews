@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         $latestArticles = Article::where('state', 1)->where('created_at','<', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->latest()->limit(5)->get();
 
-        $popularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->orderBy('views', 'desc')->limit(3)->get();
+        $popularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(1), Carbon::now()])->orderBy('views', 'desc')->limit(3)->get();
 
         $notPopularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->orderBy('views', 'asc')->limit(10)->get();
 
