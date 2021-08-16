@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<meta name="generator" content="Mamooth CMS" />
-		<meta name="Development" content="Alireza Bazargani." />
-		<meta name="author" content="Alireza Bazargani" />
+		<meta name="Development" content="Primer Studio" />
+		<meta name="author" content="SMTNEWS" />
 
 		@yield('meta')
 
@@ -19,20 +19,6 @@
         {{-- prism js --}}
         <link rel="stylesheet" href="{{ asset('assets/css/prism.css') }}" />
 
-
-        <!-- Hotjar Tracking Code -->
-{{--        <script>--}}
-{{--            (function(h,o,t,j,a,r){--}}
-{{--                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};--}}
-{{--                h._hjSettings={hjid:1753147,hjsv:6};--}}
-{{--                a=o.getElementsByTagName('head')[0];--}}
-{{--                r=o.createElement('script');r.async=1;--}}
-{{--                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;--}}
-{{--                a.appendChild(r);--}}
-{{--            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');--}}
-{{--        </script>--}}
-
-        {{--  video js  --}}
         <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet" />
 
         <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
@@ -99,7 +85,7 @@
             }
         }
 		</style>
-        {{ $settings['before_body_codes']->value }}
+    {!! $settings['before_body_codes']->value !!}
 </head>
 <body class="uk-background-muted" id="top">
 	<div class="uk-section-primary uk-preserve-color">
@@ -159,6 +145,6 @@
 		<!-- Advertise socket - position fixed -->
 		@include('public.template-parts.footer')
 		@include('public.template-parts.scripts')
-        {{ $settings['end_body_codes']->value }}
+    {!! $settings['end_body_codes']->value !!}
 </body>
 </html>

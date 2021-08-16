@@ -4,9 +4,9 @@
         <!-- <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS"> -->
         <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
     </a>
-    <a class="uk-navbar-item uk-logo uk-hidden@m" href="#">
+    <a class="uk-navbar-item uk-logo uk-hidden@m" href="{{ route('Home') }}">
         <!-- <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; margin: 3px 0px 3px 0px; vertical-align: middle;" alt="MAMOOT CMS"> -->
-        <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; margin: 3px 0px 3px 0px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
+        <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; margin: 3px 0px 3px 0px; border-radius: 3px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
     </a>
     <div class="uk-navbar-right uk-margin-small-right uk-visible@m">
         <ul class="uk-navbar-nav">
