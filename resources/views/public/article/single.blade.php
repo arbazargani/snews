@@ -195,6 +195,26 @@
                    href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ urldecode(urlencode(route('Article > Single', $article[0]->slug))) }};title={{ $article[0]->title }};source={{ route('Home') }}"
                    target="_blank"></a>
 
+                <br>
+                <br>
+                <br>
+
+                <input class="uk-hidden" type="text" id="DirectUrl" value="{{ route('Article > Direct', $article[0]->id) }}">
+                <a uk-tooltip="لینک کوتاه" onclick="CopyUrl()" class="uk-text-meta uk-link-reset">{{ route('Article > Direct', $article[0]->id) }} <span uk-icon="link"></span></a>
+
+                <script>
+                    function CopyUrl() {
+                        var copyText = document.getElementById("DirectUrl");
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999)
+                        document.execCommand("copy");
+                        UIkit.notification({
+                            message: "<span uk-icon='icon: copy'></span> کپی شد.",
+                            pos: 'bottom-right',
+                            status: 'success'
+                        });
+                    }
+                </script>
         </div>
     </metabox>
 

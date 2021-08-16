@@ -191,7 +191,97 @@
                                     </span>
                                  </div>
                                  <div itemprop="articleBody">
-                                 {!! $article_info['content'] !!}
+                                     @if($article_info['category_id'] == 14)
+                                         <style>
+                                             .row {
+                                                 display:flex;
+                                                 flex-wrap: wrap;
+                                             }
+
+                                             .column {
+                                                 text-align: center;
+                                                 flex-grow: 1;
+                                                 flex-shrink: 1;
+                                                 flex-basis: 1;
+
+                                                 margin: 10px;
+
+                                                 background-color: #efefef;
+                                                 border: 1px solid #dedede;
+                                                 padding: 10px;
+
+                                             }
+
+                                             .col-1 {
+                                                 max-width: calc(100% / 12);
+                                             }
+                                             .col-2 {
+                                                 max-width: calc(100% / 12 * 2);
+                                             }
+                                             .col-3 {
+                                                 max-width: calc(100% / 12 * 3);
+                                             }
+                                             .col-4 {
+                                                 max-width: calc(100% / 12 * 4);
+                                             }
+                                             .col-5 {
+                                                 max-width: calc(100% / 12 * 5);
+                                             }
+                                             .col-6 {
+                                                 max-width: calc(100% / 2);
+                                             }
+
+                                             @media screen and (max-width: 768px) {
+                                                 .container {
+                                                     overflow: auto;
+                                                 }
+                                                 .column {
+                                                     min-width: 100%;
+                                                     width: 100%;
+                                                     margin: 10px 0;
+                                                 }
+                                             }
+
+                                         </style>
+                                         @php
+                                            $version = strip_tags(str_replace(['{gostaresh:', '}'], '', $article_info['content']));
+                                         @endphp
+                                         <div class="container">
+                                             <div class="row">
+                                                 @for($i = 1; $i <= 4; $i++)
+                                                 <div class="column">
+                                                     <a href="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.pdf"><img src="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.jpg"></a>
+                                                 </div>
+                                                 @endfor
+                                             </div>
+
+                                             <div class="row">
+                                                 @for($i = 5; $i <= 8; $i++)
+                                                     <div class="column">
+                                                         <a href="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.pdf"><img src="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.jpg"></a>
+                                                     </div>
+                                                 @endfor
+                                             </div>
+
+                                             <div class="row">
+                                                 @for($i = 9; $i <= 12; $i++)
+                                                     <div class="column">
+                                                         <a href="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.pdf"><img src="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.jpg"></a>
+                                                     </div>
+                                                 @endfor
+                                             </div>
+
+                                             <div class="row">
+                                                 @for($i = 13; $i <= 16; $i++)
+                                                     <div class="column">
+                                                         <a href="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.pdf"><img src="https://smtnews.ir/repository/{{ $version }}/{{ $i }}.jpg"></a>
+                                                     </div>
+                                                 @endfor
+                                             </div>
+                                         </div>
+                                     @else
+                                         {!! $article_info['content'] !!}
+                                     @endif
                                  </div>
                                  <ul class="tags list-inline">
                                  @foreach($article_info['tags'] as $tag)

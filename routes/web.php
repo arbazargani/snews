@@ -26,6 +26,7 @@ Route::get('/blog', function() {
 })->name('Blog');
 
 Route::get('/article/{slug}', 'ArticleController@Show')->middleware('CheckPageState')->name('Article > Single');
+Route::get('/direct/{id}', 'ArticleController@Direct')->name('Article > Direct');
 
 Route::get('page/{slug}', 'PageController@Show')->name('Page > Single');
 
@@ -104,6 +105,10 @@ Route::get('/tag-sitemap.xml', 'SitemapController@Tag')->name('Sitemap > Tags');
 
 Route::get('/rss', 'FeedController@Index')->name('Rss');
 
+/*
+* old cms newspaper router
+*/
+//Route::get('/newspaper-archive/{param}.html', 'NewspaperController@OldEngine')->name('Old cms > Newspaper');
 
 /*
 * old cms news router
@@ -127,7 +132,9 @@ Route::get('/tags/{id}', 'ArticleController@GetPostTagsFromID');
 Route::get('/{param_1}/{param_2}.html', 'CategoryController@OldEngineComplex')->name('Old cms > Categories > Complex');
 Route::get('/{param_1}.html', 'CategoryController@OldEngineSimple')->name('Old cms > Categories > Short');
 
-Route::get('faker', 'HomeController@Faker');
+//http://localhost:8000/newspaper-archive/51680-v1714.html
+
+//Route::get('faker', 'HomeController@Faker');
 
 //Route::get('glide/{path}', function($path){
 //    $server = \League\Glide\ServerFactory::create([

@@ -21,6 +21,12 @@ use App\User;
 
 class ArticleController extends Controller
 {
+    public function Direct($id)
+    {
+        $article = Article::findOrFail($id);
+
+        return redirect()->route('Article > Single', $article->slug);
+    }
     public function All() {
         $articles = Article::latest()->where('state', '=', 1)->paginate(2);
         return ArticleResource::collection($articles);
@@ -367,7 +373,7 @@ class ArticleController extends Controller
         return $tags;
     }
 
-    // public function OldEngineSimple ($param_1, $id, $slug) {
+// public function OldEngineSimple ($param_1, $id, $slug) {
         public function OldEngineSimple ($param_1, $id) {
         $article = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `id` = $id");
         // return $article;
@@ -386,6 +392,7 @@ class ArticleController extends Controller
             'created_at' => $article->created,
             'published_at' => $article->publish_up,
             'category' => $this->GetCategoriesFromID($article->catid)->title,
+            'category_id' => $this->GetCategoriesFromID($article->catid)->id,
             'tags' => $this->GetPostTagsFromID($article->id),
         ];
 
