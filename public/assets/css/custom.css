@@ -11,10 +11,10 @@ html {
 
 @font-face {
     font-family: 'Kit-light';
-    src: url('../fonts/kit/PelaklLight.woff'); /* IE9 Compat Modes */
-    src: url('../fonts/kit/PelaklLight.eot') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/kit/PelaklLight.woff') format('woff'), /* Pretty Modern Browsers */
-    url('../fonts/kit/PelaklLight.ttf')  format('truetype'), /* Safari, Android, iOS */
+    src: url('../fonts/kit/Pelak-light.woff'); /* IE9 Compat Modes */
+    src: url('../fonts/kit/Pelak-light.eot') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kit/Pelak-light.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/kit/Pelak-light.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 
 @font-face {
