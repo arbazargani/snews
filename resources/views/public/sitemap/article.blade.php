@@ -10,12 +10,12 @@
     <lastmod>{{ $article->updated_at }}</lastmod>
 
     <changefreq>hourly</changefreq>
-    
+
     <priority>0.9</priority>
 
     <image:image>
         <image:loc>
-            {{ asset('/storage/uploads/articles/images/' . $article->cover) }}
+            {{ ($article->cover != 'ghost.png') ? $article->cover : env('SITE_URL') . '/assets/image/ghost.png' }}
         </image:loc>
         <image:caption>{{ $article->title }}</image:caption>
         <image:title>{{ $article->title }}</image:title>

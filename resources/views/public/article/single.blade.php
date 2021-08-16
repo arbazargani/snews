@@ -58,7 +58,7 @@
         @endif
         <metabox>
             <div class="uk-container uk-background-muted uk-padding@m uk-border-rounded">
-                <h1 class="uk-margin-top uk-text-lead uk-text-center">{{ $article[0]->title }}</h1>
+                <h1 class="uk-margin-top uk-text-lead uk-text-right fa-kit-medium">{{ $article[0]->title }}</h1>
                 <!-- category -->
                 <div style="direction: rtl">
                     <span uk-icon="icon: folder"></span> <span class="uk-text-meta">دسته‌بندی: </span>
@@ -85,7 +85,7 @@
                         $jalaliDate = Verta::instance($article[0]->created_at);
                         $jalaliDate = Facades\Verta::instance($article[0]->created_at);
                     @endphp
-                    <span class="uk-text-meta"> <span uk-icon="clock"></span> {{ $jalaliDate }}
+                    <span class="uk-text-meta fa-num"> <span uk-icon="clock"></span> {{ $jalaliDate }}</span>
                 </div>
                 <!-- date -->
             </div>
@@ -96,12 +96,18 @@
     <!-- article cover and meta box for med/large-screens -->
     <div class="uk-visible@m">
         <div>
-
-            <div class="uk-inline uk-width-1-1">
+            <div class="uk-inline uk-width-1-1 check-here">
+                @if($article[0]->cover == 'ghost.png' || is_null($article[0]->cover))
+                    <metabox>
+                        <div class="uk-container uk-background-muted uk-padding@m uk-border-rounded">
+                            <h1 class="uk-margin-top uk-text-lead uk-text-right fa-kit-medium">{{ $article[0]->title }}</h1>
+                        </div>
+                    </metabox>
+                @else
                 <img class="uk-margin-remove uk-align-center uk-border-rounded"
                      src="{{ $article[0]->cover }}"
                      alt="{{ $article['0']->meta_title }}" style="min-width: 100%;" uk-img>
-                <div class="uk-position-top-left uk-label uk-margin uk-margin-left">
+                <div class="uk-position-top-left uk-label uk-margin uk-margin-left fa-num">
                     بازدید: {{ $article[0]->views }}</div>
                 <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-border-rounded">
                     <div style="direction: rtl">
@@ -124,6 +130,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <div class="uk-margin-top">
             <!-- category -->
@@ -149,7 +156,7 @@
                 $jalaliDate = Verta::instance($article[0]->created_at);
                 $jalaliDate = Facades\Verta::instance($article[0]->created_at);
             @endphp
-            <div class="uk-float-left"><span class="uk-text-meta"> <span uk-icon="clock"></span> {{ $jalaliDate }}
+            <div class="uk-float-left"><span class="uk-text-meta fa-num"> <span uk-icon="clock"></span> {{ $jalaliDate }}</span>
             </div>
             <!-- date -->
         </div>
@@ -157,8 +164,18 @@
     <!-- article cover and meta box for med/large-screens -->
 
     <content class="uk-text-justify">
-        <div class="uk-margin-medium-top">
-            {!! $article[0]->content !!}
+        <div class="uk-margin-medium-top fa-num">
+            @php
+                // $content = str_replace('<video', '<video-js', $article[0]->content);
+                // $content = str_replace('</video>', '</video-js>', $content);
+                $content = str_replace('<video ', '<video preload="metadata"
+                                                poster="'. $article[0]->cover .'"
+                                                style="width: 100% !important; border-radius: 10px; margin: 3%"
+                                                uk-video="autoplay: false"
+                                                id="video"', $article[0]->content);
+                $content = str_replace('<p', '<p class="fa-num"', $content)
+            @endphp
+            {!! $content !!}
         </div>
     </content>
 

@@ -8,8 +8,42 @@ html {
        url('../fonts/Vazir-Light.woff') format('woff'), /* Pretty Modern Browsers */
        url('../fonts/Vazir-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
+
+@font-face {
+    font-family: 'Kit-light';
+    src: url('../fonts/kit/Pelak-Light.woff'); /* IE9 Compat Modes */
+    src: url('../fonts/kit/Pelak-Light.eot') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kit/Pelak-Light.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/kit/Pelak-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+    font-family: 'Kit-light-fa-num';
+    src: url('../fonts/kit/PelakFa-Light.woff'); /* IE9 Compat Modes */
+    src: url('../fonts/kit/PelakFa-Light.eot') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kit/PelakFa-Light.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/kit/PelakFa-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+    font-family: 'Kit-light-fa-medium';
+    src: url('../fonts/kit/PelakFa-Medium.woff'); /* IE9 Compat Modes */
+    src: url('../fonts/kit/PelakFa-Medium.eot') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kit/PelakFa-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/kit/PelakFa-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
 * {
-    font-family: Vazir-light !important;
+    /*font-family: Vazir-light !important;*/
+    font-family: Kit-light !important;
+    /*font-family: Kit-light-fa-medium !important;*/
+}
+.fa-num {
+    font-family: Kit-light-fa-num !important;
+}
+
+.fa-kit-medium {
+    font-family: Kit-light-fa-medium !important;
 }
 .uk-border-top-1 {
   border-top: 1px solid lightgray;

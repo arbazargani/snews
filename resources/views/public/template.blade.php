@@ -24,8 +24,22 @@
         <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
         <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 
-
     <style media="screen">
+        h1 {
+            font-size: 1.3rem!important;
+        }
+        h2 {
+            font-size: 1.1rem!important;
+            font-family: Kit-light-fa-medium !important;
+        }
+        h3 {
+            font-size: 16px!important;
+            font-family: Kit-light-fa-medium !important;
+        }
+        h4 {
+            font-size: 16px!important;
+            font-family: Kit-light-fa-medium !important;
+        }
 		@media screen and (max-width: 479px) {
 			/* start of phone styles */
 			h1 {
@@ -88,6 +102,13 @@
     {!! $settings['before_body_codes']->value !!}
 </head>
 <body class="uk-background-muted" id="top">
+    <!-- preloader -->
+    <div id="preloader" class="uk-overlay-primary uk-position-cover" style="z-index: 1111111">
+        <div class="uk-position-center">
+            <span uk-spinner="ratio: 2"></span>
+        </div>
+    </div>
+    <!-- end preloader -->
 	<div class="uk-section-primary uk-preserve-color">
 		<div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
 			@include('public.template-parts.header')
@@ -145,6 +166,22 @@
 		<!-- Advertise socket - position fixed -->
 		@include('public.template-parts.footer')
 		@include('public.template-parts.scripts')
+        <script>
+            const {
+                $,
+                once,
+                remove,
+                transition,
+            } = UIkit.util;
+
+            window.onload = () => {
+                console.log('Window onload');
+                const loader = $('#preloader');
+
+                transition(loader, { opacity: 0 });
+                once(loader, 'transitionend', () => remove(loader));
+            };
+        </script>
     {!! $settings['end_body_codes']->value !!}
 </body>
 </html>

@@ -52,7 +52,7 @@
                                     <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
-                                <div class="uk-card-badge uk-label uk-background-default uk-text-meta">بازدید:‌ {{ $article->views }}</div>
+                                <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num">بازدید:‌ {{ $article->views }}</div>
                                     <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:

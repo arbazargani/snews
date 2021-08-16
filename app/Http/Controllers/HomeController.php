@@ -31,7 +31,10 @@ class HomeController extends Controller
      */
     public function Index(Request $request)
     {
-        $sliderArticles = Article::latest()->where('state', 1)->where('created_at','<=', Carbon::now())->limit(5)->get();
+        $sliderArticles = Article::latest()->where('state', 1)
+                                            ->where('created_at','<=', Carbon::now())
+                                            ->where('cover', '!=', 'ghost.png')
+                                            ->limit(5)->get();
         $homeTitle = Setting::where('name', 'meta_title')->first();
         $homeDescription = Setting::where('name', 'meta_description')->first();
 
@@ -66,9 +69,21 @@ class HomeController extends Controller
         $article = factory(Article::class, 100)->create();
     }
 
-    public function MenuStructure()
+    public function MenuStructureWithParents()
     {
-        $menu_structure = Category::where('id', '!=', '1')->get()->groupBy('parent');
+        $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->get()->groupBy('parent');
         return $menu_structure;
+    }
+
+    public function MenuStructureWithoutParents()
+    {
+        $menu_structure = $this->MenuStructureWithParents();
+        $used_categories = [1];
+        foreach ($menu_structure as $parents => $childs) {
+            $used_categories[] = $parents;
+        }
+        $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->get();
+
+        return $single_categories;
     }
 }

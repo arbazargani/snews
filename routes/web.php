@@ -97,7 +97,7 @@ Route::prefix('admin')->middleware('auth', 'HasAdminAccess', 'CheckPageState')->
 
 });
 
-Route::get('/sitemap_index.xml', 'SitemapController@Index');
+Route::get('/sitemap_index.xml', 'SitemapController@Index')->name('Sitemap');
 Route::get('/article-sitemap.xml', 'SitemapController@Article')->name('Sitemap > Articles');
 Route::get('/page-sitemap.xml', 'SitemapController@Page')->name('Sitemap > Pages');
 Route::get('/category-sitemap.xml', 'SitemapController@Category')->name('Sitemap > Categories');
@@ -144,5 +144,6 @@ Route::get('/{param_1}.html', 'CategoryController@OldEngineSimple')->name('Old c
 //    return $server->getImageResponse($path, Input::query());
 //})->where('path', '.+');
 
-Route::get('menu', 'HomeController@MenuStructure');
+Route::get('menu', 'HomeController@MenuStructureWithParents');
+Route::get('wmenu', 'HomeController@MenuStructureWithoutParents');
 

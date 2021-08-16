@@ -4,17 +4,24 @@
 
         <!-- socket -->
         <div class="uk-container">
+            <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
+        </div>
+        <!-- socket -->
+
+
+        <!-- socket -->
+        <div class="uk-container">
             <h4 class="uk-text-emphasis">صفحات</h4>
             <hr class="uk-divider-small">
             <ul class="uk-list">
                 <li>
-                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="{{ route('Page > Single', 'ارتباط')  }}">ارتباط</a>
+                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="/page/تماس-با-ما">تماس با ما</a>
                 </li>
                 <li>
-                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="{{ route('Page > Single', 'درباره')  }}">درباره</a>
+                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="/page/درباره-ما">درباره ما</a>
                 </li>
                 <li>
-                <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="{{ route('Page > Single', 'تبلیغات')  }}">تبلیغات</a>
+                <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="/page/همکاری">همکاری با ما</a>
                 </li>
             </ul>
         </div>
@@ -23,16 +30,18 @@
 
         <!-- socket -->
         <div class="uk-container">
-            <h4 class="uk-text-emphasis">سایر رسانه‌ها</h4>
+            <h4 class="uk-text-emphasis">آخرین اخبار</h4>
             <hr class="uk-divider-small">
-        </div>
-        <!-- socket -->
-
-
-        <!-- socket -->
-        <div class="uk-container">
-            <h4 class="uk-text-emphasis">آب و هوا</h4>
-            <hr class="uk-divider-small">
+            @php
+                $latest = \App\Article::latest()->where('state', 1)->where('created_at', '<=', \Carbon\Carbon::now())->limit(3)->get();
+            @endphp
+            <ul class="uk-list">
+            @foreach($latest as $new)
+                <li>
+                    <span uk-icon="arrow-right"></span> <a class="uk-link-reset" href="">{{ $new->title }}</a>
+                </li>
+            @endforeach
+            </ul>
         </div>
         <!-- socket -->
 
@@ -65,14 +74,14 @@
 {{--                <span style="font-size: 11px!important;">علیرضا بازرگانی</span>--}}
 {{--            </a>--}}
 {{--        </div>--}}
-        <div class="uk-width-1-2">
+        <div class="uk-width-1-2@m">
             <div class="uk-background-secondary uk-padding-small" style="padding: 10px;" uk-grid>
-                <div class="uk-width-1-2@m">
-                    <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS">
-                    <a class="uk-link-reset uk-text-primary" href="{{ route('Home') }}" target="_blank" rel="follow">
-                        <span style="font-size: 11px!important;">سیستم مدیریت محتوای 'ماموت'</span>
-                    </a>
-                </div>
+{{--                <div class="uk-width-1-2@m">--}}
+{{--                    <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS">--}}
+{{--                    <a class="uk-link-reset uk-text-primary" href="{{ route('Home') }}" target="_blank" rel="follow">--}}
+{{--                        <span style="font-size: 11px!important;">سیستم مدیریت محتوای 'ماموت'</span>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
                 <div class="uk-width-1-2@m">
                     <img src="https://primerstudio.io/assets/primer-studio-mini.png" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="Primer Studio">
                     <a class="uk-link-reset uk-text-primary" href="https://primerstudio.io" target="_blank" rel="follow">
@@ -81,10 +90,10 @@
                 </div>
             </div>
         </div>
-        <div class="uk-width-1-2">
+        <div class="uk-width-1-2@m">
             <a class="uk-float-left" href="{{ route('Rss') }}" target="_blank" class="uk-icon-link" uk-icon="rss"></a>
             <span class="uk-float-left"> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
-            <a class="uk-float-left" href="" target="_blank" class="uk-icon-link" uk-icon="twitter"></a>
+            <a class="uk-float-left uk-text-meta" href="{{ route('Sitemap') }}" target="_blank">نقشه سایت</a>
         </div>
     </div>
     <!-- sockets holder -->

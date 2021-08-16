@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Page;
@@ -18,14 +19,19 @@ class SitemapController extends Controller
     }
 
     public function Article() {
-        $articles = Article::where('state', '=', 1)->get();
+        $articles = Article::where('state', '=', 1)
+                            ->where('created_at','<=', Carbon::now())
+                            ->whereIn('meta_robots',['nofollow', 'index, follow'])
+                            ->latest()->get();
         return response()
             ->view('public.sitemap.article', compact('articles'))
             ->header('Content-Type','text/xml');
     }
 
     public function Page() {
-        $pages = Page::all();
+        $pages = Page::where('state', '=', 1)
+                    ->whereIn('meta_robots',['nofollow', 'index, follow'])
+                    ->latest()->get();
         return response()
             ->view('public.sitemap.page', compact('pages'))
             ->header('Content-Type','text/xml');
@@ -39,7 +45,7 @@ class SitemapController extends Controller
     }
 
     public function Tag() {
-        $tags = Tag::all();
+        $tags = Tag::latest()->limit(50)->get();
         return response()
             ->view('public.sitemap.tag', compact('tags'))
             ->header('Content-Type','text/xml');

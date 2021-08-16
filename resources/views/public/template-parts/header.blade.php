@@ -13,7 +13,8 @@
             <li><a href="{{ route('Home') }}">خانه</a></li>
             @php
                 $menu = new App\Http\Controllers\HomeController();
-                $menu_structure = $menu->MenuStructure();
+                $menu_structure = $menu->MenuStructureWithParents();
+                $single_categories = $menu->MenuStructureWithoutParents();
             @endphp
             @foreach($menu_structure as $menu_parent => $menu_child)
                 @if($menu_parent !== -1)
@@ -36,6 +37,10 @@
                         <li><a href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
                     @endforeach
                 @endif
+            @endforeach
+            @foreach($single_categories as $category)
+                <li><a href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
+
             @endforeach
         </ul>
     </div>
@@ -63,7 +68,7 @@
         <br>
         <ul class="uk-nav uk-nav-default">
             <li class="uk-active uk-navbar-header uk-margin-bottom"><a href="{{ route('Home') }}"><span class="uk-icon-button" uk-icon="home"></span> خانه</a></li>
-            <li class="uk-active uk-navbar-header"><a href="{{ route('Blog') }}"><span class="uk-icon-button" uk-icon="file-text"></span> بلاگ</a></li>
+            <li class="uk-active uk-navbar-header"><a href="{{ route('Blog') }}"><span class="uk-icon-button" uk-icon="file-text"></span> اخبار</a></li>
             <li class="uk-parent uk-margin-bottom">
                 <ul class="uk-nav-sub">
                 @foreach($categories as $category)
@@ -73,8 +78,13 @@
                 @endforeach
                 </ul>
             </li>
-            <li class="uk-active uk-navbar-header uk-margin-bottom"><a href="{{ route('Blog') }}"><span class="uk-icon-button" uk-icon="microphone"></span> پادکست‌ها</a></li>
-            <li class="uk-active uk-navbar-header uk-margin-bottom"><a href="{{ route('Blog') }}"><span class="uk-icon-button" uk-icon="receiver"></span> ارتباط</a></li>
+            <li class="uk-active uk-navbar-header uk-margin-bottom"><a href=""><span class="uk-icon-button" uk-icon="receiver"></span> ارتباط</a></li>
+            <li class="uk-parent uk-margin-bottom">
+                <ul class="uk-nav-sub">
+                    <li class="uk-margin-right"><a href="/page/تماس-با-ما">تماس با ما</a></li>
+                    <li class="uk-margin-right"><a href="/page/درباره-ما">درباره ما</a></li>
+                </ul>
+            </li>
             @if(Auth::check())
             <li class="uk-active uk-navbar-header"><a href="{{ route('Admin') }}"><span class="uk-icon-button" uk-icon="user"></span> پنل مدیریت</a></li>
             <li class="uk-parent uk-margin-bottom">
@@ -93,9 +103,6 @@
             <div class="uk-container">
                 <p>
                 <a href="#" class="uk-icon-button" uk-icon="instagram"></a>
-                <a href="#" class="uk-icon-button" uk-icon="github"></a>
-                <a href="#" class="uk-icon-button" uk-icon="whatsapp"></a>
-                <a href="#" class="uk-icon-button" uk-icon="mail"></a>
                 </p>
             </div>
         </ul>
