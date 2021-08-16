@@ -11,45 +11,6 @@
     <div class="uk-navbar-right uk-margin-small-right uk-visible@m">
         <ul class="uk-navbar-nav">
             <li><a href="{{ route('Home') }}">خانه</a></li>
-            <li>
-                <a href="#">بلاگ</a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-width-2">
-                    <div class="uk-navbar-dropdown-grid uk-child-width-1-2" uk-grid>
-                        <div>
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-nav-header">دسته‌بندی مطالب</li>
-                                @foreach($categories as $category)
-                                @php $half = (INT) round($loop->count/2) @endphp
-                                @if($loop->iteration <= $half)
-                                @if($category->id != 1)
-                                <li class="uk-margin-right"><a href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
-                                @endif
-                                @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-nav-header uk-invisible">دسته‌بندی مطالب</li>
-                                @foreach($categories as $category)
-                                @if($loop->iteration > $half)
-                                @if($category->id != 1)
-                                <li class="uk-margin-right"><a href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
-                                @endif
-                                @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </li>
-
-
-
-
-
-
-
             @php
                 $menu = new App\Http\Controllers\HomeController();
                 $menu_structure = $menu->MenuStructure();
