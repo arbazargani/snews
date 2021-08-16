@@ -19,10 +19,10 @@ html {
 
 @font-face {
     font-family: 'Kit-light-fa-num';
-    src: url('../fonts/kit/PelakFA-Light.woff'); /* IE9 Compat Modes */
-    src: url('../fonts/kit/PelakFA-Light.eot') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/kit/PelakFA-Light.woff') format('woff'), /* Pretty Modern Browsers */
-    url('../fonts/kit/PelakFA-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+    src: url('../fonts/kit/PelakFA-Regular.woff'); /* IE9 Compat Modes */
+    src: url('../fonts/kit/PelakFA-Regular.eot') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kit/PelakFA-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/kit/PelakFA-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 
 @font-face {
