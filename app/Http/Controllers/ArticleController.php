@@ -126,7 +126,9 @@ class ArticleController extends Controller
         $v = Verta();
         $date = Verta::getGregorian($request['created_year'],$request['created_month'],$request['created_day']);
         $date = $date[0] . '-' . $date[1] . '-' . $date[2];
-        $article->created_at = $date. ' ' . $request['created_hour'] . ':' . $request['created_minute'] . ':00' ;
+        $min = ($request['created_minute'] < 10) ? '0' . $request['created_minute'] : $request['created_minute'];
+        $hour = ($request['created_hour'] < 10) ? '0' . $request['created_hour'] : $request['created_hour'];
+        $article->created_at = $date. ' ' . $hour . ':' . $min . ':00' ;
 
         if ($request['publish']) {
             $article->state = 1;
@@ -295,7 +297,9 @@ class ArticleController extends Controller
         $v = Verta();
         $date = Verta::getGregorian($request['created_year'],$request['created_month'],$request['created_day']);
         $date = $date[0] . '-' . $date[1] . '-' . $date[2];
-        $article->created_at = $date. ' ' . $request['created_hour'] . ':' . $request['created_minute'] . ':00' ;
+        $min = ($request['created_minute'] < 10) ? '0' . $request['created_minute'] : $request['created_minute'];
+        $hour = ($request['created_hour'] < 10) ? '0' . $request['created_hour'] : $request['created_hour'];
+        $article->created_at = $date. ' ' . $hour . ':' . $min . ':00' ;
 
         if ($request['draft']) {
             $article->state = $article->previous_state;
