@@ -104,7 +104,11 @@
                                           @enderror name="content" rows="8" cols="80" style="width: 100%;"
                                           placeholder="نظرتان را بنویسید.">{{ old('content')  }}</textarea>
                         <hr>
-                        <button type="submit" class="uk-button uk-button-primary">ثبت</button>
+                    </div>
+                    <div class="uk-container uk-float-left" uk-grid>
+                        <div class="uk-width-1-4@m uk-float-left">
+                            <button type="submit" class="uk-button uk-button-primary theme-background-red">ثبت</button>
+                        </div>
                     </div>
                 </div>
             </form>

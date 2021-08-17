@@ -1,0 +1,19 @@
+a {
+    text-decoration: unset !important;
+}
+.theme-background-red {
+    background: #c0392b;
+}
+.theme-color-red {
+    color: #c0392b !important;
+}
+
+a.theme-color-hover-red :hover {
+    color: #c0392b !important;
+}
+a.theme-color-red :hover {
+    color: #e74c3c !important;
+}
+.uk-navbar-sticky li a:not(.child) {
+    color: #999 !important;
+}

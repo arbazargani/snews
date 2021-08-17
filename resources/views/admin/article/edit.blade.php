@@ -22,6 +22,10 @@
                 @csrf
                 <div class="uk-width-2-3@m">
                     <div class="uk-inline uk-width-1-1 uk-first-column uk-margin-small-bottom">
+                        <input type="text" name="rootitr" id="rootitr" placeholder="روتیتر" class="uk-input form-control @error('rootitr') is-invalid @enderror" value="{{ $article->rootitr  }}" style="padding-left: 40px;" autofocus>
+                        <hr>
+                        <textarea name="lead" id="lead" placeholder="لید خبر خود را وارد کنید." class="uk-textarea form-control @error('lead') is-invalid @enderror" style="padding-left: 40px;" rows="2">{{ $article->lead }}</textarea>
+                        <hr>
                         <input type="text" name="title" id="title" placeholder="عنوان" class="uk-input form-control @error('title') is-invalid @enderror" value="{{ $article->title  }}" required style="padding-left: 40px;" autofocus>
                     </div>
                     <div class="uk-inline uk-width-1-1 uk-first-column">

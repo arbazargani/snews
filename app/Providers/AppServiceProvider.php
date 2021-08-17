@@ -31,17 +31,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (env('APP_ENV') == 'production') {
+            \URL::forceScheme('https');
+        }
+
         $date = date("Y-m-d H:i:s");
 
         $categories = Category::where('id', '!=', 1)->get();
 
-        $latestArticles = Article::where('state', 1)->where('created_at','<', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->latest()->limit(5)->get();
+        $latestArticles = Article::where('state', 1)->where('created_at','<', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->latest()->limit(10)->get();
 
-        $popularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(1), Carbon::now()])->orderBy('views', 'desc')->limit(3)->get();
+        $popularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())
+                                                    ->whereNotIn('cover', ['', 'ghost.png'])
+                                                    ->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->orderBy('views', 'desc')->limit(10)->get();
 
         $notPopularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->orderBy('views', 'asc')->limit(10)->get();
 
-        $advertises = Advertise::where('state', 1)->where('expires_at', '>', $date)->get();
+        $advertises = Advertise::where('state', 1)->get();
 
         $settings['website_name'] = Setting::where('name', 'website_name')->first();
 

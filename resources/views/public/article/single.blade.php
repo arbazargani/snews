@@ -58,20 +58,21 @@
         @endif
         <metabox>
             <div class="uk-container uk-background-muted uk-padding@m uk-border-rounded">
+                <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
                 <h1 class="uk-margin-top uk-text-lead uk-text-right fa-kit-medium">{{ $article[0]->title }}</h1>
                 <!-- category -->
                 <div style="direction: rtl">
                     <span uk-icon="icon: folder"></span> <span class="uk-text-meta">دسته‌بندی: </span>
                     @if(count($article[0]->category->all()))
                         @foreach($article[0]->category->all() as $category)
-                            <a class="uk-label uk-box-shadow-hover-small uk-background-muted uk-link-reset"
+                            <a class="uk-label uk-box-shadow-hover-small uk-background-muted uk-link-reset theme-color-red"
                                href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
                             @if(!$loop->last)
                                 ،
                             @endif
                         @endforeach
                     @else
-                        <a>بدون دسته‌بندی</a>
+                        <a class="theme-color-red">بدون دسته‌بندی</a>
                     @endif
                 </div>
                 <!-- category -->
@@ -81,7 +82,7 @@
                     @php
                         $jalaliDate = new Verta($article[0]->created_at);
                         $jalaliDate->timezone('Asia/Tehran');
-                        Verta::setStringformat('Y/n/j H:i:s');
+                        Verta::setStringformat('Y/n/j H:i');
                         $jalaliDate = Verta::instance($article[0]->created_at);
                         $jalaliDate = Facades\Verta::instance($article[0]->created_at);
                     @endphp
@@ -100,6 +101,7 @@
                 @if($article[0]->cover == 'ghost.png' || is_null($article[0]->cover))
                     <metabox>
                         <div class="uk-container uk-background-muted uk-padding@m uk-border-rounded">
+                            <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
                             <h1 class="uk-margin-top uk-text-lead uk-text-right fa-kit-medium">{{ $article[0]->title }}</h1>
                         </div>
                     </metabox>
@@ -121,9 +123,10 @@
                                     <span uk-icon="icon: file-text; ratio: 2"></span>
                             </div>
                             <div class="uk-width-expand">
+                                <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
                                 <h1 class="uk-text-lead uk-margin-remove">{{ $article[0]->title }}</h1>
                                 <span
-                                    class="uk-text-meta">{{ $article[0]->user->name . ' ' . $article[0]->user->family }}</span>
+                                    class="uk-text-meta">{{ $article[0]->writer }}</span>
                             </div>
                         </div>
                         <!-- title -->
@@ -137,14 +140,14 @@
             <span uk-icon="icon: folder"></span> <span class="uk-text-meta">دسته‌بندی: </span>
             @if(count($article[0]->category->all()))
                 @foreach($article[0]->category->all() as $category)
-                    <a class="uk-label uk-box-shadow-hover-small uk-background-muted uk-link-reset"
+                    <a class="uk-label uk-box-shadow-hover-small uk-background-muted uk-link-reset theme-color-red"
                        href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
                     @if(!$loop->last)
                         ،
                     @endif
                 @endforeach
             @else
-                <a>بدون دسته‌بندی</a>
+                <a class="theme-color-red">بدون دسته‌بندی</a>
             @endif
         <!-- category -->
 
@@ -164,7 +167,7 @@
     <!-- article cover and meta box for med/large-screens -->
 
     <content class="uk-text-justify">
-        <div class="uk-margin-medium-top fa-num">
+        <div class="uk-margin-medium-top fa-num" id="print_article">
             @php
                 // $content = str_replace('<video', '<video-js', $article[0]->content);
                 // $content = str_replace('</video>', '</video-js>', $content);
@@ -175,6 +178,9 @@
                                                 id="video"', $article[0]->content);
                 $content = str_replace('<p', '<p class="fa-num"', $content)
             @endphp
+            {{-- cover for printing--}}
+            <img src="{{ $article[0]->cover }}" style="visibility: hidden; display: none" >
+
             {!! $content !!}
         </div>
     </content>
@@ -211,6 +217,9 @@
                 <a class="uk-icon-button" uk-icon="linkedin" rel="nofollow"
                    href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ urldecode(urlencode(route('Article > Single', $article[0]->slug))) }};title={{ $article[0]->title }};source={{ route('Home') }}"
                    target="_blank"></a>
+
+                <a class="uk-icon-button" uk-icon="print" onclick="printJS({ printable: 'print_article', type: 'html'})"></a>
+
 
                 <br>
                 <br>

@@ -33,6 +33,14 @@ html {
     url('../fonts/kit/PelakFA-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 
+@font-face {
+    font-family: 'Kit-light-fa-bold';
+    src: url('../fonts/kit/PelakFA-Bold.woff'); /* IE9 Compat Modes */
+    src: url('../fonts/kit/PelakFA-Bold.eot') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kit/PelakFA-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/kit/PelakFA-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
 * {
     /*font-family: Vazir-light !important;*/
     font-family: "Kit-light" !important;
@@ -53,7 +61,7 @@ html {
   padding: 10px;
 }
 .sidebar {
-  padding: 10px;
+  /*padding: 1%;*/
 }
 .state-published {
     border-radius: 100%;

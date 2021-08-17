@@ -10,11 +10,12 @@
 
 		@yield('meta')
 
-		<link rel="stylesheet" href="{{ asset('assets/css/uikit-rtl.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('assets/3.7.2./css/uikit-rtl.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
+		<link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}" />
 		<link rel="canonical" href="{{ urldecode(url()->current()) }}" />
-		<script src="{{ asset('assets/js/uikit.min.js') }}"></script>
-		<script src="{{ asset('assets/js/uikit-icons.min.js') }}"></script>
+		<script src="{{ asset('assets/3.7.2/js/uikit.min.js') }}"></script>
+		<script src="{{ asset('assets/3.7.2/js/uikit-icons.min.js') }}"></script>
 
         {{-- prism js --}}
         <link rel="stylesheet" href="{{ asset('assets/css/prism.css') }}" />
@@ -23,6 +24,10 @@
 
         <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
         <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+        {{-- print js --}}
+        <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+        <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
 
     <style media="screen">
         h1 {
@@ -39,6 +44,12 @@
         h4 {
             font-size: 16px!important;
             font-family: Kit-light-fa-medium !important;
+        }
+
+        @media (min-width: 1200px) {
+            .sidebar-element .uk-card-body {
+                padding: 40px 14px;
+            }
         }
 		@media screen and (max-width: 479px) {
 			/* start of phone styles */
@@ -64,9 +75,9 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #0F7AE5;
+            background: #e74c3c;
             cursor: pointer;
-            box-shadow: #004c9b;
+            box-shadow: #c0392b;
             animation: pulse 2s infinite;
         }
         .pulse:hover {
@@ -75,7 +86,7 @@
 
         @-webkit-keyframes pulse {
             0% {
-                -webkit-box-shadow: 0 0 0 0 rgb(88, 169, 248);
+                -webkit-box-shadow: 0 0 0 0 rgb(231, 76, 60);
             }
             70% {
                 -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
@@ -86,8 +97,8 @@
         }
         @keyframes pulse {
             0% {
-                -moz-box-shadow: 0 0 0 0 rgb(88, 169, 248);
-                box-shadow: 0 0 0 0 rgb(88, 169, 248);
+                -moz-box-shadow: 0 0 0 0 rgb(231, 76, 60);
+                box-shadow: 0 0 0 0 rgb(231, 76, 60);
             }
             70% {
                 -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
@@ -109,7 +120,7 @@
         </div>
     </div>
     <!-- end preloader -->
-	<div class="uk-section-primary uk-preserve-color">
+	<div class="uk-section-primary theme-background-red uk-preserve-color">
 		<div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
 			@include('public.template-parts.header')
 		</div>
@@ -117,16 +128,24 @@
 
 		<div style="padding: 1% 5% 1% 5%;" uk-grid>
 			<!-- main -->
-			<div class="uk-width-2-3@m">
+			<div class="uk-width-expand@m">
 				@yield('content')
 			</div>
 			<!-- main -->
 
-			<!-- sidebar -->
-			<div class="uk-width-expand@m">
+			<!-- sidebar right -->
+{{--			<div class="uk-width-expand@m">--}}
+			<div class="uk-width-1-4@m">
 			 @include('public.template-parts.sidebar')
 			</div>
-			<!-- sidebar -->
+			<!-- sideba right -->
+
+            <!-- sidebar left -->
+{{--            <div class="uk-width-expand@m">--}}
+            <div class="uk-width-1-4@m">
+                @include('public.template-parts.sidebar-left')
+            </div>
+            <!-- sideba left -->
 		</div>
 
 		<div class="uk-position-small uk-padding-remove uk-position-fixed uk-position-bottom-right" id="top-btn-wrapper">

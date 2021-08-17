@@ -38,7 +38,8 @@
                     <br>
                     <select class="uk-select" name="socket" style="width: 200px;" required>
                         @foreach($sockets as $socket)
-                            <option value="{{ $socket }}" @if(array_search($socket, $used_sockets) !== FALSE){!! 'disabled' !!}@endif>{{ $socket }}</option>
+{{--                            <option value="{{ $socket }}" @if(array_search($socket, $used_sockets) !== FALSE){!! 'disabled' !!}@endif>{{ $socket }}</option>--}}
+                            <option value="{{ $socket }}">{{ $socket }}</option>
                         @endforeach
                     </select>
                 </div>

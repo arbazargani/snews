@@ -1,6 +1,6 @@
 <nav class="uk-navbar-container uk-margin uk-box-shadow-small" id="navbar" uk-navbar>
 {{--    <a class="uk-navbar-item uk-logo" href="#">{{ $settings['website_name']->value }}</a>--}}
-    <a class="uk-navbar-item uk-logo uk-visible@m" href="#">
+    <a class="uk-navbar-item uk-logo uk-visible@m" href="{{ route('Home') }}">
         <!-- <img src="{{ asset('assets/image/mamooth-cms.png') }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="MAMOOT CMS"> -->
         <img src="{{ asset($settings['logo_src']->value) }}" style="width: 70%; background: white; padding: 3px; margin: 10px 0px 10px 0px; border-radius: 3px; vertical-align: middle;" alt="{{ env('APP_NAME') }}">
     </a>
@@ -10,7 +10,6 @@
     </a>
     <div class="uk-navbar-right uk-margin-small-right uk-visible@m">
         <ul class="uk-navbar-nav">
-            <li><a href="{{ route('Home') }}">خانه</a></li>
             @php
                 $menu = new App\Http\Controllers\HomeController();
                 $menu_structure = $menu->MenuStructureWithParents();
@@ -19,13 +18,13 @@
             @foreach($menu_structure as $menu_parent => $menu_child)
                 @if($menu_parent !== -1)
                     <li>
-                        <a href="{{ route('Category > Archive', \App\Category::find((int) $menu_parent)->slug) }}">{{ \App\Category::find($menu_parent)->name }}</a>
+                        <a style="font-family: Kit-light-fa-bold !important; color: white" href="{{ route('Category > Archive', \App\Category::find((int) $menu_parent)->slug) }}">{{ \App\Category::find($menu_parent)->name }}</a>
                         <div class="uk-navbar-dropdown uk-navbar-dropdown">
                             <div class="uk-navbar-dropdown-grid" uk-grid>
                                 <div>
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         @foreach($menu_structure[$menu_parent] as $child)
-                                            <li class="uk-margin-right"><a href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
+                                            <li class="uk-margin-right"><a class="child" href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -34,12 +33,12 @@
                     </li>
                 @else
                     @foreach($menu_structure[$menu_parent] as $child)
-                        <li><a href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
+                        <li ><a style="font-family: Kit-light-fa-bold !important; color: white" href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
                     @endforeach
                 @endif
             @endforeach
             @foreach($single_categories as $category)
-                <li><a href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
+                <li><a style="font-family: Kit-light-fa-bold !important; color: white" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
 
             @endforeach
         </ul>
