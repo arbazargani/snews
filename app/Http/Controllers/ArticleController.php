@@ -27,6 +27,7 @@ class ArticleController extends Controller
 
         return redirect()->route('Article > Single', $article->slug);
     }
+
     public function All() {
         $articles = Article::latest()->where('state', '=', 1)->paginate(2);
         return ArticleResource::collection($articles);
@@ -184,6 +185,10 @@ class ArticleController extends Controller
 
         $article = Article::with('comment')->where('slug', '=', $slug)->get();
 
+        if (count($article) && ($article[0]->state == 1) && $article[0]->category->first()->id == env('NEWSPAPER_CATEGORY_ID') ) {
+            return view('public.article.newspaper', compact(['article']));
+        }
+
         if (!count($article) || ($article[0]->state !== 1)) {
             return abort('404', 'Not Found.');
         } else {
@@ -284,6 +289,8 @@ class ArticleController extends Controller
 
         $article->meta_description = isset($request['meta-description']) ? $this->NoArabic($request['meta-description']) : '';
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';
+
+        $article->cover = $fileName;
 
         $v = Verta();
         $date = Verta::getGregorian($request['created_year'],$request['created_month'],$request['created_day']);

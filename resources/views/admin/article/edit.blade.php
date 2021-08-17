@@ -264,13 +264,12 @@
 {{--                            </div>--}}
                         @endif
 {{--                        <input type="file" name="cover" id="cover">--}}
+                                <input type="text" id="image_label" class="uk-input uk-text-meta" name="cover"
+                                       aria-label="Image" aria-describedby="button-image" content="{{ $article->cover }}">
+                                <div class="input-group-append">
+                                    <button class="uk-button uk-button-secondary" type="button" id="button-image" name="cover_url">انتخاب</button>
+                                </div>
                         </div>
-
-                            <input type="text" id="image_label" class="uk-input uk-text-meta" name="cover"
-                                   aria-label="Image" aria-describedby="button-image" content="{{ $article->cover }}">
-                            <div class="input-group-append">
-                                <button class="uk-button uk-button-secondary" type="button" id="button-image" name="cover">انتخاب</button>
-                            </div>
                             <script>
                                 document.addEventListener("DOMContentLoaded", function() {
 

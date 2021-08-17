@@ -1,4 +1,36 @@
 <div class="uk-background-default uk-border-rounded">
+    @php
+        $newspaper = \App\Category::with(['article' => function($query) {
+                                        $query->where('created_at', '<=', \Carbon\Carbon::now())
+                                                ->latest()
+                                                ->limit(1);
+                                        }])
+                                        ->where('id', env('NEWSPAPER_CATEGORY_ID'))
+                                        ->get();
+        $version = $newspaper[0]->article[0];
+    @endphp
+    <!-- socket - newsppaer -->
+    @if(!is_null($version))
+        <div class="sidebar-element">
+            <div class="uk-card uk-card-hover uk-card-body">
+                <h3 class="uk-card-title uk-text-meta">
+                    <span class="pulse"></span>
+                    <span>آرشیو روزنامه</span>
+                </h3>
+                <hr class="uk-divider-small">
+                <img class="uk-border-rounded" src="{{ env('SITE_URL') . "/repository/" . strip_tags($version->content) . "/frontpage_" . strip_tags($version->content ) . ".jpg" }}" alt="{{ $version->title }}">
+                <hr>
+
+                <a href="{{ route('Article > Single', $version->slug) }}">
+                    <button class="uk-button uk-margin-small-top uk-text-center uk-button-text"><span
+                            uk-icon="arrow-right"></span>
+                        {{ $version->title }}
+                    </button>
+                </a>
+            </div>
+        </div>
+    @endif
+    <!-- socket - newsppaer -->
 
     <!-- Advertise socket - section 001 -->
     <div class="sidebar-element" id="advertise-socket-sidebar-001">

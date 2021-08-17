@@ -16,18 +16,26 @@
                     <h2 class="uk-hidden">مقالات اخیر</h2>
                     <ul class="uk-slideshow-items uk-border-rounded">
                         @foreach($sliderArticles as $article)
-                        <li>
-                            <img src="{{ $article->cover }}" alt="{{ $article->title }}" uk-cover>
-                            <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-position-fixed uk-text-right uk-transition-slide-bottom">
-                                <h3 uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-visible@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
-                                @if(count($article->category->all()))
-                                <p uk-slideshow-parallax="x: 200,-200" class="uk-margin-remove uk-text-meta">
-                                در دسته <a href="{{ route('Category > Archive', $article->category->first()->slug) }}">{{ $article->category->first()->name }}</a>
-                                </p>
+                            @php $can_use = true; @endphp
+                            @foreach($article->category->all() as $category)
+                                @if($category->id == env('NEWSPAPER_CATEGORY_ID'))
+                                    @php $can_use = false; @endphp
                                 @endif
-                                <h3 style="font-size: 13px !important;" uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-align-right uk-hidden@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
-                            </div>
-                        </li>
+                            @endforeach
+                            @if($can_use)
+                            <li>
+                                <img src="{{ $article->cover }}" alt="{{ $article->title }}" uk-cover>
+                                <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-position-fixed uk-text-right uk-transition-slide-bottom">
+                                    <h3 uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-visible@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
+                                    @if(count($article->category->all()))
+                                        <p uk-slideshow-parallax="x: 200,-200" class="uk-margin-remove uk-text-meta">
+                                            در دسته <a href="{{ route('Category > Archive', $article->category->first()->slug) }}">{{ $article->category->first()->name }}</a>
+                                        </p>
+                                    @endif
+                                    <h3 style="font-size: 13px !important;" uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-align-right uk-hidden@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
+                                </div>
+                            </li>
+                            @endif
                         @endforeach
                     </ul>
 
