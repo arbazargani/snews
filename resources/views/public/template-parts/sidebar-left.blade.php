@@ -2,12 +2,13 @@
     @php
         $newspaper = \App\Category::with(['article' => function($query) {
                                         $query->where('created_at', '<=', \Carbon\Carbon::now())
+                                                ->where('state', 1)
                                                 ->latest()
                                                 ->limit(1);
                                         }])
                                         ->where('id', env('NEWSPAPER_CATEGORY_ID'))
                                         ->get();
-        $version = $newspaper[0]->article[0];
+        $version = (!count($newspaper[0]->article)) ? null : $newspaper[0]->article[0];
     @endphp
     <!-- socket - newsppaer -->
     @if(!is_null($version))
