@@ -48,54 +48,8 @@
     </div>
     <!-- Advertise socket - section 001 -->
 
-    <!-- article cover and meta box for small-screens -->
-    <div class="uk-hidden@m">
-        @if($article[0]->cover)
-            <img class="uk-align-center uk-border-rounded"
-                 src="{{ $article[0]->cover }}"
-                 alt="{{ $article['0']->meta_title }}"
-                 uk-img>
-        @endif
-        <metabox>
-            <div class="uk-container uk-background-muted uk-padding@m uk-border-rounded">
-                <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
-                <h1 class="uk-margin-top uk-text-lead uk-text-right fa-kit-medium">{{ $article[0]->title }}</h1>
-                <!-- category -->
-                <div style="direction: rtl">
-                    <span uk-icon="icon: folder"></span> <span class="uk-text-meta">دسته‌بندی: </span>
-                    @if(count($article[0]->category->all()))
-                        @foreach($article[0]->category->all() as $category)
-                            <a class="uk-label uk-box-shadow-hover-small uk-background-muted uk-link-reset theme-color-red"
-                               href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
-                            @if(!$loop->last)
-                                ،
-                            @endif
-                        @endforeach
-                    @else
-                        <a class="theme-color-red">بدون دسته‌بندی</a>
-                    @endif
-                </div>
-                <!-- category -->
-                <hr/>
-                <!-- date -->
-                <div class="uk-text-center uk-margin-bottom" style="direction: ltr">
-                    @php
-                        $jalaliDate = new Verta($article[0]->created_at);
-                        $jalaliDate->timezone('Asia/Tehran');
-                        Verta::setStringformat('Y/n/j H:i');
-                        $jalaliDate = Verta::instance($article[0]->created_at);
-                        $jalaliDate = Facades\Verta::instance($article[0]->created_at);
-                    @endphp
-                    <span class="uk-text-meta fa-num"> <span uk-icon="clock"></span> {{ $jalaliDate }}</span>
-                </div>
-                <!-- date -->
-            </div>
-        </metabox>
-    </div>
-    <!-- article cover and meta box for small-screens -->
-
     <!-- article cover and meta box for med/large-screens -->
-    <div class="uk-visible@s">
+    <div class="uk-visible">
         <div>
             <div class="uk-inline uk-width-1-1 check-here">
                 @if($article[0]->cover == 'ghost.png' || is_null($article[0]->cover))
