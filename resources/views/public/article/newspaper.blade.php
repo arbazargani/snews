@@ -95,7 +95,7 @@
     <!-- article cover and meta box for small-screens -->
 
     <!-- article cover and meta box for med/large-screens -->
-    <div class="uk-visible@m">
+    <div class="uk-visible@s">
         <div>
             <div class="uk-inline uk-width-1-1 check-here">
                 @if($article[0]->cover == 'ghost.png' || is_null($article[0]->cover))
