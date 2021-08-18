@@ -134,7 +134,7 @@ Route::get('/{param_1}.html', 'CategoryController@OldEngineSimple')->name('Old c
 
 //http://localhost:8000/newspaper-archive/51680-v1714.html
 
-//Route::get('faker', 'HomeController@Faker');
+Route::get('faker', 'HomeController@Faker');
 
 //Route::get('glide/{path}', function($path){
 //    $server = \League\Glide\ServerFactory::create([
@@ -146,4 +146,6 @@ Route::get('/{param_1}.html', 'CategoryController@OldEngineSimple')->name('Old c
 
 Route::get('menu', 'HomeController@MenuStructureWithParents');
 Route::get('wmenu', 'HomeController@MenuStructureWithoutParents');
+
+Route::get('rule', 'HomeController@Test');
 

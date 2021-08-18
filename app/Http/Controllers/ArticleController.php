@@ -163,22 +163,38 @@ class ArticleController extends Controller
     public function Manage(Request $request)
     {
         $categories = Category::all();
-        $tags = Category::all();
         $users = User::all();
+        $articles = new Article();
+
+        // to fetch by category
+        if ($request->has('category')) {
+            $articles = $articles->with(["category" => function($query) use ($request) {
+                return $query->where('categories.id', '=', $request['category']);
+            }]);
+        }
+
+        // to fetch by user
+        if ($request->has('author') && $request['author'] !== 'all') {
+            $articles = Article::where('user_id', $request['author']);
+        }
 
         // to fetch deleted items
         if ($request->has('state') && $request['state'] == '-1') {
-            $articles = Article::where('state', '-1')->latest()->paginate(15);
+//            $articles = Article::where('state', '-1')->latest()->paginate(15);
+            $articles = $articles->where('state', '-1')->latest()->paginate(15);
         }
         // to fetch drafted items
         elseif ($request->has('state') && $request['state'] == '0') {
-            $articles = Article::where('state', '0')->latest()->paginate(15);
+//            $articles = Article::where('state', '0')->latest()->paginate(15);
+            $articles = $articles->where('state', '0')->latest()->paginate(15);
         }
         // to fetch all items [except deleted]
         else {
-            $articles = Article::where('state', '!=', -1)->latest()->paginate(15);
+//            $articles = Article::where('state', '!=', -1)->latest()->paginate(15);
+            $articles = $articles->where('state', '!=', -1)->latest()->paginate(15);
         }
-        return view('admin.article.manage', compact(['articles', 'categories', 'tags', 'users']));
+
+        return view('admin.article.manage', compact(['articles', 'categories', 'users']));
     }
 
     public function Show($slug, Request $request)
@@ -447,6 +463,7 @@ class ArticleController extends Controller
             'created_at' => $article->created,
             'published_at' => $article->publish_up,
             'category' => $this->GetCategoriesFromID($article->catid)->title,
+            'category_id' => $this->GetCategoriesFromID($article->catid)->id,
             'tags' => $this->GetPostTagsFromID($article->id),
         ];
 

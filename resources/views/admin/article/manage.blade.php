@@ -38,7 +38,7 @@
             </div>
             <div class="uk-margin">
                 <ul uk-accordion>
-                    <li class="uk-close uk-disabled">
+                    <li class="uk-close">
                         <a class="uk-accordion-title uk-text-meta" href="#">
                             <span uk-icon="settings"></span>
                             اعمال فیلتر
@@ -54,7 +54,7 @@
                                             دسته‌بندی
                                         </div>
                                         <div class="uk-form-controls" id="categories-filter">
-                                            <select name="categories[]" id="categories" class="uk-select" multiple>
+                                            <select name="category" id="categories" class="uk-select">
                                                 @foreach($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
@@ -127,6 +127,7 @@
                         <tr>
                             <th>عنوان مقاله</th>
                             <th>تاریخ انتشار</th>
+                            <th>نویسنده</th>
                             <th>دسته‌بندی</th>
                             <th>برچسب‌ها</th>
                             <th>وضعیت</th>
@@ -140,6 +141,7 @@
                         <tr>
                             <td>عنوان مقاله</td>
                             <td>تاریخ انتشار</td>
+                            <th>نویسنده</th>
                             <th>دسته‌بندی</th>
                             <th>برچسب‌ها</th>
                             <th>وضعیت</th>

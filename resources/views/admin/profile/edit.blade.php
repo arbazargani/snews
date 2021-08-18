@@ -8,7 +8,7 @@
     <div class="tm-main uk-section uk-section-secondary">
         <div class="uk-container uk-container-large">
             <h2 id="lightbox" class="uk-h2 tm-heading-fragment">
-                ایجاد مقاله
+                پروفایل کاربری
             </h2>
             @if($errors->any())
                 <div class="uk-alert-danger" uk-alert>

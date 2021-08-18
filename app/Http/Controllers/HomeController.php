@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,5 +86,11 @@ class HomeController extends Controller
         $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->get();
 
         return $single_categories;
+    }
+
+    public function Test()
+    {
+        $user = new User();
+        $user->CanEditPages();
     }
 }

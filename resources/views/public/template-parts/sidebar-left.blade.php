@@ -8,7 +8,7 @@
                                         }])
                                         ->where('id', env('NEWSPAPER_CATEGORY_ID'))
                                         ->get();
-        $version = (!count($newspaper[0]->article)) ? null : $newspaper[0]->article[0];
+        $version = (!count($newspaper) || !count($newspaper[0]->article)) ? null : $newspaper[0]->article[0];
     @endphp
     <!-- socket - newsppaer -->
     @if(!is_null($version))

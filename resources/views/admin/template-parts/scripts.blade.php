@@ -4,7 +4,9 @@
 
 
 {{-- TinyMCE --}}
-<script src="{{ asset('assets/js/tinymce.min.js') }}" referrerpolicy="origin"></script>
+
+<!-- <script src="{{ asset('assets/js/tinymce.min.js') }}" referrerpolicy="origin"></script> -->
+<script src="https://cdn.tiny.cloud/1/nkf4wjrsf6g1am5any6qwcsniq35ahxf0rh9iozbyearhuzq/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
         selector:'#content',
@@ -96,7 +98,6 @@
             }
         });
     }
-
 </script>
 
 
@@ -104,6 +105,7 @@
 {{-- Google Charts --}}
 <script src="{{ asset('assets/js/loader.js') }}"></script>
 
+@if(Route::currentRouteName() != 'Article > Manage')
 {{-- select2 js --}}
 <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
@@ -118,6 +120,7 @@
         $('.uk-select').select2();
     });
 </script>
+@endif
 
 {{-- Theme mode switcher --}}
 <script>
