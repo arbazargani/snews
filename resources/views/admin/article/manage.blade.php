@@ -29,6 +29,16 @@
                     زباله‌دان
                   </span></a>
                   @endif
+                  @if(isset($_GET['category']) && !is_null($_GET['category']))
+                    <a href="{{ route('Article > Manage') }}"><span style="background: darkgray" class="uk-label"><span uk-icon="icon: close"></span>
+                    {{ \App\Category::find($_GET['category'])->name }}
+                    </span></a>
+                  @endif
+                  @if(isset($_GET['author']) && $_GET['author'] !== 'all')
+                    <a href="{{ route('Article > Manage') }}"><span style="background: darkgray" class="uk-label"><span uk-icon="icon: close"></span>
+                    {{ \App\User::find($_GET['author'])->name . ' ' . \App\User::find($_GET['author'])->family }}
+                  </span></a>
+                  @endif
                   @if(!isset($_GET['state']))
                     <a href="?state=all" class="uk-button uk-button-text uk-text-meta">نمایش همه</a> |
                     <a href="?state=0" class="uk-button uk-button-text uk-text-meta">پیش‌نویس</a> |
@@ -90,17 +100,17 @@
                                         </div>
                                     </div>
                                     {{-- condition type / action filter --}}
-                                    <div class="uk-width-1-3@m uk-child-width-1-1">
-                                        <div class="uk-form-label uk-disabled">
-                                            <span uk-icon="cog"></span>
-                                            نوع ترکیب
-                                        </div>
-                                        <div class="uk-form-controls" id="statement-filter">
-                                            <select name="" class="uk-select uk-disabled">
-                                                <option value="and">و</option>
-                                                <option value="or">یا</option>
-                                            </select>
-                                        </div>
+{{--                                    <div class="uk-width-1-3@m uk-child-width-1-1">--}}
+{{--                                        <div class="uk-form-label uk-disabled">--}}
+{{--                                            <span uk-icon="cog"></span>--}}
+{{--                                            نوع ترکیب--}}
+{{--                                        </div>--}}
+{{--                                        <div class="uk-form-controls" id="statement-filter">--}}
+{{--                                            <select name="" class="uk-select uk-disabled">--}}
+{{--                                                <option value="and">و</option>--}}
+{{--                                                <option value="or">یا</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
                                         <div class="uk-form-label uk-margin-small-top">
                                             <span uk-icon="check"></span>
                                             عملیات

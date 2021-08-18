@@ -168,9 +168,9 @@ class ArticleController extends Controller
 
         // to fetch by category
         if ($request->has('category')) {
-            $articles = $articles->with(["category" => function($query) use ($request) {
-                return $query->where('categories.id', '=', $request['category']);
-            }]);
+            $articles = Article::whereHas('category', function ($query) use ($request) {
+                $query->where('id', $request['category']);
+            });
         }
 
         // to fetch by user
@@ -183,11 +183,13 @@ class ArticleController extends Controller
 //            $articles = Article::where('state', '-1')->latest()->paginate(15);
             $articles = $articles->where('state', '-1')->latest()->paginate(15);
         }
+
         // to fetch drafted items
         elseif ($request->has('state') && $request['state'] == '0') {
 //            $articles = Article::where('state', '0')->latest()->paginate(15);
             $articles = $articles->where('state', '0')->latest()->paginate(15);
         }
+
         // to fetch all items [except deleted]
         else {
 //            $articles = Article::where('state', '!=', -1)->latest()->paginate(15);
