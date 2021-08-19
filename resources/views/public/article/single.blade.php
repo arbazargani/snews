@@ -85,6 +85,8 @@
                         Verta::setStringformat('Y/n/j H:i');
                         $jalaliDate = Verta::instance($article[0]->created_at);
                         $jalaliDate = Facades\Verta::instance($article[0]->created_at);
+                        $jalaliDate = explode(' ', $jalaliDate);
+                        $jalaliDate = $jalaliDate[0] . ' ' . $jalaliDate[1];
                     @endphp
                     <span class="uk-text-meta fa-num"> <span uk-icon="clock"></span> {{ $jalaliDate }}</span>
                 </div>
@@ -109,8 +111,8 @@
                 <img class="uk-margin-remove uk-align-center uk-border-rounded"
                      src="{{ $article[0]->cover }}"
                      alt="{{ $article['0']->meta_title }}" style="min-width: 100%;" uk-img>
-                <div class="uk-position-top-left uk-label uk-margin uk-margin-left fa-num">
-                    بازدید: {{ $article[0]->views }}</div>
+{{--                <div class="uk-position-top-left uk-label uk-margin uk-margin-left fa-num">--}}
+{{--                    بازدید: {{ $article[0]->views }}</div>--}}
                 <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-border-rounded">
                     <div style="direction: rtl">
                         <!-- title -->
@@ -158,8 +160,10 @@
                 Verta::setStringformat('Y/n/j H:i:s');
                 $jalaliDate = Verta::instance($article[0]->created_at);
                 $jalaliDate = Facades\Verta::instance($article[0]->created_at);
+                $jalaliDate = explode(' ', $jalaliDate);
+                $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
             @endphp
-            <div class="uk-float-left"><span class="uk-text-meta fa-num"> <span uk-icon="clock"></span> {{ $jalaliDate }}</span>
+            <div class="uk-float-left"><span class="uk-text-meta fa-num"> {{ $jalaliDate }} <span uk-icon="clock"></span></span>
             </div>
             <!-- date -->
         </div>

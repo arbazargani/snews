@@ -28,14 +28,26 @@
 
             <!-- tabs -->
             <ul class="uk-flex-center" uk-tab>
-                <li class="uk-active"><a href="">پیشنهادی</a></li>
+                <li><a href="uk-active">جدیدترین</a></li>
+                <li class=""><a href="">پیشنهادی</a></li>
                 <li class=""><a href="">پربازدید</a></li>
-                <li><a href="">جدیدترین</a></li>
             </ul>
             <!-- tabs -->
 
             <!-- contents -->
             <ul class="uk-switcher">
+                <li>
+                    @if(count($latestArticles) > 0)
+                        <ul class="uk-list uk-list-hyphen">
+                            @foreach($latestArticles as $item)
+                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}">{{ $item->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <span class="uk-text-meta uk-text-warning">مقاله‌ای در سیستم موجود نیست.</span>
+                    @endif
+                </li>
+
                 <li>
                     @if(count($notPopularArticles) > 0)
                         <ul class="uk-list uk-list-hyphen">
@@ -52,18 +64,6 @@
                     @if(count($popularArticles) > 0)
                         <ul class="uk-list uk-list-hyphen">
                             @foreach($popularArticles as $item)
-                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}">{{ $item->title }}</a></li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <span class="uk-text-meta uk-text-warning">مقاله‌ای در سیستم موجود نیست.</span>
-                    @endif
-                </li>
-
-                <li>
-                    @if(count($latestArticles) > 0)
-                        <ul class="uk-list uk-list-hyphen">
-                            @foreach($latestArticles as $item)
                                 <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}">{{ $item->title }}</a></li>
                             @endforeach
                         </ul>

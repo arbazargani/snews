@@ -39,6 +39,26 @@ class HomeController extends Controller
         $homeTitle = Setting::where('name', 'meta_title')->first();
         $homeDescription = Setting::where('name', 'meta_description')->first();
 
+        $bankAndInsuranceArticles = Category::where('slug', 'بانک-و-بیمه')->with(['article' => function($query)
+        {
+            $query->where('cover', '!=', 'ghost.png')
+            ->limit(5)
+            ->latest();
+        }
+        ])->get();
+
+        $bankAndInsuranceArticles = $bankAndInsuranceArticles[0]->article;
+
+        $carIndustry = Category::where('slug', 'صنعت-خودرو')->with(['article' => function($query)
+        {
+            $query->where('cover', '!=', 'ghost.png')
+                ->limit(5)
+                ->latest();
+        }
+        ])->get();
+
+        $carIndustry = $carIndustry[0]->article;
+
         if ($request->isMethod('get')) {
             if ($request->has('query') && !is_null($request['query'])) {
                 $query = $request['query'];
@@ -55,7 +75,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('public.home.index', compact(['sliderArticles', 'homeTitle', 'homeDescription']));
+        return view('public.home.index', compact(['sliderArticles', 'homeTitle', 'homeDescription', 'bankAndInsuranceArticles', 'carIndustry']));
     }
 
     /**

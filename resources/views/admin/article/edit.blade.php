@@ -261,6 +261,8 @@
                             <div class="uk-container uk-align-center">
                                 <img src="{{ $article->cover }}" alt="" style="max-width: 100%;">
                                 <hr>
+                                <label><input class="uk-checkbox" type="checkbox" name="remove_cover" value="1"> حذف تصویر نوشته</label>
+                                <hr>
 {{--                            </div>--}}
                         @endif
 {{--                        <input type="file" name="cover" id="cover">--}}

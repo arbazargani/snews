@@ -319,6 +319,10 @@ class ArticleController extends Controller
         $hour = ($request['created_hour'] < 10) ? '0' . $request['created_hour'] : $request['created_hour'];
         $article->created_at = $date. ' ' . $hour . ':' . $min . ':00' ;
 
+        if ($request->has('remove_cover') && $request['remove_cover']) {
+            $article->cover = null;
+        }
+
         if ($request['draft']) {
             $article->state = $article->previous_state;
             $article->state = 0;

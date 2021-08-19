@@ -82,7 +82,7 @@ class TagController extends Controller
             return abort('404');
         } else {
             $tag_id = $tag[0]->id;
-        };
+        }
 
         $articles_id = DB::connection('mysql_sec')->select("SELECT DISTINCT `content_item_id` as `id` FROM `smtnw6_contentitem_tag_map` WHERE `tag_id` = '$tag_id' LIMIT 10");
 

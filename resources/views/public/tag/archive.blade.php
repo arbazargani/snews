@@ -23,6 +23,15 @@
             <hr>
             @if(count($PaginatedTags))
             @foreach($PaginatedTags as $article)
+            @php
+                $jalaliDate = new Verta($article->created_at);
+                $jalaliDate->timezone('Asia/Tehran');
+                Verta::setStringformat('Y/n/j H:i');
+                $jalaliDate = Verta::instance($article->created_at);
+                $jalaliDate = Facades\Verta::instance($article->created_at);
+                $jalaliDate = explode(' ', $jalaliDate);
+                $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
+            @endphp
             <div class="article uk-margin @if($loop->even) uk-background-default @else uk-background-secondary uk-light @endif uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
                 <div class="uk-container" uk-grid>
                     <div class="uk-width-1-3@m">
@@ -30,8 +39,9 @@
                     </div>
                     <div class="uk-width-2-3@m">
                         <p>
-                            <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-margin-small-top uk-text-lead">{{ $article->title }}</h3></a>
-                            <hr class="uk-divider-small">
+                            <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-margin-small-top uk-margin-small-bottom uk-text-lead">{{ $article->title }}</h3></a>
+                            <span class="uk-text-meta fa-num"><span uk-icon="clock" class="uk-margin-small-left"></span> {{ $jalaliDate }}</span>
+{{--                            <hr class="uk-divider-small">--}}
                             <div uk-grid>
                                 <div class="uk-width-5-6">
                                     <p class="uk-text-truncate">

@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
         $categories = Category::where('id', '!=', 1)->get();
 
-        $latestArticles = Article::where('state', 1)->where('created_at','<', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->latest()->limit(10)->get();
+        $latestArticles = Article::where('state', 1)->latest()->limit(10)->get();
 
         $popularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())
                                                     ->whereNotIn('cover', ['', 'ghost.png'])

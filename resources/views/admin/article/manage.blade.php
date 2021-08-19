@@ -111,10 +111,10 @@
 {{--                                                <option value="or">یا</option>--}}
 {{--                                            </select>--}}
 {{--                                        </div>--}}
-                                        <div class="uk-form-label uk-margin-small-top">
-                                            <span uk-icon="check"></span>
-                                            عملیات
-                                        </div>
+{{--                                        <div class="uk-form-label uk-margin-small-top">--}}
+{{--                                            <span uk-icon="check"></span>--}}
+{{--                                            عملیات--}}
+{{--                                        </div>--}}
                                         <div class="uk-form-controls" id="state-filter">
                                             <button type="submit" class="uk-button uk-button-secondary">اعمال</button>
                                             <a href="{{ route('Article > Manage') }}" class="uk-text-muted uk-button uk-button-link"><span uk-icon="close"></span>حذف فیلتر‌ها</a>
@@ -140,11 +140,12 @@
                             <th>نویسنده</th>
                             <th>دسته‌بندی</th>
                             <th>برچسب‌ها</th>
+                            <th>بازدید</th>
                             <th>وضعیت</th>
                             <th>ویرایش</th>
                             <th>عملیات</th>
                             <th>حذف</th>
-                            <th>بازدید</th>
+                            <th>نمایش</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -154,11 +155,12 @@
                             <th>نویسنده</th>
                             <th>دسته‌بندی</th>
                             <th>برچسب‌ها</th>
+                            <th>بازدید</th>
                             <th>وضعیت</th>
                             <th>ویرایش</th>
                             <th>عملیات</th>
                             <th>حذف</th>
-                            <th>بازدید</th>
+                            <th>نمایش</th>
                         </tr>
                         </tfoot>
                         <tbody>

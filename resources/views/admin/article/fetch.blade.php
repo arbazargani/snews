@@ -15,6 +15,7 @@
     <td class="uk-form-width-small">{{ $article->user->name . ' ' . $article->user->family }}</td>
     <td>@foreach($article->category as $category) <a href="{{ route('Category > Archive', $category->slug) }}" class="uk-text-meta">{{ $category->name }}@if(!$loop->last) {{', '}} @endif</a> @endforeach</td>
     <td>@foreach($article->tag as $tag) <a href="{{ route('Tag > Archive', $tag->slug) }}" class="uk-text-meta">{{ $tag->name }}@if(!$loop->last) {{', '}} @endif</a>@endforeach</td>
+    <td>{{ $article->views }}</td>
     <td>
         @if($article->state == 0)
             <div class="state-drafted"></div>
