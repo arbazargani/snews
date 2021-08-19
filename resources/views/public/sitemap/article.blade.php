@@ -7,7 +7,8 @@
 
     <loc>{{ urldecode(route('Article > Single', $article->slug)) }}</loc>
 
-    <lastmod>{{ $article->updated_at }}</lastmod>
+{{--    <lastmod>{{  $article->updated_at }}</lastmod>--}}
+    <lastmod>{{ gmdate('Y-m-d\TH:i:s+00:00', strtotime($article->updated_at)) }}</lastmod>
 
     <changefreq>hourly</changefreq>
 
