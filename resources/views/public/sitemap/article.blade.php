@@ -15,9 +15,7 @@
     <priority>0.9</priority>
 
     <image:image>
-        <image:loc>
-            {{ ($article->cover != 'ghost.png') ? $article->cover : env('SITE_URL') . '/assets/image/ghost.png' }}
-        </image:loc>
+        <image:loc>{{ ($article->cover != 'ghost.png') ? $article->cover : env('SITE_URL') . '/assets/image/ghost.png' }}</image:loc>
         <image:caption>{{ $article->title }}</image:caption>
         <image:title>{{ $article->title }}</image:title>
     </image:image>

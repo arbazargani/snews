@@ -27,9 +27,7 @@
     <priority>0.9</priority>
     @if($page->cover)
     <image:image>
-        <image:loc>
-            {{ ($page->cover != 'ghost.png') ? $page->cover : env('SITE_URL') . '/assets/image/ghost.png' }}
-        </image:loc>
+        <image:loc>{{ ($page->cover != 'ghost.png') ? $page->cover : env('SITE_URL') . '/assets/image/ghost.png' }}</image:loc>
         <image:caption>{{ $page->title }}</image:caption>
         <image:title>{{ $page->title }}</image:title>
     </image:image>
