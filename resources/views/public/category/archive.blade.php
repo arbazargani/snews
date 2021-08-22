@@ -77,7 +77,8 @@
             @if($category[0]->id == env('NEWSPAPER_CATEGORY_ID'))
                 @php
                     $dir = 'repository';
-                    $versions = scandir($dir, 1);
+                    $versions = new \App\Http\Controllers\NewspaperController();
+                    $versions = $versions->ListDir();
                 @endphp
                     @foreach ($versions as $version)
                         @if($version !== '.' && $version !== '..' && $version !== '.ftpquota' && $version !== 'final.php')
