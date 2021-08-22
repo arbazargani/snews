@@ -149,8 +149,8 @@
                         <label class="uk-form-label" for="created_hour">ساعت</label>
                         <div class="uk-form-controls">
                             <select class="uk-select" id="created_hour" name="created_hour">
-                                @for($i = 1; $i <= 24; $i++)
-                                    <option value="{{ $i }}" @if($d->hour == $i) selected @endif>{{ $i }}</option>
+                                @for($i = 0; $i < 24; $i++)
+                                    <option value="{{ $i }}" @if($d->hour == $i || $d->hour == 0 . "$i") selected @endif>{{ $i }}</option>
                                 @endfor
                             </select>
                         </div>
