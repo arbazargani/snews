@@ -80,11 +80,11 @@
                     $versions = scandir($dir, 1);
                 @endphp
                     @foreach ($versions as $version)
-                        @if($version !== '.' && $version !== '..')
+                        @if($version !== '.' && $version !== '..' && $version !== '.ftpquota' && $version !== 'final.php')
                             <div class="article uk-margin uk-background-default uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
                     <div class="uk-container" uk-grid>
                         <div class="uk-width-1-3@m">
-                            <a class="uk-link-reset" href=""><img class="uk-border-rounded" src="/repository/$version/frontpage_$version.jpg" style="width: auto;"></a>
+                            <a class="uk-link-reset" href=""><img class="uk-border-rounded" src="/repository/{{ $version }}/frontpage_{{ $version }}.jpg" style="width: auto;"></a>
                         </div>
                         <div class="uk-width-2-3@m">
                             <p>
@@ -99,7 +99,7 @@
                                 </div>
 
                                 <div class="uk-width-1-6">
-                                    <a class="uk-bage uk-badge" href="">دانلود <span uk-icon="arrow-right"></span></a>
+                                    <a class="uk-bage uk-badge" href="/download?version={{$version}}">دانلود <span uk-icon="arrow-right"></span></a>
                                 </div>
                             </div>
 
