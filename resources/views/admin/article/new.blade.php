@@ -87,6 +87,7 @@
                     <div class="uk-container">
                         <button type="submit" name="publish" class="uk-button uk-button-primary uk-border-rounded" value="1">انتشار</button>
                         <button type="submit" name="draft" class="uk-button uk-button-default uk-border-rounded" value="1">پیش‌نویس</button>
+                        <button type="submit" name="publish_and_new" class="uk-button uk-button-secondary uk-border-rounded" value="1">انتشار و جدید</button>
                     </div>
                     <hr class="uk-divider-icon" uk-grid>
 
@@ -164,31 +165,31 @@
 
                         <hr class="uk-divider-small">
 
-                        <ul uk-accordion>
-                            <li class="uk-close">
-                                <a class="uk-accordion-title" href="#">افزودن دسته</a>
-                                <div class="uk-accordion-content">
-                                    <p style="display: none" id="cat_area"></p>
-                                    <p id="cat_preview"></p>
+{{--                        <ul uk-accordion>--}}
+{{--                            <li class="uk-close">--}}
+{{--                                <a class="uk-accordion-title" href="#">افزودن دسته</a>--}}
+{{--                                <div class="uk-accordion-content">--}}
+{{--                                    <p style="display: none" id="cat_area"></p>--}}
+{{--                                    <p id="cat_preview"></p>--}}
 
-                                    <input class="uk-input uk-margin" type="text" id="user_category">
-                                    <a class="uk-button uk-button-link uk-float-left" onclick="add_cat()"><span uk-icon="arrow-right"></span> افزودن دسته</a>
+{{--                                    <input class="uk-input uk-margin" type="text" id="user_category">--}}
+{{--                                    <a class="uk-button uk-button-link uk-float-left" onclick="add_cat()"><span uk-icon="arrow-right"></span> افزودن دسته</a>--}}
 
-                                    <script>
-                                        function add_cat() {
-                                            var name = document.getElementById('user_category').value;
-                                            document.getElementById('cat_area').innerHTML += '<input class="uk-invisible uk-meta" type="text" name="new_categories[]" id="new_category_'+ name +'" value="'+ name +'">';
-                                            document.getElementById('cat_preview').innerHTML +=  '<a id="cat_preview_'+ name +'" style="color: #9fb8cd" onclick="' + 'remove_cat(\'new_category_' + name + '\'), ' + 'remove_cat(\'cat_preview_' + name + '\')"><span uk-icon="close"></span>' + name + ' </a>';
-                                            document.getElementById('user_category').value = '';
-                                        }
-                                        function remove_cat(id) {
-                                            var elem = document.getElementById(id);
-                                            return elem.parentNode.removeChild(elem);
-                                        }
-                                    </script>
-                                </div>
-                            </li>
-                        </ul>
+{{--                                    <script>--}}
+{{--                                        function add_cat() {--}}
+{{--                                            var name = document.getElementById('user_category').value;--}}
+{{--                                            document.getElementById('cat_area').innerHTML += '<input class="uk-invisible uk-meta" type="text" name="new_categories[]" id="new_category_'+ name +'" value="'+ name +'">';--}}
+{{--                                            document.getElementById('cat_preview').innerHTML +=  '<a id="cat_preview_'+ name +'" style="color: #9fb8cd" onclick="' + 'remove_cat(\'new_category_' + name + '\'), ' + 'remove_cat(\'cat_preview_' + name + '\')"><span uk-icon="close"></span>' + name + ' </a>';--}}
+{{--                                            document.getElementById('user_category').value = '';--}}
+{{--                                        }--}}
+{{--                                        function remove_cat(id) {--}}
+{{--                                            var elem = document.getElementById(id);--}}
+{{--                                            return elem.parentNode.removeChild(elem);--}}
+{{--                                        }--}}
+{{--                                    </script>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
                     </div>
 
                     <hr class="uk-divider-icon">

@@ -1,10 +1,9 @@
 <div class="uk-background-default uk-border-rounded">
     @php
         $newspaper = \App\Category::with(['article' => function($query) {
-                                        $query->where('created_at', '<=', \Carbon\Carbon::now())
+                                        $query->where('created_at', '<=', \Carbon\Carbon::today())
                                                 ->where('state', 1)
-                                                ->latest()
-                                                ->limit(1);
+                                                ->latest();
                                         }])
                                         ->where('id', env('NEWSPAPER_CATEGORY_ID'))
                                         ->get();

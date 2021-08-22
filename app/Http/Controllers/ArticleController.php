@@ -80,11 +80,17 @@ class ArticleController extends Controller
             $user_tags = [];
             foreach ($request['new_tags'] as $value) {
                 if (!is_null($value)) {
-                    $tag = new Tag();
-                    $tag->name = $value;
-                    $tag->slug = SlugService::createSlug(Category::class, 'slug', $value);
-                    $tag->save();
-                    $user_tags[] = $tag->id;
+                    $tag_exists = Tag::where('name', $value)->first();
+                    $can_insert_new_tag = (is_null($tag_exists)) ? 1 : 0 ;
+                    if($can_insert_new_tag) {
+                        $tag = new Tag();
+                        $tag->name = $value;
+                        $tag->slug = SlugService::createSlug(Category::class, 'slug', $value);
+                        $tag->save();
+                        $user_tags[] = $tag->id;
+                    } else {
+                        $user_tags[] = $tag_exists->id;
+                    }
                 }
             }
         }
@@ -134,6 +140,12 @@ class ArticleController extends Controller
             $article->state = 1;
             $article->previous_state = 1;
         }
+
+        if ($request->has('publish_and_new') && $request['publish_and_new']) {
+            $article->state = 1;
+            $article->previous_state = 1;
+        }
+
         if ($request['draft']) {
             $article->state = 0;
             $article->previous_state = 0;
@@ -157,7 +169,11 @@ class ArticleController extends Controller
 
         Log::info($log);
 
-        return redirect(route('Article > Edit', $article->id));
+        if ($request->has('publish_and_new') && $request['publish_and_new']) {
+            return redirect(route('Article > New'));
+        } else {
+            return redirect(route('Article > Edit', $article->id));
+        }
     }
 
     public function Manage(Request $request)
@@ -181,19 +197,19 @@ class ArticleController extends Controller
         // to fetch deleted items
         if ($request->has('state') && $request['state'] == '-1') {
 //            $articles = Article::where('state', '-1')->latest()->paginate(15);
-            $articles = $articles->where('state', '-1')->latest()->paginate(15);
+            $articles = $articles->where('state', '-1')->orderBy('id', 'desc')->paginate(15);
         }
 
         // to fetch drafted items
         elseif ($request->has('state') && $request['state'] == '0') {
 //            $articles = Article::where('state', '0')->latest()->paginate(15);
-            $articles = $articles->where('state', '0')->latest()->paginate(15);
+            $articles = $articles->where('state', '0')->orderBy('id', 'desc')->paginate(15);
         }
 
         // to fetch all items [except deleted]
         else {
 //            $articles = Article::where('state', '!=', -1)->latest()->paginate(15);
-            $articles = $articles->where('state', '!=', -1)->latest()->paginate(15);
+            $articles = $articles->where('state', '!=', -1)->orderBy('id', 'desc')->paginate(15);
         }
 
         return view('admin.article.manage', compact(['articles', 'categories', 'users']));
@@ -271,11 +287,17 @@ class ArticleController extends Controller
             $user_tags = [];
             foreach ($request['new_tags'] as $value) {
                 if (!is_null($value)) {
-                    $tag = new Tag();
-                    $tag->name = $value;
-                    $tag->slug = SlugService::createSlug(Category::class, 'slug', $value);
-                    $tag->save();
-                    $user_tags[] = $tag->id;
+                    $tag_exists = Tag::where('name', $value)->first();
+                    $can_insert_new_tag = (is_null($tag_exists)) ? 1 : 0 ;
+                    if($can_insert_new_tag) {
+                        $tag = new Tag();
+                        $tag->name = $value;
+                        $tag->slug = SlugService::createSlug(Category::class, 'slug', $value);
+                        $tag->save();
+                        $user_tags[] = $tag->id;
+                    } else {
+                        $user_tags[] = $tag_exists->id;
+                    }
                 }
             }
         }

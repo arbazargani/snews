@@ -17,6 +17,13 @@ Route::get('/user/logout', 'UserController@logout')->name('User > Logout');
 
 Route::get('/', 'HomeController@Index')->name('Home');
 
+Route::get('/home', function () {
+    if (Auth::check()) {
+        return redirect()->route('Admin');
+    }
+    return redirect()->route('Home');
+});
+
 Route::get('index.html', function () {
    return redirect()->route('Home');
 });

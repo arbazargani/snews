@@ -109,6 +109,9 @@
                 box-shadow: 0 0 0 0 rgba(204,169,44, 0);
             }
         }
+        .select2-container {
+            max-width: 100% !important;
+        }
 		</style>
     {!! $settings['before_body_codes']->value !!}
 </head>
