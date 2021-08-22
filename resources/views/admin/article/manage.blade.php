@@ -29,7 +29,7 @@
                     زباله‌دان
                   </span></a>
                   @endif
-                  @if(isset($_GET['category']) && !is_null($_GET['category']))
+                  @if(isset($_GET['category']) && !is_null($_GET['category']) && $_GET['category'] !== 'all')
                     <a href="{{ route('Article > Manage') }}"><span style="background: darkgray" class="uk-label"><span uk-icon="icon: close"></span>
                     {{ \App\Category::find($_GET['category'])->name }}
                     </span></a>
@@ -66,9 +66,16 @@
                                         <div class="uk-form-controls" id="categories-filter">
                                             <select name="category" id="categories" class="uk-select">
                                                 @foreach($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ ($category->id == 1) ? 'all' : $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="uk-form-label">
+                                            <span uk-icon="pencil"></span>
+                                            عنوان
+                                        </div>
+                                        <div class="uk-form-controls" id="categories-filter">
+                                            <input type="text" name="query" class="uk-input">
                                         </div>
                                     </div>
                                     {{-- author / state filter --}}
@@ -100,21 +107,18 @@
                                         </div>
                                     </div>
                                     {{-- condition type / action filter --}}
-{{--                                    <div class="uk-width-1-3@m uk-child-width-1-1">--}}
-{{--                                        <div class="uk-form-label uk-disabled">--}}
-{{--                                            <span uk-icon="cog"></span>--}}
-{{--                                            نوع ترکیب--}}
-{{--                                        </div>--}}
-{{--                                        <div class="uk-form-controls" id="statement-filter">--}}
-{{--                                            <select name="" class="uk-select uk-disabled">--}}
-{{--                                                <option value="and">و</option>--}}
-{{--                                                <option value="or">یا</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="uk-form-label uk-margin-small-top">--}}
-{{--                                            <span uk-icon="check"></span>--}}
-{{--                                            عملیات--}}
-{{--                                        </div>--}}
+                                    <div class="uk-width-1-3@m uk-child-width-1-1">
+                                        <div class="uk-form-label uk-disabled">
+                                            <span uk-icon="cog"></span>
+                                            نوع ترکیب
+                                        </div>
+                                        <div class="uk-form-controls" id="statement-filter">
+                                            <select name="" class="uk-select uk-disabled">
+                                                <option value="and">و</option>
+                                                <option value="or">یا</option>
+                                            </select>
+                                        </div>
+                                        <br>
                                         <div class="uk-form-controls" id="state-filter">
                                             <button type="submit" class="uk-button uk-button-secondary">اعمال</button>
                                             <a href="{{ route('Article > Manage') }}" class="uk-text-muted uk-button uk-button-link"><span uk-icon="close"></span>حذف فیلتر‌ها</a>

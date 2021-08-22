@@ -180,38 +180,43 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
         $users = User::all();
-        $articles = new Article();
+        $articles = Article::where('created_at', '<=', now());
 
         // to fetch by category
-        if ($request->has('category')) {
-            $articles = Article::whereHas('category', function ($query) use ($request) {
+        if ($request->has('category') && $request['category'] != 'all') {
+            $articles = $articles->whereHas('category', function ($query) use ($request) {
                 $query->where('id', $request['category']);
             });
         }
-
         // to fetch by user
         if ($request->has('author') && $request['author'] !== 'all') {
-            $articles = Article::where('user_id', $request['author']);
+            $articles = $articles->where('user_id', $request['author']);
         }
 
         // to fetch deleted items
-        if ($request->has('state') && $request['state'] == '-1') {
+        elseif ($request->has('state') && $request['state'] == '-1') {
 //            $articles = Article::where('state', '-1')->latest()->paginate(15);
-            $articles = $articles->where('state', '-1')->orderBy('id', 'desc')->paginate(15);
+            $articles = $articles->where('state', '-1');
         }
 
         // to fetch drafted items
         elseif ($request->has('state') && $request['state'] == '0') {
 //            $articles = Article::where('state', '0')->latest()->paginate(15);
-            $articles = $articles->where('state', '0')->orderBy('id', 'desc')->paginate(15);
+            $articles = $articles->where('state', '0');
         }
 
         // to fetch all items [except deleted]
         else {
 //            $articles = Article::where('state', '!=', -1)->latest()->paginate(15);
-            $articles = $articles->where('state', '!=', -1)->orderBy('id', 'desc')->paginate(15);
+            $articles = $articles->where('state', '!=', -1);
         }
 
+        // to handle search query
+        if ($request->has('query') && !is_null($request['query'])) {
+            $articles = $articles->where('title', 'LIKE', '%' . $request['query'] . '%');
+        }
+
+        $articles = $articles->orderBy('id', 'desc')->paginate(30);
         return view('admin.article.manage', compact(['articles', 'categories', 'users']));
     }
 
