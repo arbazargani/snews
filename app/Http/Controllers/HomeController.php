@@ -32,10 +32,16 @@ class HomeController extends Controller
      */
     public function Index(Request $request)
     {
-        $sliderArticles = Article::latest()->where('state', 1)
-                                            ->where('created_at','<=', Carbon::now())
-                                            ->where('cover', '!=', 'ghost.png')
-                                            ->limit(5)->get();
+//        $sliderArticles = Article::latest()->where('state', 1)
+//                                            ->where('created_at','<=', Carbon::now())
+//                                            ->where('cover', '!=', 'ghost.png')
+//                                            ->limit(5)->get();
+        $level_one_articles = Category::where('id', env('LEVEL_one_CATEGORY_ID'))->with(['article' => function($query)
+            {
+                $query->where('cover', '!=', 'ghost.png')
+                    ->latest()->first();
+            }]
+        )->get();
         $homeTitle = Setting::where('name', 'meta_title')->first();
         $homeDescription = Setting::where('name', 'meta_description')->first();
 
@@ -75,7 +81,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('public.home.index', compact(['sliderArticles', 'homeTitle', 'homeDescription', 'bankAndInsuranceArticles', 'carIndustry']));
+        return view('public.home.index', compact(['level_one_articles', 'homeTitle', 'homeDescription', 'bankAndInsuranceArticles', 'carIndustry']));
     }
 
     /**

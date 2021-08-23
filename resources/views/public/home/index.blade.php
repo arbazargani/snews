@@ -15,7 +15,7 @@
                 <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="ratio: 16:9; animation: push; autoplay: true;">
                     <h2 class="uk-hidden">مقالات اخیر</h2>
                     <ul class="uk-slideshow-items uk-border-rounded">
-                        @foreach($sliderArticles as $article)
+                        @foreach($level_one_articles[0]->article as $article)
                             @php
                                 $jalaliDate = new Verta($article->created_at);
                                 $jalaliDate->timezone('Asia/Tehran');
@@ -36,11 +36,11 @@
                                 <img src="{{ $article->cover }}" alt="{{ $article->title }}" uk-cover>
                                 <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-position-fixed uk-text-right uk-transition-slide-bottom">
                                     <h3 uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-visible@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
-                                    @if(count($article->category->all()))
-                                        <p uk-slideshow-parallax="x: 200,-200" class="uk-margin-remove uk-text-meta">
-                                            در دسته <a href="{{ route('Category > Archive', $article->category->first()->slug) }}">{{ $article->category->first()->name }}</a>
-                                        </p>
-                                    @endif
+{{--                                    @if(count($article->category->all()))--}}
+{{--                                        <p uk-slideshow-parallax="x: 200,-200" class="uk-margin-remove uk-text-meta">--}}
+{{--                                            در دسته <a href="{{ route('Category > Archive', $article->category->first()->slug) }}">{{ $article->category->first()->name }}</a>--}}
+{{--                                        </p>--}}
+{{--                                    @endif--}}
                                     <h3 style="font-size: 13px !important;" uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-align-right uk-hidden@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
                                 </div>
                             </li>

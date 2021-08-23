@@ -172,6 +172,9 @@
 
     <content class="uk-text-justify">
         <div class="uk-margin-medium-top fa-num" id="print_article">
+            <div class="uk-container uk-padding uk-margin-small-left uk-margin-small-right uk-background-muted uk-border-rounded">
+                <p>{{ $article[0]->lead }}</p>
+            </div>
             @php
                 // $content = str_replace('<video', '<video-js', $article[0]->content);
                 // $content = str_replace('</video>', '</video-js>', $content);
