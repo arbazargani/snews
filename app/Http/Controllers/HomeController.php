@@ -98,7 +98,7 @@ class HomeController extends Controller
 
     public function MenuStructureWithParents()
     {
-        $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->get()->groupBy('parent');
+        $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->where('show_in_menu', 1)->get()->groupBy('parent');
         return $menu_structure;
     }
 
@@ -109,7 +109,7 @@ class HomeController extends Controller
         foreach ($menu_structure as $parents => $childs) {
             $used_categories[] = $parents;
         }
-        $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->get();
+        $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->where('show_in_menu', 1)->get();
 
         return $single_categories;
     }
