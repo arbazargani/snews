@@ -180,7 +180,7 @@ class ArticleController extends Controller
     {
         $categories = Category::all();
         $users = User::all();
-        $articles = Article::where('created_at', '<=', now());
+        $articles = Article::orderBy('id', 'desc');
 
         // to fetch by category
         if ($request->has('category') && $request['category'] != 'all') {
