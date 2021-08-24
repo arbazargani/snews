@@ -27,7 +27,7 @@ class NewspaperController extends Controller
                 unlink(public_path("/repository/pages.zip"));
             }
             $version = $_GET['version'];
-            $zip_file = "smt_v_$version.zip"; // Name of our archive to download
+            $zip_file = "pages.zip"; // Name of our archive to download
 
             $zip = new \ZipArchive();
             $zip->open($zip_file, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
