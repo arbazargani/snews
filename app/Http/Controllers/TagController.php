@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -44,7 +45,9 @@ class TagController extends Controller
 
     public function Archive(Request $request, $slug)
     {
-        $tag = Tag::with('article')->where('slug', '=', $slug)->get();
+        $tag = Tag::with(['article' => function ($query) {
+            $query->where('created_at', '<=', Carbon::now());
+        }])->where('slug', '=', $slug)->get();
         if (!count($tag)) {
           return abort('404');
         }

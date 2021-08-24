@@ -48,6 +48,7 @@ class HomeController extends Controller
         $bankAndInsuranceArticles = Category::where('slug', 'بانک-و-بیمه')->with(['article' => function($query)
         {
             $query->where('cover', '!=', 'ghost.png')
+            ->where('created_at', '<=', Carbon::now())
             ->limit(5)
             ->latest();
         }
@@ -58,6 +59,7 @@ class HomeController extends Controller
         $carIndustry = Category::where('slug', 'صنعت-خودرو')->with(['article' => function($query)
         {
             $query->where('cover', '!=', 'ghost.png')
+                ->where('created_at', '<=', Carbon::now())
                 ->limit(5)
                 ->latest();
         }

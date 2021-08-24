@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -49,6 +50,9 @@ class CategoryController extends Controller
     {
         // $category = Category::with('article')->where('slug', '=', $slug)->get();
         $category = Category::with('article')->where('slug', '=', $slug)->get();
+        $category = Category::with(['article' => function ($query) {
+                    $query->where('created_at', '<=', Carbon::now());
+        }])->where('slug', '=', $slug)->get();
         if (!count($category)) {
           return abort('404');
         }
