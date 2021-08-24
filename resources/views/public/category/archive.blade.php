@@ -82,32 +82,32 @@
                 @endphp
                     @foreach ($versions as $version)
                         @if($version !== '.' && $version !== '..' && $version !== '.ftpquota' && $version !== 'final.php')
-                            <div class="article uk-margin uk-background-default uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
-                    <div class="uk-container" uk-grid>
-                        <div class="uk-width-1-3@m">
-                            <a class="uk-link-reset" href=""><img class="uk-border-rounded" src="/repository/{{ $version }}/frontpage_{{ $version }}.jpg" style="width: auto;"></a>
-                        </div>
-                        <div class="uk-width-2-3@m">
-                            <p>
-                                <a class="uk-link-reset" href=""><h3 class="uk-margin-small-top uk-margin-small-bottom uk-text-lead">روزنامه صمت شماره {{ $version }}</h3></a>
-{{--                            <span class="uk-text-meta fa-num"><span uk-icon="clock" class="uk-margin-small-left"></span> {{ $jalaliDate }}</span>--}}
-                            {{--                            <hr class="uk-divider-small">--}}
-                            <div uk-grid>
-                                <div class="uk-width-5-6">
-                                    <p class="uk-text-truncate">
-{{--                                        <span>{{ $article->meta_description }}</span>--}}
-                                    </p>
-                                </div>
-
-                                <div class="uk-width-1-6">
-                                    <a class="uk-bage uk-badge" href="/download?version={{$version}}">دانلود <span uk-icon="arrow-right"></span></a>
-                                </div>
+                    <div class="article uk-margin uk-background-default uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
+                        <div class="uk-container" uk-grid>
+                            <div class="uk-width-1-3@m">
+                                <a class="uk-link-reset" href=""><img class="uk-border-rounded" src="/repository/{{ $version }}/frontpage_{{ $version }}.jpg" style="width: auto;"></a>
                             </div>
+                            <div class="uk-width-2-3@m">
+                                <p>
+                                    <a class="uk-link-reset" href=""><h3 class="uk-margin-small-top uk-margin-small-bottom uk-text-lead">روزنامه صمت شماره {{ $version }}</h3></a>
+    {{--                            <span class="uk-text-meta fa-num"><span uk-icon="clock" class="uk-margin-small-left"></span> {{ $jalaliDate }}</span>--}}
+                                {{--                            <hr class="uk-divider-small">--}}
+                                <div uk-grid>
+                                    <div class="uk-width-5-6">
+                                        <p class="uk-text-truncate">
+    {{--                                        <span>{{ $article->meta_description }}</span>--}}
+                                        </p>
+                                    </div>
 
-                            </p>
+                                    <div class="uk-width-1-6">
+                                        <a class="uk-bage uk-badge" href="{{ route('Newspaper > Download') }}?version={{$version}}">دانلود <span uk-icon="arrow-right"></span></a>
+                                    </div>
+                                </div>
+
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                         @endif
                     @endforeach
             @endif

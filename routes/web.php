@@ -157,4 +157,4 @@ Route::get('wmenu', 'HomeController@MenuStructureWithoutParents');
 Route::get('rule', 'HomeController@Test');
 
 Route::get('/newspaper/listdir', 'NewspaperController@ListDir');
-Route::get('/download', 'NewspaperController@Download');
+Route::get('/newspaper/download', 'NewspaperController@Download')->name('Newspaper > Download');
