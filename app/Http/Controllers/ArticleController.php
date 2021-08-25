@@ -217,7 +217,7 @@ class ArticleController extends Controller
         }
 
 //        $articles = $articles->orderBy('id', 'desc')->paginate(30);
-        $articles = $articles->orderBy('created_at', 'desc')->paginate(30);
+        $articles = $articles->orderBy('id', 'desc')->paginate(30);
         return view('admin.article.manage', compact(['articles', 'categories', 'users']));
     }
 

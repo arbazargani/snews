@@ -14,7 +14,7 @@ class AddCustomFiledsToArticles extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->string('lead')->nullable();
+            $table->longText('lead')->nullable();
             $table->string('rootitr')->nullable();
             $table->string('writer')->nullable();
             $table->string('type')->default('text');
