@@ -35,7 +35,9 @@
             <div class="article uk-margin @if($loop->even) uk-background-default @else uk-background-secondary uk-light @endif uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
                 <div class="uk-container" uk-grid>
                     <div class="uk-width-1-3@m">
-                        <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><img class="uk-border-rounded" src="{{ $article->cover }}" style="width: auto;"></a>
+                        <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}">
+                            <img class="uk-border-rounded" src="{{ ($category[0]->id == env('NEWSPAPER_CATEGORY_ID')) ? env('SITE_URL')."/repository/".strip_tags($article->content)."/frontpage_".strip_tags($article->content).".jpg" : $article->cover }}" style="width: auto;">
+                        </a>
                     </div>
                     <div class="uk-width-2-3@m">
                         <p>
@@ -110,6 +112,20 @@
                     </div>
                         @endif
                     @endforeach
+                <div class="uk-container">
+                    @php
+                        if(isset($_GET['page']) && !is_null($_GET['page'])) {
+                            $page = (int) $_GET['page'];
+                            $next_page = $page+1;
+                            $prev_page = $page-1;
+                        } else {
+                            $next_page = 1;
+                            $prev_page = 2;
+                        }
+                    @endphp
+{{--                    <a class="uk-float-right" href="{{ ($prev_page) ? "?page=$next_page" : "" }}"><span class="uk-margin-small-right" uk-pagination-previous></span> قبل</a>--}}
+{{--                    <a class="uk-float-left" href="{{ ($next_page) ? "?page=$prev_page" : "" }}">بعد <span class="uk-margin-small-left" uk-pagination-next></span></a>--}}
+                </div>
             @endif
         </div>
 <!-- content -->
