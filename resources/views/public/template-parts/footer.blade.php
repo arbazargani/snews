@@ -15,13 +15,12 @@
             <hr class="uk-divider-small">
             <ul class="uk-list">
                 <li>
-                   <a class="uk-link-reset" href="/page/تماس-با-ما">تماس با ما</a>
+                   <a class="uk-link-reset" href="{{ env('SITE_URL') }}/page/تماس-با-ما">تماس با ما</a>
                 </li>
                 <li>
-                   <a class="uk-link-reset" href="/page/درباره-ما">درباره ما</a>
+                   <a class="uk-link-reset" href="{{ env('SITE_URL') }}/page/ارتباط-با-ما">ارتباط با ما</a>
                 </li>
                 <li>
-                    <a class="uk-link-reset" href="/page/همکاری">همکاری با ما</a>
                 </li>
             </ul>
         </div>

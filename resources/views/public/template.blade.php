@@ -116,6 +116,7 @@
     {!! $settings['before_body_codes']->value !!}
 </head>
 <body class="uk-background-muted" id="top">
+    @include('public.template-parts.date-bar')
     <!-- preloader -->
     <div id="preloader" class="uk-overlay-primary uk-position-cover" style="z-index: 1111111">
         <div class="uk-position-center">
@@ -123,11 +124,11 @@
         </div>
     </div>
     <!-- end preloader -->
-	<div class="uk-section-primary theme-background-red uk-preserve-color">
-		<div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
-			@include('public.template-parts.header')
-		</div>
-		</div>
+        <div class="uk-section-primary theme-background-red uk-preserve-color">
+            <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
+                @include('public.template-parts.header')
+            </div>
+        </div>
 
 		<div style="padding: 1% 5% 1% 5%;" uk-grid>
 			<!-- main -->
