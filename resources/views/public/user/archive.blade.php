@@ -18,7 +18,7 @@
     <div class="article uk-margin uk-background-default uk-border-rounded">
         <div class="uk-container" uk-grid>
             <div class="uk-width-1-3@m">
-                <img class="uk-border-rounded" src="{{ asset('/assets/image/smlarbavaconprd.png') }}" style="width: auto;">
+                <img class="uk-border-rounded" src="https://smtnews.ir/assets/image/ghost.png" style="width: auto;">
             </div>
             <div class="uk-width-2-3@m">
                 <p>
