@@ -49,8 +49,7 @@ class AppServiceProvider extends ServiceProvider
 
         $notPopularArticles = Article::where('state', 1)->where('created_at','<=', Carbon::now())->whereBetween('created_at', [Carbon::now()->subDays(3), Carbon::now()])->orderBy('views', 'asc')->limit(10)->get();
 
-        // $ceoNotes = Category::where('slug', 'یادداشت-مدیر-مسئول')->with(['article' => function($query)
-        $ceoNotes = Category::where('slug', 'سیاست')->with(['article' => function($query)
+        $ceoNotes = Category::where('slug', 'یادداشت-مدیر-مسئول')->with(['article' => function($query)
         {
             $query->where('cover', '!=', 'ghost.png')
                 ->where('created_at', '<=', Carbon::now())
