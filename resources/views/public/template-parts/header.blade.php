@@ -24,7 +24,9 @@
                                 <div>
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         @foreach($menu_structure[$menu_parent] as $child)
+                                        @if($child->show_in_menu)
                                             <li class="uk-margin-right"><a class="child" href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
+                                        @endif
                                         @endforeach
                                     </ul>
                                 </div>
@@ -33,13 +35,16 @@
                     </li>
                 @else
                     @foreach($menu_structure[$menu_parent] as $child)
+                    @if($child->show_in_menu)
                         <li ><a style="font-family: Kit-light-fa-bold !important; color: white" href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
+                    @endif
                     @endforeach
                 @endif
             @endforeach
             @foreach($single_categories as $category)
+            @if($category->show_in_menu)
                 <li><a style="font-family: Kit-light-fa-bold !important; color: white" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
-
+            @endif
             @endforeach
         </ul>
     </div>

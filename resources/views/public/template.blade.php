@@ -80,6 +80,19 @@
             box-shadow: #c0392b;
             animation: pulse 2s infinite;
         }
+        .dead-pulse {
+            /*margin:100px;*/
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #f2f2f2;
+            cursor: pointer;
+            box-shadow: #ababab;
+            /* animation: pulse 2s infinite; */
+        }
         .pulse:hover {
             animation: none;
         }
@@ -109,6 +122,7 @@
                 box-shadow: 0 0 0 0 rgba(204,169,44, 0);
             }
         }
+
         .select2-container {
             max-width: 100% !important;
         }

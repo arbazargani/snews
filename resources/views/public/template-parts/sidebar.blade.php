@@ -3,11 +3,11 @@
     <!-- socket - search -->
     <div class="sidebar-element">
         <div class="uk-card uk-card-hover uk-card-body">
-            <h3 class="uk-card-title uk-text-meta">جستجو</h3>
-            <hr class="uk-divider-small">
+            <!-- <h3 class="uk-card-title uk-text-meta">جستجو</h3> -->
+            <!-- <hr class="uk-divider-small"> -->
             <form class="uk-grid-small" action="/" uk-grid>
                 <div class="uk-width-expand">
-                    <input class="uk-input" type="text" name="query" id="query">
+                    <input class="uk-input" type="text" name="query" id="query" placeholder="جستجو">
                 </div>
                 <div class="uk-width-1-3">
                     <button class="uk-button uk-button-primary theme-background-red" type="submit"><span uk-icon="search"></span></button>

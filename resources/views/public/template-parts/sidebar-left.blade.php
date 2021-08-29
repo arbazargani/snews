@@ -31,6 +31,19 @@
     @endif
     <!-- socket - newsppaer -->
 
+    <!-- socket - thumbnail article -->
+    <div class="sidebar-element">
+        <div class="uk-card uk-card-hover uk-card-body">
+            <h3 class="uk-card-title uk-text-meta">
+                <span class="pulse"></span>
+                <span>یادداشت مدیر مسئول</span>
+            </h3>
+            <hr class="uk-divider-small">
+            @include('public.template-parts.timeline')
+        </div>
+    </div>
+    <!-- socket - thumbnail article -->
+
     <!-- Advertise socket - section 001 -->
     <div class="sidebar-element" id="advertise-socket-sidebar-001">
         @if(count($advertises) > 0)

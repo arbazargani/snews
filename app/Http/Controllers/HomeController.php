@@ -42,30 +42,21 @@ class HomeController extends Controller
                     ->latest()->first();
             }]
         )->get();
+
         $homeTitle = Setting::where('name', 'meta_title')->first();
         $homeDescription = Setting::where('name', 'meta_description')->first();
 
-        $bankAndInsuranceArticles = Category::where('slug', 'بانک-و-بیمه')->with(['article' => function($query)
-        {
-            $query->where('cover', '!=', 'ghost.png')
-            ->where('created_at', '<=', Carbon::now())
-            ->limit(5)
-            ->latest();
-        }
-        ])->get();
+        $bankAndInsuranceArticles = $this->GetCategoryLatest('بانک-و-بیمه');
 
-        $bankAndInsuranceArticles = $bankAndInsuranceArticles[0]->article;
+        $carIndustry = $this->GetCategoryLatest('صنعت-خودرو');
 
-        $carIndustry = Category::where('slug', 'صنعت-خودرو')->with(['article' => function($query)
-        {
-            $query->where('cover', '!=', 'ghost.png')
-                ->where('created_at', '<=', Carbon::now())
-                ->limit(5)
-                ->latest();
-        }
-        ])->get();
+        $industry = $this->GetCategoryLatest('صنعت');
 
-        $carIndustry = $carIndustry[0]->article;
+        $mine = $this->GetCategoryLatest('معدن');
+
+        $commerce = $this->GetCategoryLatest('تجارت');
+        
+        $economy = $this->GetCategoryLatest('اقتصاد');
 
         if ($request->isMethod('get')) {
             if ($request->has('query') && !is_null($request['query'])) {
@@ -83,7 +74,17 @@ class HomeController extends Controller
             }
         }
 
-        return view('public.home.index', compact(['level_one_articles', 'homeTitle', 'homeDescription', 'bankAndInsuranceArticles', 'carIndustry']));
+        return view('public.home.index', compact([
+            'level_one_articles',
+            'homeTitle',
+            'homeDescription',
+            'bankAndInsuranceArticles',
+            'carIndustry',
+            'industry',
+            'mine',
+            'commerce',
+            'economy'
+        ]));
     }
 
     /**
@@ -91,6 +92,20 @@ class HomeController extends Controller
      */
     public function Search($query) {
 
+    }
+    
+    public function GetCategoryLatest($slug, $limit = 3) {
+        $data = Category::where('slug', "$slug")->with(['article' => function($query) use ($limit)
+        {
+            $query->where('cover', '!=', 'ghost.png')
+                ->where('created_at', '<=', Carbon::now())
+                ->limit($limit)
+                ->latest();
+        }
+        ])->get();
+        $data = $data[0]->article;
+
+        return $data;
     }
 
     public function Faker()
@@ -100,7 +115,7 @@ class HomeController extends Controller
 
     public function MenuStructureWithParents()
     {
-        $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->where('show_in_menu', 1)->get()->groupBy('parent');
+        $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->where('show_in_menu', '=', 1)->get()->groupBy('parent');
         return $menu_structure;
     }
 
@@ -111,7 +126,7 @@ class HomeController extends Controller
         foreach ($menu_structure as $parents => $childs) {
             $used_categories[] = $parents;
         }
-        $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->where('show_in_menu', 1)->get();
+        $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->where('show_in_menu', '=', 1)->get();
 
         return $single_categories;
     }

@@ -157,6 +157,202 @@
             </div>
             <!-- car industry latest -->
 
+            <!-- industry latest -->
+            <div class="container">
+                <h2 class="uk-text-lead">آخرین اخبار صنعت</h2>
+                @foreach($industry as $article)
+                @php
+                    $jalaliDate = new Verta($article->created_at);
+                    $jalaliDate->timezone('Asia/Tehran');
+                    Verta::setStringformat('Y/n/j H:i');
+                    $jalaliDate = Verta::instance($article->created_at);
+                    $jalaliDate = Facades\Verta::instance($article->created_at);
+                    $jalaliDate = explode(' ', $jalaliDate);
+                    $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
+                @endphp
+                    <div class="uk-card uk-card-small uk-background-muted uk-grid-collapse uk-margin uk-border-rounded">
+                        <div>
+                            <div class="uk-card-body" uk-grid>
+                                <div class="uk-width-1-3@m">
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                </div>
+                                <div class="uk-width-2-3@m">
+                                    <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
+                                    <hr>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    @if(count($article->category->all()))
+                                        <p class="uk-text-meta">در دسته:
+                                            @foreach($article->category->all() as $category)
+
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                @if(!$loop->last)
+                                                    ،
+                                                @endif
+                                            @endforeach
+                                            @else
+                                                <span class="uk-text-meta">بدون دسته‌بندی</span>
+                                            @endif
+                                        </p>
+                                        <p class="uk-text-truncate">
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            {{ $article->meta_description }}
+                                        </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- industry latest -->
+
+            <!-- mine latest -->
+            <div class="container">
+                <h2 class="uk-text-lead">آخرین اخبار معدن</h2>
+                @foreach($mine as $article)
+                @php
+                    $jalaliDate = new Verta($article->created_at);
+                    $jalaliDate->timezone('Asia/Tehran');
+                    Verta::setStringformat('Y/n/j H:i');
+                    $jalaliDate = Verta::instance($article->created_at);
+                    $jalaliDate = Facades\Verta::instance($article->created_at);
+                    $jalaliDate = explode(' ', $jalaliDate);
+                    $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
+                @endphp
+                    <div class="uk-card uk-card-small uk-background-muted uk-grid-collapse uk-margin uk-border-rounded">
+                        <div>
+                            <div class="uk-card-body" uk-grid>
+                                <div class="uk-width-1-3@m">
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                </div>
+                                <div class="uk-width-2-3@m">
+                                    <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
+                                    <hr>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    @if(count($article->category->all()))
+                                        <p class="uk-text-meta">در دسته:
+                                            @foreach($article->category->all() as $category)
+
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                @if(!$loop->last)
+                                                    ،
+                                                @endif
+                                            @endforeach
+                                            @else
+                                                <span class="uk-text-meta">بدون دسته‌بندی</span>
+                                            @endif
+                                        </p>
+                                        <p class="uk-text-truncate">
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            {{ $article->meta_description }}
+                                        </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- mine latest -->
+
+            <!-- commerce latest -->
+            <div class="container">
+                <h2 class="uk-text-lead">آخرین اخبار تجارت</h2>
+                @foreach($commerce as $article)
+                @php
+                    $jalaliDate = new Verta($article->created_at);
+                    $jalaliDate->timezone('Asia/Tehran');
+                    Verta::setStringformat('Y/n/j H:i');
+                    $jalaliDate = Verta::instance($article->created_at);
+                    $jalaliDate = Facades\Verta::instance($article->created_at);
+                    $jalaliDate = explode(' ', $jalaliDate);
+                    $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
+                @endphp
+                    <div class="uk-card uk-card-small uk-background-muted uk-grid-collapse uk-margin uk-border-rounded">
+                        <div>
+                            <div class="uk-card-body" uk-grid>
+                                <div class="uk-width-1-3@m">
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                </div>
+                                <div class="uk-width-2-3@m">
+                                    <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
+                                    <hr>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    @if(count($article->category->all()))
+                                        <p class="uk-text-meta">در دسته:
+                                            @foreach($article->category->all() as $category)
+
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                @if(!$loop->last)
+                                                    ،
+                                                @endif
+                                            @endforeach
+                                            @else
+                                                <span class="uk-text-meta">بدون دسته‌بندی</span>
+                                            @endif
+                                        </p>
+                                        <p class="uk-text-truncate">
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            {{ $article->meta_description }}
+                                        </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- commerce latest -->
+
+            <!-- economy latest -->
+            <div class="container">
+                <h2 class="uk-text-lead">آخرین اخبار اقتصاد</h2>
+                @foreach($commerce as $article)
+                @php
+                    $jalaliDate = new Verta($article->created_at);
+                    $jalaliDate->timezone('Asia/Tehran');
+                    Verta::setStringformat('Y/n/j H:i');
+                    $jalaliDate = Verta::instance($article->created_at);
+                    $jalaliDate = Facades\Verta::instance($article->created_at);
+                    $jalaliDate = explode(' ', $jalaliDate);
+                    $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
+                @endphp
+                    <div class="uk-card uk-card-small uk-background-muted uk-grid-collapse uk-margin uk-border-rounded">
+                        <div>
+                            <div class="uk-card-body" uk-grid>
+                                <div class="uk-width-1-3@m">
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                </div>
+                                <div class="uk-width-2-3@m">
+                                    <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
+                                    <hr>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    @if(count($article->category->all()))
+                                        <p class="uk-text-meta">در دسته:
+                                            @foreach($article->category->all() as $category)
+
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                @if(!$loop->last)
+                                                    ،
+                                                @endif
+                                            @endforeach
+                                            @else
+                                                <span class="uk-text-meta">بدون دسته‌بندی</span>
+                                            @endif
+                                        </p>
+                                        <p class="uk-text-truncate">
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            {{ $article->meta_description }}
+                                        </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- economy latest -->
+
         </div>
     </div>
 @endsection
