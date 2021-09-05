@@ -69,6 +69,10 @@ class HomeController extends Controller
                     ['state', '=', 1],
                     ['created_at', '<=', Carbon::now()],
                     ['content', 'LIKE', '%' . $query . '%']
+                ])->orWhere([
+                    ['state', '=', 1],
+                    ['created_at', '<=', Carbon::now()],
+                    ['writer', 'LIKE', '%' . $query . '%']
                 ])->paginate(10);
                 return view('public.home.search', compact('articles'));
             }
