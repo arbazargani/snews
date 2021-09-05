@@ -74,6 +74,7 @@ class HomeController extends Controller
                     ['created_at', '<=', Carbon::now()],
                     ['writer', 'LIKE', '%' . $query . '%']
                 ])->paginate(10);
+        
                 return view('public.home.search', compact('articles'));
             }
         }
@@ -94,8 +95,31 @@ class HomeController extends Controller
     /**
      * @param $query
      */
-    public function Search($query) {
+    public function OldSearch() {
+        $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `title` LIKE '%$query%'");
+        return $articles;
+        if (!count($old_system_articles)) {
+            return abort('404');
+        } else {
+            $old_system_articles = $old_system_articles[0];
+        }
+    
+        $old_system_articles_info = [
+            'id' => $article->id,
+            'title' => $article->title,
+            'content' => $article->fulltext,
+            'cover' => json_decode($article->images)->image_intro,
+            'views' => $article->hits,
+            'created_by' => $article->created_by_alias,
+            'created_at' => $article->created,
+            'published_at' => $article->publish_up,
+            'category' => $this->GetOldNewsCategoriesFromID($article->catid)->title,
+            'category_id' => $this->GetOldNewsCategoriesFromID($article->catid)->id
+        ];
+    }
 
+    public function GetOldNewsCategoriesFromID ($id) {
+        return DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `id` = $id")[0];
     }
     
     public function GetCategoryLatest($slug, $limit = 3) {
