@@ -103,7 +103,10 @@ class HomeController extends Controller
             if ($request->has('query') && !is_null($request['query'])) {
                 $query = $request['query'];
                 $qlimit = 20;
-                $query = "SELECT * FROM `smtnw6_content` WHERE `title` LIKE '%$query%' LIMIT $qlimit";
+                $query = "SELECT * FROM `smtnw6_content` WHERE `title` LIKE '%$query%'
+                OR `fulltext` LIKE '%$query%'
+                OR `created_by_alias` LIKE '%$query%'
+                LIMIT $qlimit";
 
                 if ($request->has('page') && !is_null($request['page']) && $request['page'] > 1) {
                     $qoffset = $request['page']*20;

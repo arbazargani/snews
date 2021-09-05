@@ -54,7 +54,7 @@
                                     $jalaliDate = Verta::instance($article->created);
                                     $jalaliDate = Facades\Verta::instance($article->created);
                                 @endphp
-                                <div class="uk-card-badge uk-label kit-lite">{{ $article->hits }} بازدید</div>
+                                <!-- <div class="uk-card-badge uk-label kit-lite">{{ $article->hits }} بازدید</div> -->
                                 <h2 class="uk-card-title uk-text-lead"><a href="{{ route('Old cms > News > Simple > Short', [$category[0]->alias, $article->id]) }}" class="uk-link-heading fa-kit-medium">{{ $article->title }}</a></h2>
                                 <p class="uk-text-meta uk-margin-remove-top"><time class="fa-num" datetime="{{ $article->created }}">{{ $jalaliDate }}</time></p>
                             </div>
