@@ -11,6 +11,9 @@ use App\Article;
 use App\Category;
 use App\Setting;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
 
 class HomeController extends Controller
 {
@@ -95,27 +98,62 @@ class HomeController extends Controller
     /**
      * @param $query
      */
-    public function OldSearch() {
-        $articles = DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_content` WHERE `title` LIKE '%$query%'");
-        return $articles;
-        if (!count($old_system_articles)) {
-            return abort('404');
-        } else {
-            $old_system_articles = $old_system_articles[0];
+    public function OldSearch(Request $request) {
+        if ($request->isMethod('get')) {
+            if ($request->has('query') && !is_null($request['query'])) {
+                $query = $request['query'];
+                $qlimit = 20;
+                $query = "SELECT * FROM `smtnw6_content` WHERE `title` LIKE '%$query%' LIMIT $qlimit";
+
+                if ($request->has('page') && !is_null($request['page']) && $request['page'] > 1) {
+                    $qoffset = $request['page']*20;
+                    $query .= " OFFSET $qoffset";
+                }
+                $articles = DB::connection('mysql_sec')->select($query);
+                // return $articles;
+            }
         }
-    
-        $old_system_articles_info = [
-            'id' => $article->id,
-            'title' => $article->title,
-            'content' => $article->fulltext,
-            'cover' => json_decode($article->images)->image_intro,
-            'views' => $article->hits,
-            'created_by' => $article->created_by_alias,
-            'created_at' => $article->created,
-            'published_at' => $article->publish_up,
-            'category' => $this->GetOldNewsCategoriesFromID($article->catid)->title,
-            'category_id' => $this->GetOldNewsCategoriesFromID($article->catid)->id
-        ];
+        if (!isset($articles)) {
+            $articles = false;
+            $query = '';
+            return view('public.home.oldsearch', compact(['articles']));
+
+        }
+
+        // $articles = $this->arrayPaginatorV2($articles, $request);
+        // $articles = new Paginator($articles, 20);
+
+        // return var_dump(count($articles));
+
+        return view('public.home.oldsearch', compact(['articles']));
+    }
+
+    public function arrayPaginatorV1($array, $request) {
+        $page = Input::get('page', 1);
+        $perPage = 10;
+        $offset = ($page * $perPage) - $perPage;
+
+        return new LengthAwarePaginator(array_slice($array, $offset, $perPage, true), count($array), $perPage, $page,
+            ['path' => $request->url(), 'query' => $request->query()]);
+    }
+
+    public function arrayPaginatorV2($array, $request) {
+        $page = Input::get('page', 1);
+        $perPage = 10;
+        $offset = ($page * $perPage) - $perPage;
+
+        return new LengthAwarePaginator(
+            array_slice(
+                $array,
+                $offset,
+                $perPage,
+                true
+            ),
+            count($array),
+            $perPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
     }
 
     public function GetOldNewsCategoriesFromID ($id) {

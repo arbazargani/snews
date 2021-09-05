@@ -24,7 +24,7 @@ Route::get('/home', function () {
     return redirect()->route('Home');
 });
 
-Route::get('/old_search', 'HomeController@OldSearch')->middleware('CheckPageState')->name('Article > Single');
+Route::get('old_search', 'HomeController@OldSearch')->name('Old Search');
 
 
 Route::get('index.html', function () {

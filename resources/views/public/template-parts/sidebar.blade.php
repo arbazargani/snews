@@ -13,9 +13,10 @@
                     <button class="uk-button uk-button-primary theme-background-red" type="submit"><span uk-icon="search"></span></button>
                 </div>
             </form>
+            <hr>
+            <a href="{{ route('Old Search') }}" class="uk-button uk-button-muted" type="submit"><span uk-icon="arrow-right"></span> جستجو در اخبار قدیمی</a>
         </div>
     </div>
-    <!-- socket - search -->
 
     <!-- socket - latest/popular -->
     <div class="sidebar-element">
