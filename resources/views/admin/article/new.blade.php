@@ -80,6 +80,12 @@
                                  <option value="noindex, nofollow">noindex, nofollow</option>
                                </select>
                           </div>
+                          <br>
+                            <!-- article writer -->
+                            <div>
+                              <label class="uk-form-label" for="writer">نویسنده خبر</label>
+                              <input type="text" name="writer" id="writer" placeholder="نویسنده خبر" class="uk-input form-control @error('writer') is-invalid @enderror" value="{{ $article->writer  }}" required style="padding-left: 40px;">
+                          </div>
                         </div>
                     </div>
                 </div>

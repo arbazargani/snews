@@ -122,6 +122,7 @@ class ArticleController extends Controller
 
         $article->rootitr = $this->NoArabic($request['rootitr']);
         $article->lead = $this->NoArabic($request['lead']);
+        $article->writer = $this->NoArabic($request['writer']);
 
         $article->meta_description = isset($request['meta-description']) ? $this->noArabic($request['meta-description']) : '';
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';
@@ -334,6 +335,7 @@ class ArticleController extends Controller
 
         $article->rootitr = $this->NoArabic($request['rootitr']);
         $article->lead = $this->NoArabic($request['lead']);
+        $article->writer = $this->NoArabic($request['writer']);
 
         $article->meta_description = isset($request['meta-description']) ? $this->NoArabic($request['meta-description']) : '';
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';

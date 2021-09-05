@@ -127,8 +127,6 @@
                             <div class="uk-width-expand">
                                 <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
                                 <h1 class="uk-text-lead uk-margin-remove">{{ $article[0]->title }}</h1>
-                                <span
-                                    class="uk-text-meta">{{ $article[0]->writer }}</span>
                             </div>
                         </div>
                         <!-- title -->
@@ -194,6 +192,12 @@
 
     <metabox>
         <div class="uk-container uk-text-center uk-background-muted uk-padding uk-margin uk-border-rounded">
+
+            @if(!is_null($article[0]->writer))
+            <hr class="uk-divider">
+            <span class="uk-text-meta uk-text-bold"><span uk-icon="icon: pencil"></span> نویسنده:  {{ $article[0]->writer }}</span>
+            <hr>
+            @endif
 
             @if(count($article[0]->tag->all()) > 0)
                 <span uk-icon="icon: bookmark"></span> <span class="uk-text-meta">برچسب: </span>

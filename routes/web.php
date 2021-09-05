@@ -33,13 +33,17 @@ Route::get('/blog', function() {
 })->name('Blog');
 
 Route::get('/article/{slug}', 'ArticleController@Show')->middleware('CheckPageState')->name('Article > Single');
+// Route::get('/amp/article/{slug}', 'ArticleController@Show')->middleware('CheckPageState')->name('Article > Single > AMP');
 Route::get('/direct/{id}', 'ArticleController@Direct')->name('Article > Direct');
 
 Route::get('page/{slug}', 'PageController@Show')->name('Page > Single');
+// Route::get('/amp/{slug}', 'PageController@Show')->name('Page > Single > AMP');
 
 Route::get('/tag/{slug}', 'TagController@Archive')->name('Tag > Archive');
+// Route::get('/amp/tag/{slug}', 'TagController@Archive')->name('Tag > Archive > AMP');
 
 Route::get('/category/{slug}', 'CategoryController@Archive')->name('Category > Archive');
+// Route::get('/amp/category/{slug}', 'CategoryController@Archive')->name('Category > Archive > AMP');
 
 Route::get('/author/{username}', 'UserController@Archive')->name('User > Archive');
 

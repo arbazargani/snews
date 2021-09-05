@@ -1,3 +1,8 @@
+@php
+$request_name = Route::currentRouteName();
+$request_segment_one = Request::segment(1);
+$is_amp = (strpos($request_name, '> AMP') !== false && $request_segment_one == 'amp') ? true : false;
+@endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 <head>
@@ -29,105 +34,105 @@
         <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
         <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
 
-    <style media="screen">
-        h1 {
-            font-size: 1.3rem!important;
-        }
-        h2 {
-            font-size: 1.1rem!important;
-            font-family: Kit-light-fa-medium !important;
-        }
-        h3 {
-            font-size: 16px!important;
-            font-family: Kit-light-fa-medium !important;
-        }
-        h4 {
-            font-size: 16px!important;
-            font-family: Kit-light-fa-medium !important;
-        }
+        <style media="screen">
+            h1 {
+                font-size: 1.3rem!important;
+            }
+            h2 {
+                font-size: 1.1rem!important;
+                font-family: Kit-light-fa-medium !important;
+            }
+            h3 {
+                font-size: 16px!important;
+                font-family: Kit-light-fa-medium !important;
+            }
+            h4 {
+                font-size: 16px!important;
+                font-family: Kit-light-fa-medium !important;
+            }
 
-        @media (min-width: 1200px) {
-            .sidebar-element .uk-card-body {
-                padding: 40px 14px;
+            @media (min-width: 1200px) {
+                .sidebar-element .uk-card-body {
+                    padding: 40px 14px;
+                }
             }
-        }
-		@media screen and (max-width: 479px) {
-			/* start of phone styles */
-			h1 {
-				font-size: 24px!important;
-			}
-			h2 {
-				font-size: 20px!important;
-			}
-			h3 {
-				font-size: 16px!important;
-			}
-			h4 {
-				font-size: 16px!important;
-			}
-		}
+            @media screen and (max-width: 479px) {
+                /* start of phone styles */
+                h1 {
+                    font-size: 24px!important;
+                }
+                h2 {
+                    font-size: 20px!important;
+                }
+                h3 {
+                    font-size: 16px!important;
+                }
+                h4 {
+                    font-size: 16px!important;
+                }
+            }
 
-        .pulse {
-            /*margin:100px;*/
-            margin-left: 8px;
-            vertical-align: middle;
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #e74c3c;
-            cursor: pointer;
-            box-shadow: #c0392b;
-            animation: pulse 2s infinite;
-        }
-        .dead-pulse {
-            /*margin:100px;*/
-            margin-left: 8px;
-            vertical-align: middle;
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #f2f2f2;
-            cursor: pointer;
-            box-shadow: #ababab;
-            /* animation: pulse 2s infinite; */
-        }
-        .pulse:hover {
-            animation: none;
-        }
+            .pulse {
+                /*margin:100px;*/
+                margin-left: 8px;
+                vertical-align: middle;
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #e74c3c;
+                cursor: pointer;
+                box-shadow: #c0392b;
+                animation: pulse 2s infinite;
+            }
+            .dead-pulse {
+                /*margin:100px;*/
+                margin-left: 8px;
+                vertical-align: middle;
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #f2f2f2;
+                cursor: pointer;
+                box-shadow: #ababab;
+                /* animation: pulse 2s infinite; */
+            }
+            .pulse:hover {
+                animation: none;
+            }
 
-        @-webkit-keyframes pulse {
-            0% {
-                -webkit-box-shadow: 0 0 0 0 rgb(231, 76, 60);
+            @-webkit-keyframes pulse {
+                0% {
+                    -webkit-box-shadow: 0 0 0 0 rgb(231, 76, 60);
+                }
+                70% {
+                    -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+                }
+                100% {
+                    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+                }
             }
-            70% {
-                -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+            @keyframes pulse {
+                0% {
+                    -moz-box-shadow: 0 0 0 0 rgb(231, 76, 60);
+                    box-shadow: 0 0 0 0 rgb(231, 76, 60);
+                }
+                70% {
+                    -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+                    box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+                }
+                100% {
+                    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+                    box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+                }
             }
-            100% {
-                -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-            }
-        }
-        @keyframes pulse {
-            0% {
-                -moz-box-shadow: 0 0 0 0 rgb(231, 76, 60);
-                box-shadow: 0 0 0 0 rgb(231, 76, 60);
-            }
-            70% {
-                -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-                box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-            }
-            100% {
-                -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-                box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-            }
-        }
 
-        .select2-container {
-            max-width: 100% !important;
-        }
-		</style>
-    {!! $settings['before_body_codes']->value !!}
+            .select2-container {
+                max-width: 100% !important;
+            }
+            </style>
+        {!! $settings['before_body_codes']->value !!}
 </head>
 <body class="uk-background-muted" id="top">
     @include('public.template-parts.date-bar')
