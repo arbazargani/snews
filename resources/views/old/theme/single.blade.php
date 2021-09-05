@@ -185,9 +185,17 @@
                                     ?>
                                     <a href="{{ '/' . $category_path . '.html' }}">{{ $article_info['category'] }}</a>
                                     </span>
-                                    <span class="published" title="منتشر شده در 27 ارديبهشت 1400 - 13:21">
-                                    <time datetime="2021-05-17T13:21:53+04:30" itemprop="datePublished">
-                                    27 ارديبهشت 1400 - 13:21	</time>
+                                    @php
+                                          $jalaliDate = new Verta($article_info['created_at']);
+                                          $jalaliDate->timezone('Asia/Tehran');
+                                          Verta::setStringformat('Y/n/j H:i');
+                                          $jalaliDate = Verta::instance($article_info['created_at']);
+                                          $jalaliDate = Facades\Verta::instance($article_info['created_at']);
+                                          $jalaliDate = explode(' ', $jalaliDate);
+                                          $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
+                                    @endphp
+                                    <span class="published" title="منتشر شده در {{ $jalaliDate }}">
+                                    <time datetime="" itemprop="datePublished">منتشر شده در {{ $jalaliDate }}</time>
                                     </span>
                                  </div>
                                  <div itemprop="articleBody">
