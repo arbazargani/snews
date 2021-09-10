@@ -58,7 +58,7 @@
             <hr>
 
             <!-- bank and insurance latest -->
-                <div class="container">
+                <div class="container uk-margin-large-bottom">
                     <h2 class="uk-text-lead">آخرین اخبار بانک و بیمه</h2>
                     @foreach($bankAndInsuranceArticles as $article)
                     @php
@@ -103,13 +103,16 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="uk-margin-small">
+                        <a href="/category/بانک-و-بیمه"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                    </div>
                 </div>
             <!-- bank and insurance latest -->
 
-            <hr>
+            <!-- <hr> -->
 
             <!-- car industry latest -->
-            <div class="container">
+            <div class="container uk-margin-large-bottom">
                 <h2 class="uk-text-lead">آخرین اخبار صنعت خودرو</h2>
                 @foreach($carIndustry as $article)
                 @php
@@ -154,11 +157,14 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="uk-margin-small">
+                    <a href="/category/صنعت-خودرو"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                </div>
             </div>
             <!-- car industry latest -->
 
             <!-- industry latest -->
-            <div class="container">
+            <div class="container uk-margin-large-bottom">
                 <h2 class="uk-text-lead">آخرین اخبار صنعت</h2>
                 @foreach($industry as $article)
                 @php
@@ -203,11 +209,14 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="uk-margin-small">
+                        <a href="/category/صنعت"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                    </div>
             </div>
             <!-- industry latest -->
 
             <!-- mine latest -->
-            <div class="container">
+            <div class="container uk-margin-large-bottom">
                 <h2 class="uk-text-lead">آخرین اخبار معدن</h2>
                 @foreach($mine as $article)
                 @php
@@ -252,11 +261,14 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="uk-margin-small">
+                    <a href="/category/معدن"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                </div>
             </div>
             <!-- mine latest -->
 
             <!-- commerce latest -->
-            <div class="container">
+            <div class="container uk-margin-large-bottom">
                 <h2 class="uk-text-lead">آخرین اخبار تجارت</h2>
                 @foreach($commerce as $article)
                 @php
@@ -301,11 +313,14 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="uk-margin-small">
+                    <a href="/category/تجارت"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                </div>
             </div>
             <!-- commerce latest -->
 
             <!-- economy latest -->
-            <div class="container">
+            <div class="container uk-margin-large-bottom">
                 <h2 class="uk-text-lead">آخرین اخبار اقتصاد</h2>
                 @foreach($commerce as $article)
                 @php
@@ -350,6 +365,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="uk-margin-small">
+                    <a href="/category/اقتصاد"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                </div>
             </div>
             <!-- economy latest -->
 
