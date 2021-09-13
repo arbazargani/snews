@@ -36,7 +36,13 @@
                 <div class="uk-container" uk-grid>
                     <div class="uk-width-1-3@m">
                         <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}">
-                            <img class="uk-border-rounded" src="{{ ($category[0]->id == env('NEWSPAPER_CATEGORY_ID')) ? env('SITE_URL')."/repository/".strip_tags($article->content)."/frontpage_".strip_tags($article->content).".jpg" : $article->cover }}" style="width: auto;">
+                            @if($category[0]->id == env('NEWSPAPER_CATEGORY_ID'))
+                            <img class="uk-border-rounded" src="{{ env('SITE_URL')."/repository/".strip_tags($article->content)."/frontpage_".strip_tags($article->content).".jpg" }}" style="width: auto;">
+                            @elseif(strpos($article->cover, 'ghost.png') == false && !is_null($article->cover))
+                            <img class="uk-border-rounded" src="{{ $article->cover }}" style="width: auto;">
+                            @elseif(strpos($article->cover, 'ghost.') !== false || is_null($article->cover))
+                            <img class="uk-border-rounded" src="/assets/image/ghost.png" style="width: auto">
+                            @endif
                         </a>
                     </div>
                     <div class="uk-width-2-3@m">

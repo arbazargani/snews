@@ -84,7 +84,7 @@
                             <!-- article writer -->
                             <div>
                               <label class="uk-form-label" for="writer">نویسنده خبر</label>
-                              <input type="text" name="writer" id="writer" placeholder="نویسنده خبر" class="uk-input form-control @error('writer') is-invalid @enderror" required style="padding-left: 40px;">
+                              <input type="text" name="writer" id="writer" placeholder="نویسنده خبر" class="uk-input form-control @error('writer') is-invalid @enderror" style="padding-left: 40px;">
                           </div>
                         </div>
                     </div>
