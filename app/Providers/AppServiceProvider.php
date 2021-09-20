@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
         {
             $query->where('cover', '!=', 'ghost.png')
                 ->where('created_at', '<=', Carbon::now())
-                ->limit(3)
+                ->limit(1)
                 ->latest();
         }
         ])->get();
