@@ -35,7 +35,14 @@
             <div class="article uk-margin @if($loop->even) uk-background-default @else uk-background-secondary uk-light @endif uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
                 <div class="uk-container" uk-grid>
                     <div class="uk-width-1-3@m">
-                        <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><img class="uk-border-rounded" src="{{ $article->cover }}" style="width: auto;"></a>
+                        <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}">
+
+                            @if(strpos($article->cover, 'ghost.png') !== false || is_null($article->cover))
+                                <img class="3 uk-border-rounded" src="/assets/image/ghost.png" style="width: auto">
+                            @else
+                                <img class="4 uk-border-rounded" src="{{ $article->cover }}" style="width: auto;">
+                            @endif
+                        </a>
                     </div>
                     <div class="uk-width-2-3@m">
                         <p>

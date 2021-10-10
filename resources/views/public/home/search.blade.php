@@ -23,7 +23,7 @@
                     <div>
                         <div class="uk-card uk-card-default uk-card-hover uk-border-rounded">
                             <div class="uk-card-media-top">
-                                <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ (is_null($article->cover) || ($article->cover == 'ghost.png')) ? env('SITE_URL') . '/assets/image/' . $article->cover : $article->cover }}" alt="" class="uk-border-rounded" style="width: 100%; height: 180px;"></a>
+                                <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ (is_null($article->cover) || ($article->cover == 'ghost.png')) ? env('SITE_URL') . '/assets/image/ghost.png' : $article->cover }}" alt="" class="uk-border-rounded" style="width: 100%; height: 180px;"></a>
                             </div>
                             <div class="uk-card-body">
                                 @php
