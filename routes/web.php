@@ -165,3 +165,5 @@ Route::get('rule', 'HomeController@Test');
 
 Route::get('/newspaper/listdir', 'NewspaperController@ListDir');
 Route::get('/newspaper/download', 'NewspaperController@Download')->name('Newspaper > Download');
+
+Route::get('/asset/image', 'ArticleController@MakeThumb');

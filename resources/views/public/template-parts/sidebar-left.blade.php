@@ -1,11 +1,16 @@
 <div class="uk-background-default uk-border-rounded">
     @php
+    if(\Illuminate\Support\Facades\Cache::has('newspaper')) {
+        $newspaper = \Illuminate\Support\Facades\Cache::get('newspaper');
+    } else {
         $newspaper = \App\Category::with(['article' => function($query) {
-                                                $query->where('state', 1)
-                                                ->latest();
+                                            $query->where('state', 1)
+                                            ->latest();
                                         }])
                                         ->where('id', env('NEWSPAPER_CATEGORY_ID'))
                                         ->get();
+        \Illuminate\Support\Facades\Cache::put('newspaper', $newspaper, now()->addMinutes(40));
+    }
         $version = (!count($newspaper) || !count($newspaper[0]->article)) ? null : $newspaper[0]->article[0];
     @endphp
     <!-- socket - newsppaer -->

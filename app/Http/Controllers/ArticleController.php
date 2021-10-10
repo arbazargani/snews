@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use function Composer\Autoload\includeFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManager;
 
 
 use App\Article;
@@ -508,6 +509,20 @@ class ArticleController extends Controller
             return $article_info;
         }
         return view('old.theme.single', compact('article_info'));
+    }
+
+    public function MakeThumb($address = 'http://localhost:8000/storage/uploads/articles/images/1.jpg') {
+        /** http://localhost:8000/storage/uploads/articles/images/1-seat-sofa-2-min.png */
+        //$address = str_replace(env('APP_URL'), '', $address);
+        //$address = str_replace(env('SITE_URL'), '', $address);
+        //$address = trim($address, '/');
+        $path_parts = pathinfo($address);
+        $ext = $path_parts['extension'];
+        $thumb_address = str_replace(".$ext", "-170-113.$ext", $address);
+        $manager = new ImageManager();
+        $image = $manager->make($address)->resize(170, 113);
+        $image->save($thumb_address);
+//        return $image->response($ext);
     }
 
 }

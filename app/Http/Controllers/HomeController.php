@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Article;
 use App\Category;
 use App\Setting;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Intervention\Image\ImageManager;
 
 
 class HomeController extends Controller
@@ -35,19 +37,39 @@ class HomeController extends Controller
      */
     public function Index(Request $request)
     {
-//        $sliderArticles = Article::latest()->where('state', 1)
-//                                            ->where('created_at','<=', Carbon::now())
-//                                            ->where('cover', '!=', 'ghost.png')
-//                                            ->limit(5)->get();
-        $level_one_articles = Category::where('id', env('LEVEL_one_CATEGORY_ID'))->with(['article' => function($query)
-            {
-                $query->where('cover', '!=', 'ghost.png')
-                    ->latest()->first();
-            }]
-        )->get();
+        /**$sliderArticles = Article::latest()->where('state', 1)
+                                            ->where('created_at','<=', Carbon::now())
+                                            ->where('cover', '!=', 'ghost.png')
+                                            ->limit(5)->get();
+        */
 
-        $homeTitle = Setting::where('name', 'meta_title')->first();
-        $homeDescription = Setting::where('name', 'meta_description')->first();
+        if(Cache::has('level_one_articles')) {
+            $level_one_articles = Cache::get('level_one_articles');
+        } else {
+            $level_one_articles = Category::where('id', env('LEVEL_one_CATEGORY_ID'))->with(['article' => function($query)
+                {
+                    $query->where('cover', '!=', 'ghost.png')
+                        ->latest()->first();
+                }]
+            )->get();
+            Cache::put('level_one_articles', $level_one_articles, now()->addMinutes(5));
+        }
+
+
+        if(Cache::has('homeTitle')) {
+            $homeTitle = Cache::get('homeTitle');
+        } else {
+            $homeTitle = Setting::where('name', 'meta_title')->first();
+            Cache::put('menu_structure', $homeTitle, now()->addDays(2));
+        }
+
+        if(Cache::has('homeDescription')) {
+            $homeDescription = Cache::get('homeDescription');
+        } else {
+            $homeDescription = Setting::where('name', 'meta_description')->first();
+            Cache::put('homeDescription', $homeDescription, now()->addDays(2));
+        }
+
 
         $bankAndInsuranceArticles = $this->GetCategoryLatest('بانک-و-بیمه');
 
@@ -58,7 +80,7 @@ class HomeController extends Controller
         $mine = $this->GetCategoryLatest('معدن');
 
         $commerce = $this->GetCategoryLatest('تجارت');
-        
+
         $economy = $this->GetCategoryLatest('اقتصاد');
 
         if ($request->isMethod('get')) {
@@ -77,7 +99,7 @@ class HomeController extends Controller
                     ['created_at', '<=', Carbon::now()],
                     ['writer', 'LIKE', '%' . $query . '%']
                 ])->paginate(10);
-        
+
                 return view('public.home.search', compact('articles'));
             }
         }
@@ -162,19 +184,23 @@ class HomeController extends Controller
     public function GetOldNewsCategoriesFromID ($id) {
         return DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `id` = $id")[0];
     }
-    
-    public function GetCategoryLatest($slug, $limit = 3) {
-        $data = Category::where('slug', "$slug")->with(['article' => function($query) use ($limit)
-        {
-            $query->where('cover', '!=', 'ghost.png')
-                ->where('created_at', '<=', Carbon::now())
-                ->limit($limit)
-                ->latest();
-        }
-        ])->get();
-        $data = $data[0]->article;
 
-        return $data;
+    public function GetCategoryLatest($slug, $limit = 3) {
+        if (Cache::has("latest-$slug")) {
+            return Cache::get("latest-$slug");
+        } else {
+            $data = Category::where('slug', "$slug")->with(['article' => function($query) use ($limit)
+            {
+                $query->where('cover', '!=', 'ghost.png')
+                    ->where('created_at', '<=', Carbon::now())
+                    ->limit($limit)
+                    ->latest();
+            }
+            ])->get();
+            $data = $data[0]->article;
+            Cache::put("latest-$slug", $data, now()->addMinutes(5));
+            return $data;
+        }
     }
 
     public function Faker()
@@ -186,18 +212,32 @@ class HomeController extends Controller
     {
         $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->where('show_in_menu', '=', 1)->get()->groupBy('parent');
         return $menu_structure;
+        /**
+        if (Cache::has('menu_structure')) {
+            return Cache::get('menu_structure');
+        } else {
+            $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->where('show_in_menu', '=', 1)->get()->groupBy('parent');
+            Cache::put('menu_structure', $menu_structure, now()->addDays(2));
+            return $menu_structure;
+        }
+        */
     }
 
     public function MenuStructureWithoutParents()
     {
-        $menu_structure = $this->MenuStructureWithParents();
-        $used_categories = [1];
-        foreach ($menu_structure as $parents => $childs) {
-            $used_categories[] = $parents;
-        }
-        $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->where('show_in_menu', '=', 1)->get();
+        if (Cache::has('single_categories')) {
+         return Cache::get('single_categories');
+        } else {
+            $menu_structure = $this->MenuStructureWithParents();
+            $used_categories = [1];
+            foreach ($menu_structure as $parents => $childs) {
+                $used_categories[] = $parents;
+            }
+            $single_categories = Category::where('parent', -1)->WhereNotIn('id', $used_categories)->where('show_in_menu', '=', 1)->get();
 
-        return $single_categories;
+            Cache::put('single_categories', $single_categories, now()->addDays(2));
+            return $single_categories;
+        }
     }
 
     public function Test()
