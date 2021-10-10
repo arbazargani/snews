@@ -98,7 +98,8 @@ class HomeController extends Controller
                     ['state', '=', 1],
                     ['created_at', '<=', Carbon::now()],
                     ['writer', 'LIKE', '%' . $query . '%']
-                ])->paginate(10);
+                ])->paginate(10)
+                ->appends(request()->query());
 
                 return view('public.home.search', compact('articles'));
             }
