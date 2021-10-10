@@ -245,4 +245,48 @@ class HomeController extends Controller
         $user = new User();
         $user->CanEditPages();
     }
+
+    public function CompressorEngine ($src, $dest , $quality)
+    {
+        $info = getimagesize($src);
+
+        if ($info['mime'] == 'image/jpeg')
+        {
+            $image = imagecreatefromjpeg($src);
+        }
+        elseif ($info['mime'] == 'image/gif')
+        {
+            $image = imagecreatefromgif($src);
+        }
+        elseif ($info['mime'] == 'image/png')
+        {
+            $image = imagecreatefrompng($src);
+        }
+        else
+        {
+            return $src;
+        }
+
+        //compress and save file to jpg
+        imagejpeg($image, $dest, $quality);
+
+        //return destination file
+        return $dest;
+    }
+
+    public function CompressImage($src = "storage/uploads/articles/images/")
+    {
+        $files = scandir($src);
+//        $files = glob("*.*");
+//        return $files;
+        foreach ($files as $file) {
+            if(!is_dir("$src/$file")) {
+                echo $file;
+//                return storage_path("$src/$file");
+                $compressed = $this->CompressorEngine("$src/$file", "$src/$file", 50);
+                echo "<pre>item->$compressed compressed.<hr/></pre>";
+            }
+        }
+//        $compressed = $this->CompressorEngine($src, $src, 50);
+    }
 }

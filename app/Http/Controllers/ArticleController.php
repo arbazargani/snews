@@ -114,6 +114,7 @@ class ArticleController extends Controller
 
         if ($request->has('cover') && !is_null($request->cover)) {
             $fileName = $request->cover;
+//            $this->CompressImage($fileName);
         }
 
         $article = new Article();
@@ -326,6 +327,7 @@ class ArticleController extends Controller
 //        }
         if ($request->has('cover') && !is_null($request->cover)) {
             $fileName = $request->cover;
+//            $this->CompressImage($fileName);
         }
 
         $article = Article::find($id);
