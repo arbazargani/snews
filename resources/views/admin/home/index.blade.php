@@ -11,8 +11,10 @@
     <div class="uk-section uk-section-secondary uk-light uk-background-secondary uk-padding uk-margin-large-bottom">
 
         <!-- permanent alert -->
-        <div class="uk-alert uk-alert-danger">
-            <p>افزودن متای صفحه اصلی + افزودن جداکننده عنوان</p>
+        <div class="uk-alert uk-alert-warning">
+            <p><span uk-icon="icon: bookmark"></span>
+                مطالب پس از گذشت ۵ دقیقه در صفحه اصلی نمایش داده می‌شوند.
+                <a href="{{ route('Cache > Clear') }}">پاکسازی کش بصورت دستی</a></p>
         </div>
         <!-- permanent alert -->
 

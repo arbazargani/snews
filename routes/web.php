@@ -168,3 +168,8 @@ Route::get('/newspaper/download', 'NewspaperController@Download')->name('Newspap
 
 Route::get('/asset/image', 'ArticleController@MakeThumb');
 Route::get('/compress/images', 'HomeController@CompressImage');
+
+Route::get('/cache/clear', function() {
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    return back();
+})->name('Cache > Clear');
