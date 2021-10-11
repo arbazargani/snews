@@ -97,6 +97,7 @@
     <!-- article cover and meta box for small-screens -->
 
     <!-- article cover and meta box for med/large-screens -->
+{{--    <div class="uk-visible@m">--}}
     <div class="uk-visible@m">
         <div>
             <div class="uk-inline uk-width-1-1 check-here">
@@ -185,7 +186,6 @@
             @endphp
             {{-- cover for printing--}}
             <img src="{{ $article[0]->cover }}" style="visibility: hidden; display: none" >
-
             {!! $content !!}
         </div>
     </content>

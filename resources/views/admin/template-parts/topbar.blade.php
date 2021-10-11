@@ -16,6 +16,16 @@
 
         <a class="uk-link-reset uk-icon-button" id="switcher" onclick="switch_theme('light')" target="_self" uk-icon="paint-bucket"></a>
 
+        <a class="uk-link-reset uk-icon-button fa-num" uk-icon="users" id="todayHits">0</a>
+
+        {{-- Count api --}}
+        <script>
+            function liveViews(response) {
+                document.getElementById('todayHits').innerText = response.value;
+            }
+        </script>
+        <script async src="https://api.countapi.xyz/hit/smtnews.ir/{{date("Ymd")}}?callback=liveViews"></script>
+
     </div>
 
 </div>
