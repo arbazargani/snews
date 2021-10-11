@@ -98,11 +98,11 @@
 
     <!-- article cover and meta box for med/large-screens -->
 {{--    <div class="uk-visible@m">--}}
-    <div class="uk-visible@m">
+    <div class="">
         <div>
-            <div class="uk-inline uk-width-1-1 check-here">
+            <div class="uk-inline uk-width-1-1 check-here uk-visible@m">
                 @if($article[0]->cover == 'ghost.png' || is_null($article[0]->cover))
-                    <metabox>
+                    <metabox >
                         <div class="uk-container uk-background-muted uk-padding@m uk-border-rounded">
                             <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
                             <h1 class="uk-margin-top uk-text-lead uk-text-right fa-kit-medium">{{ $article[0]->title }}</h1>
@@ -136,7 +136,7 @@
             </div>
             @endif
         </div>
-        <div class="uk-margin-top">
+        <div class="uk-margin-top uk-visible@m">
             <!-- category -->
             <span uk-icon="icon: folder"></span> <span class="uk-text-meta">دسته‌بندی: </span>
             @if(count($article[0]->category->all()))
