@@ -187,13 +187,29 @@
             {{-- cover for printing--}}
             <img src="{{ $article[0]->cover }}" style="visibility: hidden; display: none" >
             {!! $content !!}
+            @if($gallery !== false)
+            <div class="uk-position-relative uk-visible-toggle uk-light uk-margin-small" tabindex="-1" uk-slider="center: true">
+                <ul class="uk-slider-items uk-grid">
+                @foreach (explode("|", $gallery) as $url)
+                    <li class="uk-width-3-4">
+                        <div class="uk-panel">
+                            <img src="/storage/uploads/gallery/{!! $url !!}" alt="">
+                        </div>
+                    </li>
+                @endforeach
+                </ul>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+            </div>
+            @endif
         </div>
     </content>
 
     <metabox>
         <div class="uk-container uk-text-center uk-background-muted uk-padding uk-margin uk-border-rounded">
 
-            @if(!is_null($article[0]->writer))
+            @if(!is_null($article[0]->writer) && strlen($article[0]->writer) > 0)
             <hr class="uk-divider">
             <span class="uk-text-meta uk-text-bold"><span uk-icon="icon: pencil"></span> نویسنده:  {{ $article[0]->writer }}</span>
             <hr>

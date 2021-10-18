@@ -109,6 +109,15 @@ Route::prefix('admin')->middleware('auth', 'HasAdminAccess', 'CheckPageState')->
     Route::post('advertise/edit/{id}/update', 'AdvertiseController@Update')->name('Advertise > Update');
     Route::post('advertise/delete/{id}', 'AdvertiseController@Delete')->name('Advertise > Delete');
 
+    Route::get('gallery/new', 'GalleryController@New')->name('Gallery > New');
+    Route::post('gallery/new/submit', 'GalleryController@Submit')->name('Gallery > Submit');
+    Route::get('gallery/manage/', 'GalleryController@Manage')->name('Gallery > Manage');
+    Route::get('gallery/edit/{id}', 'GalleryController@Edit')->name('Gallery > Edit');
+    Route::post('gallery/edit/{id}/update', 'GalleryController@Update')->name('Gallery > Update');
+    Route::post('gallery/delete/{id}', 'GalleryController@Delete')->name('Gallery > Delete');
+
+
+
 });
 
 Route::get('/sitemap_index.xml', 'SitemapController@Index')->name('Sitemap');

@@ -92,7 +92,10 @@
                               <label class="uk-form-label" for="writer">نویسنده خبر</label>
                               <input type="text" name="writer" id="writer" placeholder="نویسنده خبر" class="uk-input form-control @error('writer') is-invalid @enderror" value="{{ $article->writer  }}" style="padding-left: 40px;">
                           </div>
-                          
+                          <div>
+                              <label class="uk-form-label" for="gallery">گالری خبر</label>
+                              <input type="text" name="gallery" id="gallery" placeholder="گالری خبر" class="uk-input form-control @error('gallery') is-invalid @enderror" style="padding-left: 40px;" value="{{ $article->gallery_id }}">
+                          </div>
                         </div>
                     </div>
                 </div>

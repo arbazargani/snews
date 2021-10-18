@@ -26,9 +26,18 @@
             <li class=""><a href="{{ route('Comment > Manage') }}">دیدگاه‌ها</a></li>
             @endif
         </ul>
-        <li>
     </ul>
     <hr>
+
+    <ul class="uk-nav uk-nav-default tm-nav">
+        <h5 class="uk-light"><span class="uk-icon-button" uk-icon="paint-bucket"></span> گالری تصاویر</h5>
+        <ul class="uk-nav-sub">
+        <li class=""><a href="{{ route('Gallery > New') }}">ایجاد</a></li>
+        <li class=""><a href="{{ route('Gallery > Manage') }}">مدیریت</a></li>
+        </ul>
+    </ul>
+    <hr>
+
 
     <ul class="uk-nav uk-nav-default tm-nav">
         <h5 class="uk-light"><span class="uk-icon-button"  uk-icon="users"></span> کاربران</h5>

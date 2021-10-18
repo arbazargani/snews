@@ -19,6 +19,7 @@ use App\Category;
 use App\Comment;
 use App\Tag;
 use App\User;
+use App\Gallery;
 
 class ArticleController extends Controller
 {
@@ -138,6 +139,7 @@ class ArticleController extends Controller
         $min = ($request['created_minute'] < 10) ? '0' . $request['created_minute'] : $request['created_minute'];
         $hour = ($request['created_hour'] < 10) ? '0' . $request['created_hour'] : $request['created_hour'];
         $article->created_at = $date. ' ' . $hour . ':' . $min . ':00' ;
+        $article->gallery_id = $request['gallery'];
 
         if ($request['publish']) {
             $article->state = 1;
@@ -259,7 +261,17 @@ class ArticleController extends Controller
 
             $comments = $paginatedItems;
 
-            return view('public.article.single', compact(['article', 'comments']));
+            $gallery = false;
+            if (!is_null($article[0]->gallery_id)) {
+                $gallery = Gallery::where('timestamp', $article[0]->gallery_id)->get();
+                if (count($gallery)) {
+                    $gallery = $gallery[0]->content;
+                } else {
+                    $gallery = false;
+                }
+            }
+
+            return view('public.article.single', compact(['article', 'comments', 'gallery']));
         }
     }
 
@@ -351,6 +363,7 @@ class ArticleController extends Controller
         $min = ($request['created_minute'] < 10) ? '0' . $request['created_minute'] : $request['created_minute'];
         $hour = ($request['created_hour'] < 10) ? '0' . $request['created_hour'] : $request['created_hour'];
         $article->created_at = $date. ' ' . $hour . ':' . $min . ':00' ;
+        $article->gallery_id = $request['gallery'];
 
         if ($request->has('remove_cover') && $request['remove_cover']) {
             $article->cover = null;
