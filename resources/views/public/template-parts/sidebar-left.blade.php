@@ -1,4 +1,18 @@
 <div class="uk-background-default uk-border-rounded">
+    <!-- socket - special archive -->
+        <div class="sidebar-element uk-margin-small-bottom">
+            <div class="uk-card uk-card-hover uk-card-body">
+                <h3 class="uk-card-title uk-text-meta">
+                    <span class="pulse"></span>
+                    <span>{{ $settings['special_archive']->title }}</span>
+                </h3>
+                <hr class="uk-divider-small">
+                <a href="{{ $settings['special_archive']->value }}">
+                    <img class="uk-border-rounded" src="https://smtnews.ir/storage/uploads/special_archive.jpg">
+                </a>
+            </div>
+        </div>
+    <!-- socket - special archive -->
     @php
     if(\Illuminate\Support\Facades\Cache::has('newspaper')) {
         $newspaper = \Illuminate\Support\Facades\Cache::get('newspaper');
@@ -15,7 +29,7 @@
     @endphp
     <!-- socket - newsppaer -->
     @if(!is_null($version))
-        <div class="sidebar-element">
+        <div class="sidebar-element uk-margin-remove-top">
             <div class="uk-card uk-card-hover uk-card-body">
                 <h3 class="uk-card-title uk-text-meta">
                     <span class="pulse"></span>

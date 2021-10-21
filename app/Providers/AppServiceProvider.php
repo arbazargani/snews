@@ -152,6 +152,13 @@ class AppServiceProvider extends ServiceProvider
             Cache::put('menu_structure', $settings['menu_structure'], now()->addDays(2));
         }
 
+        if(Cache::has('special_archive')) {
+            $settings['special_archive'] = Cache::get('special_archive');
+        } else {
+            $settings['special_archive'] = Setting::where('name', 'special_archive')->first();
+            Cache::put('special_archive', $settings['special_archive'], now()->addDays(2));
+        }
+
 
         view()->share( compact( [
             'latestArticles',
