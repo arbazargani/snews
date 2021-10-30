@@ -82,7 +82,7 @@
 {{--                    </a>--}}
 {{--                </div>--}}
                 <div class="uk-width-1-2@m">
-                    <img src="https://primerstudio.io/assets/primer-studio-mini.png" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="Primer Studio">
+                    <img src="/assets/image/primer-studio-mini.png" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="Primer Studio">
                     <a class="uk-link-reset uk-text-primary" href="https://primerstudio.io" target="_blank" rel="follow">
                         <span style="font-size: 11px!important;">طراحی توسط استودیو پرایمر</span>
                     </a>
