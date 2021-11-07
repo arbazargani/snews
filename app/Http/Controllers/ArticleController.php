@@ -271,7 +271,8 @@ class ArticleController extends Controller
                 }
             }
 
-            return view('public.article.single', compact(['article', 'comments', 'gallery']));
+            $template = (in_array(env('NOTES_CATEGORY_ID'), $article[0]->category->pluck('id')->all())) ? 'notes' : 'single';
+            return view("public.article.$template", compact(['article', 'comments', 'gallery']));
         }
     }
 
