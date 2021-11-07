@@ -47,7 +47,8 @@ return [
      *
      * null - root directory
      */
-    'leftPath' => 'uploads/articles/images',
+    // 'leftPath' => 'uploads/articles/images',
+    'leftPath' => env('FILEMANAGER_PATH'),
 
     /**
      * Default path for right manager
