@@ -58,7 +58,6 @@ class ArticleController extends Controller
 
     public function Submit(Request $request)
     {
-
         $request->validate([
             'title' => 'required|min:1|max:400',
             'content' => 'required|min:1',
@@ -131,6 +130,13 @@ class ArticleController extends Controller
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';
 
         $article->cover = $fileName;
+
+        if($request->has('cover') && !is_null($request->cover) && $request['type'] == 'video') {
+            $helper = new HelperController();
+            $cover = $helper->VideoFromThumbnail($request['cover'], time());
+            $article->video_url = $request['cover'];
+            $article->cover = $cover;
+        }
         $article->user_id = Auth::id();
 
         $v = Verta();
@@ -140,6 +146,7 @@ class ArticleController extends Controller
         $hour = ($request['created_hour'] < 10) ? '0' . $request['created_hour'] : $request['created_hour'];
         $article->created_at = $date. ' ' . $hour . ':' . $min . ':00' ;
         $article->gallery_id = $request['gallery'];
+        $article->type = $request['type'];
 
         if ($request['publish']) {
             $article->state = 1;
@@ -365,6 +372,7 @@ class ArticleController extends Controller
         $hour = ($request['created_hour'] < 10) ? '0' . $request['created_hour'] : $request['created_hour'];
         $article->created_at = $date. ' ' . $hour . ':' . $min . ':00' ;
         $article->gallery_id = $request['gallery'];
+        $article->type = $request['type'];
 
         if ($request->has('remove_cover') && $request['remove_cover']) {
             $article->cover = null;
@@ -378,6 +386,14 @@ class ArticleController extends Controller
             $article->state = $article->previous_state;
             $article->state = 1;
         }
+
+        if($request->has('cover') && !is_null($request->cover) && $request['type'] == 'video') {
+            $helper = new HelperController();
+            $cover = $helper->VideoFromThumbnail($request['cover'], time());
+            $article->video_url = $request['cover'];
+            $article->cover = $cover;
+        }
+
         $article->save();
 
         $article->category()->sync($request['categories']);

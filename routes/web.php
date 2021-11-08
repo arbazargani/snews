@@ -182,3 +182,5 @@ Route::get('/cache/clear', function() {
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
     return back();
 })->name('Cache > Clear');
+
+Route::get('/vid', 'HomeController@Vid');

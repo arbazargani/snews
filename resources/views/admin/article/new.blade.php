@@ -1,7 +1,7 @@
 @extends('admin.template')
 
 @section('meta')
-<title>ایجاد مقاله جدید</title>
+    <title>ایجاد مقاله جدید</title>
 @endsection
 
 @section('content')
@@ -18,86 +18,122 @@
                     @endforeach
                 </div>
             @endif
-            <form class="uk-grid-small uk-position-relative uk-grid" uk-grid action="{{ route('Article > Submit') }}" method="POST" enctype="multipart/form-data">
+            <form class="uk-grid-small uk-position-relative uk-grid" uk-grid action="{{ route('Article > Submit') }}"
+                  method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="uk-width-2-3@m">
                     <div class="uk-inline uk-width-1-1 uk-first-column uk-margin-small-bottom">
-                        <input type="text" name="rootitr" id="rootitr" placeholder="روتیتر" class="uk-input form-control @error('rootitr') is-invalid @enderror" value="{{ old('rootitr')  }}" style="padding-left: 40px;" autofocus>
+                        <input type="text" name="rootitr" id="rootitr" placeholder="روتیتر"
+                               class="uk-input form-control @error('rootitr') is-invalid @enderror"
+                               value="{{ old('rootitr')  }}" style="padding-left: 40px;" autofocus>
                         <hr>
-                        <textarea name="lead" id="lead" placeholder="لید خبر خود را وارد کنید." class="uk-textarea form-control @error('lead') is-invalid @enderror" style="padding-left: 40px;" rows="2">{{ old('lead') }}</textarea>
+                        <textarea name="lead" id="lead" placeholder="لید خبر خود را وارد کنید."
+                                  class="uk-textarea form-control @error('lead') is-invalid @enderror"
+                                  style="padding-left: 40px;" rows="2">{{ old('lead') }}</textarea>
                         <hr>
-                        <input type="text" name="title" id="title" placeholder="عنوان" class="uk-input form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required style="padding-left: 40px;" autofocus>
+                        <input type="text" name="title" id="title" placeholder="عنوان"
+                               class="uk-input form-control @error('title') is-invalid @enderror"
+                               value="{{ old('title') }}" required style="padding-left: 40px;" autofocus>
                     </div>
                     <div class="uk-inline uk-width-1-1 column uk-margin-small-bottom">
-                        <textarea name="content" id="content" placeholder="محتوای اصلی مقاله خود را وارد کنید." class="uk-input uk-textarea form-control @error('content') is-invalid @enderror" style="padding-left: 40px;">{{ old('content') }}</textarea>
+                        <textarea name="content" id="content" placeholder="محتوای اصلی مقاله خود را وارد کنید."
+                                  class="uk-input uk-textarea form-control @error('content') is-invalid @enderror"
+                                  style="padding-left: 40px;">{{ old('content') }}</textarea>
                     </div>
                     <hr>
                     <div class="uk-card uk-card-secondary uk-card-body uk-border-rounded">
                         <h3 class="uk-card-title">تنظیمات</h3>
                         <div class="uk-inline uk-width-1-1 uk-first-column uk-margin-small-bottom">
-                          <!-- meta description -->
-                          <div class="">
-                            <label class="uk-form-label" for="meta-description">اسنیپت (Meta:description)</label>
-                              <textarea type="text" name="meta-description" id="meta-description" placeholder="توضیحات متا" class="uk-textarea form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required style="padding-left: 40px;" onkeydown="checkLength();"></textarea>
-                              <style>
-                                #meta-description-state {
-                                  width: 0%;
-                                  height: 4px!important;
-                                }
-                              </style>
-                              <div id="meta-description-state" style="width: 100%; height: 10px!important"></div>
-                              <p>
+                            <!-- meta description -->
+                            <div class="">
+                                <label class="uk-form-label" for="meta-description">اسنیپت (Meta:description)</label>
+                                <textarea type="text" name="meta-description" id="meta-description"
+                                          placeholder="توضیحات متا"
+                                          class="uk-textarea form-control @error('title') is-invalid @enderror"
+                                          value="{{ old('title') }}" required style="padding-left: 40px;"
+                                          onkeydown="checkLength();"></textarea>
+                                <style>
+                                    #meta-description-state {
+                                        width: 0%;
+                                        height: 4px !important;
+                                    }
+                                </style>
+                                <div id="meta-description-state" style="width: 100%; height: 10px!important"></div>
+                                <p>
                                 <ul>
-                                  <li>حداقل ۱۲۰ کاراکتر باشد.</li>
-                                  <li>حداکثر ۱۶۰ کاراکتر باشد.</li>
-                                  <li>بهتر است شامل کلمات کلیدی باشد.</li>
+                                    <li>حداقل ۱۲۰ کاراکتر باشد.</li>
+                                    <li>حداکثر ۱۶۰ کاراکتر باشد.</li>
+                                    <li>بهتر است شامل کلمات کلیدی باشد.</li>
                                 </ul>
-                              </p>
-                              <script>
-                                function checkLength() {
-                                    var len = document.getElementById('meta-description').value.length;
-                                    if (len >= 1 && len <= 70) {
-                                      document.getElementById('meta-description-state').setAttribute('style', 'background: red; width: 30%;');
+                                </p>
+                                <script>
+                                    function checkLength() {
+                                        var len = document.getElementById('meta-description').value.length;
+                                        if (len >= 1 && len <= 70) {
+                                            document.getElementById('meta-description-state').setAttribute('style', 'background: red; width: 30%;');
+                                        } else if (len >= 70 && len <= 120) {
+                                            document.getElementById('meta-description-state').setAttribute('style', 'background: orange; width: 40%;');
+                                        } else if (len >= 120 && len <= 160) {
+                                            document.getElementById('meta-description-state').setAttribute('style', 'background: green; width: 100%;');
+                                        } else (
+                                            document.getElementById('meta-description-state').setAttribute('style', 'background: red; width: 100%;')
+                                        )
                                     }
-                                    else if ( len >= 70 && len <= 120 ) {
-                                      document.getElementById('meta-description-state').setAttribute('style', 'background: orange; width: 40%;');
-                                    }
-                                    else if ( len >= 120  && len <= 160 ) {
-                                      document.getElementById('meta-description-state').setAttribute('style', 'background: green; width: 100%;');
-                                    } else (
-                                      document.getElementById('meta-description-state').setAttribute('style', 'background: red; width: 100%;')
-                                    )
-                                  }
-                              </script>
-                          </div>
-                          <!-- meta robots -->
-                          <div>
-                              <label class="uk-form-label" for="meta-robots">خزنده (Meta:robots)</label>
-                              <select class="uk-select" name="meta-robots">
-                                <option value="index, follow">index, follow</option>
-                                 <option value="noindex">noindex</option>
-                                 <option value="nofollow">nofollow</option>
-                                 <option value="noindex, nofollow">noindex, nofollow</option>
-                               </select>
-                          </div>
-                          <br>
-                            <!-- article writer -->
+                                </script>
+                            </div>
+                            <!-- meta robots -->
                             <div>
-                              <label class="uk-form-label" for="writer">نویسنده خبر</label>
-                              <input type="text" name="writer" id="writer" placeholder="نویسنده خبر" class="uk-input form-control @error('writer') is-invalid @enderror" style="padding-left: 40px;">
-                          </div>
-                          <div>
-                              <label class="uk-form-label" for="gallery">گالری خبر</label>
-                              <input type="text" name="gallery" id="gallery" placeholder="گالری خبر" class="uk-input form-control @error('gallery') is-invalid @enderror" style="padding-left: 40px;">
-                          </div>
+                                <label class="uk-form-label" for="meta-robots">خزنده (Meta:robots)</label>
+                                <select class="uk-select" name="meta-robots">
+                                    <option value="index, follow">index, follow</option>
+                                    <option value="noindex">noindex</option>
+                                    <option value="nofollow">nofollow</option>
+                                    <option value="noindex, nofollow">noindex, nofollow</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="uk-grid">
+                                <div class="uk-width-1-2@m">
+                                    <label class="uk-form-label" for="type">نوع محتوا</label>
+                                    <select class="uk-select" id="type" name="type">
+                                        <option value="text">خبر</option>
+                                        <option value="video">فیلم</option>
+                                    </select>
+                                    <div class="uk-alert-danger" uk-alert>
+                                        <p>در صورتی که نوع خبر فیلم می‌باشد، از بخش تصویر نوشته در سمت چپ ویدیو خود را انتخاب نمایید.</p>
+                                    </div>
+                                </div>
+                                <div class="uk-width-1-2@m">
+                                    <!-- article writer -->
+                                    <div>
+                                        <label class="uk-form-label" for="writer">نویسنده خبر</label>
+                                        <input type="text" name="writer" id="writer" placeholder="نویسنده خبر"
+                                               class="uk-input form-control @error('writer') is-invalid @enderror"
+                                               style="padding-left: 40px;">
+                                    </div>
+                                    <!-- article gallery -->
+                                    <div>
+                                        <label class="uk-form-label" for="gallery">گالری خبر</label>
+                                        <input type="text" name="gallery" id="gallery" placeholder="گالری خبر"
+                                               class="uk-input form-control @error('gallery') is-invalid @enderror"
+                                               style="padding-left: 40px;">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="uk-width-1-3@m column uk-margin-small-bottom">
                     <div class="uk-container">
-                        <button type="submit" name="publish" class="uk-button uk-button-primary uk-border-rounded" value="1">انتشار</button>
-                        <button type="submit" name="draft" class="uk-button uk-button-default uk-border-rounded" value="1">پیش‌نویس</button>
-                        <button type="submit" name="publish_and_new" class="uk-button uk-button-secondary uk-border-rounded" value="1">انتشار و جدید</button>
+                        <button type="submit" name="publish" class="uk-button uk-button-primary uk-border-rounded"
+                                value="1">انتشار
+                        </button>
+                        <button type="submit" name="draft" class="uk-button uk-button-default uk-border-rounded"
+                                value="1">پیش‌نویس
+                        </button>
+                        <button type="submit" name="publish_and_new"
+                                class="uk-button uk-button-secondary uk-border-rounded" value="1">انتشار و جدید
+                        </button>
                     </div>
                     <hr class="uk-divider-icon" uk-grid>
 
@@ -138,21 +174,21 @@
                         <div class="uk-form-controls">
                             <select class="uk-select" id="created_day" name="created_day">
                                 @for($i = 1; $i <= 31; $i++)
-                                <option value="{{ $i }}" @if($d->day == $i) selected @endif>{{ $i }}</option>
+                                    <option value="{{ $i }}" @if($d->day == $i) selected @endif>{{ $i }}</option>
                                 @endfor
                             </select>
                         </div>
                     </div>
                     <div class="uk-container">
-                            <label class="uk-form-label" for="created_hour">ساعت</label>
-                            <div class="uk-form-controls">
-                                <select class="uk-select" id="created_hour" name="created_hour">
-                                    @for($i = 1; $i <= 24; $i++)
-                                        <option value="{{ $i }}" @if($d->hour == $i) selected @endif>{{ $i }}</option>
-                                    @endfor
-                                </select>
-                            </div>
-            </div>
+                        <label class="uk-form-label" for="created_hour">ساعت</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select" id="created_hour" name="created_hour">
+                                @for($i = 1; $i <= 24; $i++)
+                                    <option value="{{ $i }}" @if($d->hour == $i) selected @endif>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
                     <div class="uk-container">
                         <label class="uk-form-label" for="created_minute">دقیقه</label>
                         <div class="uk-form-controls">
@@ -175,31 +211,31 @@
 
                         <hr class="uk-divider-small">
 
-{{--                        <ul uk-accordion>--}}
-{{--                            <li class="uk-close">--}}
-{{--                                <a class="uk-accordion-title" href="#">افزودن دسته</a>--}}
-{{--                                <div class="uk-accordion-content">--}}
-{{--                                    <p style="display: none" id="cat_area"></p>--}}
-{{--                                    <p id="cat_preview"></p>--}}
+                        {{--                        <ul uk-accordion>--}}
+                        {{--                            <li class="uk-close">--}}
+                        {{--                                <a class="uk-accordion-title" href="#">افزودن دسته</a>--}}
+                        {{--                                <div class="uk-accordion-content">--}}
+                        {{--                                    <p style="display: none" id="cat_area"></p>--}}
+                        {{--                                    <p id="cat_preview"></p>--}}
 
-{{--                                    <input class="uk-input uk-margin" type="text" id="user_category">--}}
-{{--                                    <a class="uk-button uk-button-link uk-float-left" onclick="add_cat()"><span uk-icon="arrow-right"></span> افزودن دسته</a>--}}
+                        {{--                                    <input class="uk-input uk-margin" type="text" id="user_category">--}}
+                        {{--                                    <a class="uk-button uk-button-link uk-float-left" onclick="add_cat()"><span uk-icon="arrow-right"></span> افزودن دسته</a>--}}
 
-{{--                                    <script>--}}
-{{--                                        function add_cat() {--}}
-{{--                                            var name = document.getElementById('user_category').value;--}}
-{{--                                            document.getElementById('cat_area').innerHTML += '<input class="uk-invisible uk-meta" type="text" name="new_categories[]" id="new_category_'+ name +'" value="'+ name +'">';--}}
-{{--                                            document.getElementById('cat_preview').innerHTML +=  '<a id="cat_preview_'+ name +'" style="color: #9fb8cd" onclick="' + 'remove_cat(\'new_category_' + name + '\'), ' + 'remove_cat(\'cat_preview_' + name + '\')"><span uk-icon="close"></span>' + name + ' </a>';--}}
-{{--                                            document.getElementById('user_category').value = '';--}}
-{{--                                        }--}}
-{{--                                        function remove_cat(id) {--}}
-{{--                                            var elem = document.getElementById(id);--}}
-{{--                                            return elem.parentNode.removeChild(elem);--}}
-{{--                                        }--}}
-{{--                                    </script>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
+                        {{--                                    <script>--}}
+                        {{--                                        function add_cat() {--}}
+                        {{--                                            var name = document.getElementById('user_category').value;--}}
+                        {{--                                            document.getElementById('cat_area').innerHTML += '<input class="uk-invisible uk-meta" type="text" name="new_categories[]" id="new_category_'+ name +'" value="'+ name +'">';--}}
+                        {{--                                            document.getElementById('cat_preview').innerHTML +=  '<a id="cat_preview_'+ name +'" style="color: #9fb8cd" onclick="' + 'remove_cat(\'new_category_' + name + '\'), ' + 'remove_cat(\'cat_preview_' + name + '\')"><span uk-icon="close"></span>' + name + ' </a>';--}}
+                        {{--                                            document.getElementById('user_category').value = '';--}}
+                        {{--                                        }--}}
+                        {{--                                        function remove_cat(id) {--}}
+                        {{--                                            var elem = document.getElementById(id);--}}
+                        {{--                                            return elem.parentNode.removeChild(elem);--}}
+                        {{--                                        }--}}
+                        {{--                                    </script>--}}
+                        {{--                                </div>--}}
+                        {{--                            </li>--}}
+                        {{--                        </ul>--}}
                     </div>
 
                     <hr class="uk-divider-icon">
@@ -219,15 +255,17 @@
                                     <p id="tag_preview"></p>
 
                                     <input class="uk-input uk-margin" type="text" id="user_tag">
-                                    <a class="uk-button uk-button-link uk-float-left" onclick="add_tag()"><span uk-icon="arrow-right"></span> افزودن برچسب</a>
+                                    <a class="uk-button uk-button-link uk-float-left" onclick="add_tag()"><span
+                                            uk-icon="arrow-right"></span> افزودن برچسب</a>
 
                                     <script>
                                         function add_tag() {
                                             var name = document.getElementById('user_tag').value;
-                                            document.getElementById('tag_area').innerHTML += '<input class="uk-invisible uk-meta" type="text" name="new_tags[]" id="new_tag_'+ name +'" value="'+ name +'">';
-                                            document.getElementById('tag_preview').innerHTML +=  '<a id="tag_preview_'+ name +'" style="color: #9fb8cd" onclick="' + 'remove_tag(\'new_tag_' + name + '\'), ' + 'remove_tag(\'tag_preview_' + name + '\')"><span uk-icon="close"></span>' + name + ' </a>';
+                                            document.getElementById('tag_area').innerHTML += '<input class="uk-invisible uk-meta" type="text" name="new_tags[]" id="new_tag_' + name + '" value="' + name + '">';
+                                            document.getElementById('tag_preview').innerHTML += '<a id="tag_preview_' + name + '" style="color: #9fb8cd" onclick="' + 'remove_tag(\'new_tag_' + name + '\'), ' + 'remove_tag(\'tag_preview_' + name + '\')"><span uk-icon="close"></span>' + name + ' </a>';
                                             document.getElementById('user_tag').value = '';
                                         }
+
                                         function remove_tag(id) {
                                             var elem = document.getElementById(id);
                                             return elem.parentNode.removeChild(elem);
@@ -239,47 +277,49 @@
                     </div>
                     <hr class="uk-divider-icon">
                     <div class="uk-container">
-                      <div class="uk-card uk-card-secondary uk-card-body uk-border-rounded">
-                        <h4 class="uk-h4 tm-heading-fragment">تصویر نوشته</h4>
-{{--                        <input type="file" name="cover" id="cover">--}}
+                        <div class="uk-card uk-card-secondary uk-card-body uk-border-rounded">
+                            <h4 class="uk-h4 tm-heading-fragment">تصویر نوشته</h4>
+                            {{--                        <input type="file" name="cover" id="cover">--}}
 
-                        <input type="text" id="image_label" class="uk-input uk-text-meta" name="cover"
-                             aria-label="Image" aria-describedby="button-image">
-                        <div class="input-group-append">
-                          <button class="uk-button uk-button-secondary" type="button" id="button-image" name="cover">انتخاب</button>
+                            <input type="text" id="image_label" class="uk-input uk-text-meta" name="cover"
+                                   aria-label="Image" aria-describedby="button-image">
+                            <div class="input-group-append">
+                                <button class="uk-button uk-button-secondary" type="button" id="button-image"
+                                        name="cover">انتخاب
+                                </button>
+                            </div>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+
+                                    document.getElementById('button-image').addEventListener('click', (event) => {
+                                        event.preventDefault();
+
+                                        window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+                                    });
+                                });
+
+                                // set file link
+                                function fmSetLink($url) {
+                                    document.getElementById('image_label').value = $url;
+                                }
+                            </script>
+
+
+                            {{--                          <hr class="uk-divider">--}}
+                            {{--                          --}}
+                            {{--                          --}}
+                            {{--                          <link href="/assets/css/colorbox.css" rel="stylesheet">--}}
+                            {{--                          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>--}}
+
+                            {{--                          <script type="text/javascript" src="/assets/js/jquery.colorbox-min.js"></script>--}}
+                            {{--                          <script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.min.js"></script>--}}
+
+
+                            {{--                          <label for="feature_image">Feature Image</label>--}}
+                            {{--                          <input type="text" id="feature_image" name="feature_image" value="">--}}
+                            {{--                          <a href="" class="popup_selector" data-inputid="feature_image">Select Image</a>--}}
+
                         </div>
-                          <script>
-                              document.addEventListener("DOMContentLoaded", function() {
-
-                                  document.getElementById('button-image').addEventListener('click', (event) => {
-                                      event.preventDefault();
-
-                                      window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
-                                  });
-                              });
-
-                              // set file link
-                              function fmSetLink($url) {
-                                  document.getElementById('image_label').value = $url;
-                              }
-                          </script>
-
-
-{{--                          <hr class="uk-divider">--}}
-{{--                          --}}
-{{--                          --}}
-{{--                          <link href="/assets/css/colorbox.css" rel="stylesheet">--}}
-{{--                          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>--}}
-
-{{--                          <script type="text/javascript" src="/assets/js/jquery.colorbox-min.js"></script>--}}
-{{--                          <script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.min.js"></script>--}}
-
-
-{{--                          <label for="feature_image">Feature Image</label>--}}
-{{--                          <input type="text" id="feature_image" name="feature_image" value="">--}}
-{{--                          <a href="" class="popup_selector" data-inputid="feature_image">Select Image</a>--}}
-
-                      </div>
                     </div>
                 </div>
             </form>

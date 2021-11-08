@@ -40,7 +40,11 @@
                             @if(strpos($article->cover, 'ghost.png') !== false || is_null($article->cover))
                                 <img class="3 uk-border-rounded" src="/assets/image/ghost.png" style="width: auto">
                             @else
-                                <img class="4 uk-border-rounded" src="{{ $article->cover }}" style="width: auto;">
+                                @if($article->type == 'video')
+                                    <img class="4 uk-border-rounded" src="/storage/{{ $article->cover }}" style="width: auto;">
+                                @else
+                                    <img class="4 uk-border-rounded" src="{{ $article->cover }}" style="width: auto;">
+                                @endif
                             @endif
                         </a>
                     </div>

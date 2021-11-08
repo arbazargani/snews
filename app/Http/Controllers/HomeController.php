@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 
 
@@ -289,5 +290,25 @@ class HomeController extends Controller
             }
         }
 //        $compressed = $this->CompressorEngine($src, $src, 50);
+    }
+
+    public function Vid()
+    {
+        /*
+         * source to help
+         * https://github.com/PHP-FFMpeg/PHP-FFMpeg
+         * composer require php-ffmpeg/php-ffmpeg
+         * https://stackoverflow.com/questions/29916963/laravel-unable-to-load-ffprobe
+         * https://stackoverflow.com/questions/16597392/how-do-you-get-the-path-to-the-laravel-storage-folder/16597530
+         * */
+        $ffmpeg = \FFMpeg\FFMpeg::create([
+            'ffmpeg.binaries'  => env('FFMPEG_BINARIES'),
+            'ffprobe.binaries' => env('FFPROBE_BINARIES')
+        ]);
+        $file = str_replace('storage', '', 'storage\uploads\articles\images\8\دانشگاه-ازاد.mp4');
+        $path = Storage::disk('application_public')->path(str_replace('/', DIRECTORY_SEPARATOR, $file));
+        $video = $ffmpeg->open($path);
+        $frame = $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(42));
+        $frame->save(Storage::disk('application_public')->path('uploads/articles/images/thumbs/thumb.jpg'));
     }
 }
