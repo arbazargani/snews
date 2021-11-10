@@ -37,17 +37,21 @@ $is_amp = (strpos($request_name, '> AMP') !== false && $request_segment_one == '
         <style media="screen">
             h1 {
                 font-size: 1.3rem!important;
+                font-weight: bolder;
             }
             h2 {
                 font-size: 1.1rem!important;
+                font-weight: bolder;
                 font-family: Kit-light-fa-medium !important;
             }
             h3 {
                 font-size: 16px!important;
+                font-weight: bolder;
                 font-family: Kit-light-fa-medium !important;
             }
             h4 {
                 font-size: 16px!important;
+                font-weight: bolder;
                 font-family: Kit-light-fa-medium !important;
             }
 
@@ -59,15 +63,19 @@ $is_amp = (strpos($request_name, '> AMP') !== false && $request_segment_one == '
             @media screen and (max-width: 479px) {
                 /* start of phone styles */
                 h1 {
+                    font-weight: bolder;
                     font-size: 24px!important;
                 }
                 h2 {
+                    font-weight: bolder;
                     font-size: 20px!important;
                 }
                 h3 {
+                    font-weight: bolder;
                     font-size: 16px!important;
                 }
                 h4 {
+                    font-weight: bolder;
                     font-size: 16px!important;
                 }
             }
