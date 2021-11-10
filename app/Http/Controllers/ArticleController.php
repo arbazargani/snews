@@ -331,8 +331,6 @@ class ArticleController extends Controller
             }
         }
 
-        $fileName = 'ghost.png';
-
 //        if ($request->hasFile('cover')) {
 //            // Get filename.extention
 //            $image = $request->file('cover')->getClientOriginalName();
@@ -345,10 +343,6 @@ class ArticleController extends Controller
 //            // Store for public uses
 //            $path = $request->file('cover')->storeAs('public/uploads/articles/images', $fileName);
 //        }
-        if ($request->has('cover') && !is_null($request->cover)) {
-            $fileName = $request->cover;
-//            $this->CompressImage($fileName);
-        }
 
         $article = Article::find($id);
 
@@ -363,7 +357,28 @@ class ArticleController extends Controller
         $article->meta_description = isset($request['meta-description']) ? $this->NoArabic($request['meta-description']) : '';
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';
 
-        $article->cover = $fileName;
+
+        $fileName = 'ghost.png';
+
+        if ($request->has('cover') && !is_null($request->cover)) {
+            if ($request['type'] == 'video') {
+                $helper = new HelperController();
+                $cover = $helper->VideoFromThumbnail($request['cover'], time());
+                $article->video_url = $request['cover'];
+                $article->cover = $cover;
+            } else {
+                $article->cover = $request['cover'];
+            }
+        } elseif($request->has('cover') && is_null($request->cover) && !is_null($article->cover)) {
+            $noJob = 0;
+        } else {
+            $article->cover = $fileName;
+        }
+
+        if ($request->has('remove_cover') && $request['remove_cover']) {
+            $article->cover = null;
+        }
+
 
         $v = Verta();
         $date = Verta::getGregorian($request['created_year'],$request['created_month'],$request['created_day']);
@@ -385,13 +400,6 @@ class ArticleController extends Controller
         if ($request['publish']) {
             $article->state = $article->previous_state;
             $article->state = 1;
-        }
-
-        if($request->has('cover') && !is_null($request->cover) && $request['type'] == 'video') {
-            $helper = new HelperController();
-            $cover = $helper->VideoFromThumbnail($request['cover'], time());
-            $article->video_url = $request['cover'];
-            $article->cover = $cover;
         }
 
         $article->save();
