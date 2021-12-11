@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use Sluggable;
-    public function sluggable()
+    public function sluggable() : array
     {
         return [
             'slug' => [

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use Sluggable;
-    public function sluggable()
+    public function sluggable() : array
     {
         return [
             'slug' => [

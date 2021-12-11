@@ -288,6 +288,7 @@
                                              </div>
                                          </div>
                                      @else
+                                         {!! $article_info['intro_text'] !!}
                                          {!! $article_info['content'] !!}
                                      @endif
                                  </div>

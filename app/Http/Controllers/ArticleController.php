@@ -495,6 +495,7 @@ class ArticleController extends Controller
         $article_info = [
             'id' => $article->id,
             'title' => $article->title,
+            'intro_text' => $article->introtext,
             'content' => $article->fulltext,
             'cover' => json_decode($article->images)->image_intro,
             'views' => $article->hits,
@@ -533,6 +534,7 @@ class ArticleController extends Controller
         $article_info = [
             'id' => $article->id,
             'title' => $article->title,
+            'intro_text' => $article->introtext,
             'content' => $article->fulltext,
             'cover' => json_decode($article->images)->image_intro,
             'views' => $article->hits,
