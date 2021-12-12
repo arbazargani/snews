@@ -25,6 +25,6 @@ class HelperController extends Controller
         $video = $ffmpeg->open($path);
         $frame = $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(42));
         $frame->save(Storage::disk('application_public')->path("uploads/articles/images/thumbs/$name.jpg"));
-        return "uploads/articles/images/thumbs/$name.jpg";
+        return "storage/uploads/articles/images/thumbs/$name.jpg";
     }
 }
