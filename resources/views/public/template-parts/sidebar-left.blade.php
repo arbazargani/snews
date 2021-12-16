@@ -3,8 +3,11 @@
         <div class="sidebar-element uk-margin-small-bottom">
             <div class="uk-card uk-card-hover uk-card-body">
                 <h3 class="uk-card-title uk-text-meta">
-                    <span class="pulse"></span>
-                    <span>{{ $settings['special_archive']->title }}</span>
+                
+                    <a href="https://smtnews.ir/page/%D8%A2%D8%B1%D8%B4%DB%8C%D9%88-%D9%88%DB%8C%DA%98%D9%87-%D9%86%D8%A7%D9%85%D9%87-%DB%B1%DB%B4%DB%B0%DB%B0" target="_blank">
+                        <span class="pulse"></span>
+                        <span>{{ $settings['special_archive']->title }}</span>
+                    </a>
                 </h3>
                 <hr class="uk-divider-small">
                 <a href="{{ $settings['special_archive']->value }}">
@@ -32,8 +35,10 @@
         <div class="sidebar-element uk-margin-remove-top">
             <div class="uk-card uk-card-hover uk-card-body">
                 <h3 class="uk-card-title uk-text-meta">
-                    <span class="pulse"></span>
-                    <span>آرشیو روزنامه</span>
+                    <a href="http://localhost:8000/category/%D8%A2%D8%B1%D8%B4%DB%8C%D9%88-%D8%B1%D9%88%D8%B2%D9%86%D8%A7%D9%85%D9%87" target="_blank">
+                        <span class="pulse"></span>
+                        <span>آرشیو روزنامه</span>
+                    </a>
                 </h3>
                 <hr class="uk-divider-small">
                 <img class="uk-border-rounded" src="{{ env('SITE_URL') . "/repository/" . strip_tags($version->content) . "/frontpage_" . strip_tags($version->content ) . ".jpg" }}" alt="{{ $version->title }}">

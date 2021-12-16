@@ -11,9 +11,6 @@
 @endsection
 
 @section('content')
-    @php
-        $showMainMetaBox = true;
-    @endphp
     <ul class="uk-breadcrumb" style="
                                                         text-overflow: ellipsis;
                                                         white-space: nowrap;
@@ -62,10 +59,10 @@
                     <br>
                     <br>
                 @else
-                    <img class="uk-align-center uk-border-rounded"
-                         src="{{ $article[0]->cover }}"
-                         alt="{{ $article['0']->meta_title }}"
-                         uk-img>
+                <img class="uk-align-center uk-border-rounded"
+                     src="{{ $article[0]->cover }}"
+                     alt="{{ $article['0']->meta_title }}"
+                     uk-img>
                 @endif
             @endif
             <metabox>
@@ -133,48 +130,33 @@
                             <br>
                             <br>
                         @else
-                            @php
-                                $showMainMetaBox = false;
-                            @endphp
-                            <div uk-grid>
-                                <div class="uk-width-1-3">
-                                    <img class="uk-margin-remove uk-align-center uk-border-rounded"
-                                         src="{{ $article[0]->cover }}"
-                                         alt="{{ $article['0']->meta_title }}" style="min-width: 100%;"
-                                         id="cover" uk-img>
-                                </div>
-                                <div class="uk-width-expand">
-                                    <div style="direction: rtl">
-                                        <!-- title -->
-                                        <div class="uk-padding-remove" uk-grid>
-                                            <div class="uk-width-expand">
-                                                <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
-                                                <h1 class="uk-text-lead uk-margin-remove">{{ $article[0]->title }}</h1>
-                                            </div>
-                                        </div>
-                                        <!-- title -->
-                                    </div>
-                                </div>
-                            </div>
+                            <img class="uk-margin-remove uk-align-center uk-border-rounded"
+                                 src="{{ $article[0]->cover }}"
+                                 alt="{{ $article['0']->meta_title }}" style="min-width: 100%;"
+                                 id="cover" uk-img>
                         @endif
 
-                        @if($showMainMetaBox)
-                            <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-border-rounded">
-                                <div style="direction: rtl">
-                                    <!-- title -->
-                                    <div class="uk-padding-remove" uk-grid>
-                                        <div>
-                                            <span uk-icon="icon: file-text; ratio: 2"></span>
-                                        </div>
-                                        <div class="uk-width-expand">
-                                            <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
-                                            <h1 class="uk-text-lead uk-margin-remove">{{ $article[0]->title }}</h1>
-                                        </div>
+                        {{--                <div class="uk-position-top-left uk-label uk-margin uk-margin-left fa-num">--}}
+                        {{--                    بازدید: {{ $article[0]->views }}</div>--}}
+                        <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-border-rounded">
+                            <div style="direction: rtl">
+                                <!-- title -->
+                                <div class="uk-padding-remove" uk-grid>
+                                    <div>
+                                        {{--                                <img class="uk-border-pill uk-float-right"--}}
+                                        {{--                                     src="{{ asset('/assets/image/smlarbavaconprd.png') }}"--}}
+                                        {{--                                     style="width:55px; height:55px;">--}}
+
+                                        <span uk-icon="icon: file-text; ratio: 2"></span>
                                     </div>
-                                    <!-- title -->
+                                    <div class="uk-width-expand">
+                                        <a class="uk-text-meta uk-text-right">{{ $article[0]->rootitr }}</a>
+                                        <h1 class="uk-text-lead uk-margin-remove">{{ $article[0]->title }}</h1>
+                                    </div>
                                 </div>
+                                <!-- title -->
                             </div>
-                        @endif
+                        </div>
                 </div>
                 @endif
             </div>
