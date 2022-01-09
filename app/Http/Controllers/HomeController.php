@@ -99,7 +99,7 @@ class HomeController extends Controller
                     ['state', '=', 1],
                     ['created_at', '<=', Carbon::now()],
                     ['writer', 'LIKE', '%' . $query . '%']
-                ])->paginate(10)
+                ])->latest()->paginate(10)
                 ->appends(request()->query());
 
                 return view('public.home.search', compact('articles'));
@@ -130,6 +130,7 @@ class HomeController extends Controller
                 $query = "SELECT * FROM `smtnw6_content` WHERE `title` LIKE '%$query%'
                 OR `fulltext` LIKE '%$query%'
                 OR `created_by_alias` LIKE '%$query%'
+                ORDER BY `id` DESC
                 LIMIT $qlimit";
 
                 if ($request->has('page') && !is_null($request['page']) && $request['page'] > 1) {
