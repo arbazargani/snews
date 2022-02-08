@@ -127,6 +127,7 @@ Route::get('/category-sitemap.xml', 'SitemapController@Category')->name('Sitemap
 Route::get('/tag-sitemap.xml', 'SitemapController@Tag')->name('Sitemap > Tags');
 
 Route::get('/rss', 'FeedController@Index')->name('Rss');
+Route::get('/rss/v2', 'FeedController@v2')->name('RssV2');
 
 /*
 * old cms newspaper router
