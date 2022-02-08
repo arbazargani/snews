@@ -6,16 +6,12 @@
 {{-- TinyMCE --}}
 
 <!-- <script src="{{ asset('assets/js/tinymce.min.js') }}" referrerpolicy="origin"></script> -->
-<!-- <script src="https://cdn.tiny.cloud/1/nkf4wjrsf6g1am5any6qwcsniq35ahxf0rh9iozbyearhuzq/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
-<script src="{{ asset('assets/js/tinymce-5.10.2-126-min.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/nkf4wjrsf6g1am5any6qwcsniq35ahxf0rh9iozbyearhuzq/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
         selector:'#content',
-        // plugins : 'visualblocks wordcount ltr rtl directionality advlist autolink link image media lists charmap print preview table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol code',
-        // toolbar: 'visualblocks wordcount ltr rtl directionality advlist autolink link image media lists charmap print preview table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol code',
-
-        plugins : 'visualblocks rtl ltr wordcount directionality advlist autolink link image media lists charmap print preview table tableprops tablerowprops tabledeleterow tabledeletecol code',
-        toolbar: 'visualblocks rtl ltr wordcount directionality advlist autolink link image media lists charmap print preview table tableprops tablerowprops tabledeleterow tabledeletecol code',
+        plugins : 'visualblocks wordcount ltr rtl directionality advlist autolink link image media lists charmap print preview table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol code',
+        toolbar: 'visualblocks wordcount ltr rtl directionality advlist autolink link image media lists charmap print preview table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol code',
         directionality : "rtl",
         height: 500,
         file_picker_callback (callback, value, meta) {
