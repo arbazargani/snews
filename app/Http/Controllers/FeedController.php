@@ -12,7 +12,7 @@ class FeedController extends Controller
         // $articles = Article::where('state', '=', 1)->get();
         $articles = Article::where('state', '=', 1)
                             ->where('created_at','<=', Carbon::now())
-                            ->orderBy('id', 'DESC')->limit(15)->get();
+                            ->orderBy('id', 'DESC')->limit(30)->get();
         $lastModified = $articles->first();
         return response()
         ->view('public.feed.index', compact(['articles', 'lastModified']))
@@ -23,7 +23,7 @@ class FeedController extends Controller
         // $articles = Article::where('state', '=', 1)->get();
         $articles = Article::where('state', '=', 1)
                             ->where('created_at','<=', Carbon::now())
-                            ->orderBy('id', 'DESC')->limit(15)->get();
+                            ->orderBy('id', 'DESC')->limit(30)->get();
         $lastModified = $articles->first();
         return response()
         ->view('public.feed.v2', compact(['articles', 'lastModified']))
