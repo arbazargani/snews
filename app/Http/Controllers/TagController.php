@@ -111,7 +111,7 @@ class TagController extends Controller
                     $result_array[] = (object) [
                         'id' => $item->id,
                         'label'=> $item->name,
-                        'type' => ['category']
+                        'type' => ['برچسب']
                     ];
                 }
 
