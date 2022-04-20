@@ -81,10 +81,6 @@ class ArticleController extends Controller
         $res = curl_exec($curl);
         $response = json_decode($res, true);
         Log::info($response);
-        echo var_dump($res);
-        header('Content-Type: application/json');
-        curl_close($curl);
-        echo json_encode($response);
     }
 
     public function New()
