@@ -49,6 +49,43 @@ class ArticleController extends Controller
         return $input;
     }
 
+    public function sendToTelegram() {
+        $article = Article::FindOrFail(1000);
+        $title = $article->title;
+        $lead = $article->lead;
+        $link = "https://smtnews.ir/direct/".$article->id;
+        $key = env('TELEGRAM_BOT_API_KEY');
+        $url = "https://api.telegram.org/bot$key/sendPhoto";
+        
+        $content = "<b>✍️$title</b>" . PHP_EOL ."🔸$lead" . PHP_EOL ."ادامه خبر را در لینک زیر بخوانید: 👇👇👇👇" . PHP_EOL ."<a href='$link'>$link</a>" . PHP_EOL ."📲به کانال صمت بپیوندید" . PHP_EOL ."@smtnews روزنامه صمت";
+        
+        $params = [
+            "chat_id" => "@primify",
+            "text"=> "$content",
+            "parse_mode" => "HTML"
+        ];
+    
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        // curl_setopt($curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS,$params);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    
+        //for debug only!
+        /*
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        */
+    
+        $res = curl_exec($curl);
+        $response = json_decode($res, true);
+        echo var_dump($res);
+        header('Content-Type: application/json');
+        curl_close($curl);
+        echo json_encode($response);
+    }
+
     public function New()
     {
         $categories = Category::all();
@@ -180,6 +217,10 @@ class ArticleController extends Controller
         $log .= $article->state ? 'published' : 'draft';
 
         Log::info($log);
+
+        // if($request->has('action_send_telegram') && $request['action_send_telegram'] == 'on') {
+        //     $this->sendToTelegram($article);
+        // }
 
         if ($request->has('publish_and_new') && $request['publish_and_new']) {
             return redirect(route('Article > New'));

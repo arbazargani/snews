@@ -185,3 +185,6 @@ Route::get('/cache/clear', function() {
 })->name('Cache > Clear');
 
 Route::get('/vid', 'HomeController@Vid');
+
+
+Route::get('/tele', 'ArticleController@sendToTelegram');

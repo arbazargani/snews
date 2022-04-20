@@ -135,7 +135,11 @@
                                 class="uk-button uk-button-secondary uk-border-rounded" value="1">انتشار و جدید
                         </button>
                     </div>
-                    <hr class="uk-divider-icon" uk-grid>
+                    <!-- <div class="uk-container uk-margin-medium">
+                        <label><input class="uk-checkbox" name="action_send_telegram" id="action_send_telegram" type="checkbox"> ارسال خبر به تلگرام</label>
+                    </div> -->
+
+                    <hr class="uk-divider-icon">
 
                     <div class="uk-container">
                         @php
