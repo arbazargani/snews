@@ -60,6 +60,7 @@ class ArticleController extends Controller
         $content = "<b>✍️$title</b>" . PHP_EOL ."🔸$lead" . PHP_EOL ."ادامه خبر را در لینک زیر بخوانید: 👇👇👇👇" . PHP_EOL ."<a href='$link'>$link</a>" . PHP_EOL ."📲به کانال صمت بپیوندید" . PHP_EOL ."@smtnews روزنامه صمت";
         
         $params = [
+            "photo" => $article->cover,
             "chat_id" => "@primify",
             "text"=> "$content",
             "parse_mode" => "HTML"
