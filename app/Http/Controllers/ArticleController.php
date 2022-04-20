@@ -49,8 +49,7 @@ class ArticleController extends Controller
         return $input;
     }
 
-    public function sendToTelegram() {
-        $article = Article::FindOrFail(1000);
+    public function sendToTelegram($article) {
         $title = $article->title;
         $lead = $article->lead;
         $link = "https://smtnews.ir/direct/".$article->id;
@@ -61,7 +60,7 @@ class ArticleController extends Controller
         
         $params = [
             "photo" => $article->cover,
-            "chat_id" => "@primify",
+            "chat_id" => "@smtnews",
             "caption"=> "$content",
             "parse_mode" => "HTML"
         ];
@@ -219,9 +218,11 @@ class ArticleController extends Controller
 
         Log::info($log);
 
-        // if($request->has('action_send_telegram') && $request['action_send_telegram'] == 'on') {
-        //     $this->sendToTelegram($article);
-        // }
+        if ($request->has('cover') && !is_null($request->cover)) {
+            if($request->has('action_send_telegram') && $request['action_send_telegram'] == 'on') {
+                $this->sendToTelegram($article);
+            }
+        }
 
         if ($request->has('publish_and_new') && $request['publish_and_new']) {
             return redirect(route('Article > New'));
