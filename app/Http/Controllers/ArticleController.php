@@ -80,6 +80,7 @@ class ArticleController extends Controller
     
         $res = curl_exec($curl);
         $response = json_decode($res, true);
+        Log::info($response);
         echo var_dump($res);
         header('Content-Type: application/json');
         curl_close($curl);
@@ -221,7 +222,7 @@ class ArticleController extends Controller
         if ($request->has('cover') && !is_null($request->cover)) {
             if($request->has('action_send_telegram') && $request['action_send_telegram'] == 'on') {
                 $this->sendToTelegram($article);
-            }
+            }   
         }
 
         if ($request->has('publish_and_new') && $request['publish_and_new']) {
