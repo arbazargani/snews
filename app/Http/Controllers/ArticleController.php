@@ -62,7 +62,7 @@ class ArticleController extends Controller
         $params = [
             "photo" => $article->cover,
             "chat_id" => "@primify",
-            "text"=> "$content",
+            "caption"=> "$content",
             "parse_mode" => "HTML"
         ];
     
