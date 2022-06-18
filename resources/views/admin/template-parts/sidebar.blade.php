@@ -60,12 +60,22 @@
     <hr>
     @endif
 
+    @if($user->CanUseAnalyticsPanel())
+    <ul class="uk-nav uk-nav-default tm-nav">
+        <h5 class="uk-light"><span class="uk-icon-button"  uk-icon="gitter"></span> آمار سامانه</h5>
+        <ul class="uk-nav-sub">
+            <li class=""><a href="{{ route('Anayltics > Manage') }}">آمار روزانه</a></li>
+        </ul>
+    <hr>
+    @endif
+
     @if($user->CanManageSettings())
     <ul class="uk-nav uk-nav-default tm-nav">
         <h5 class="uk-light"><span class="uk-icon-button"  uk-icon="settings"></span> تنظیمات</h5>
         <ul class="uk-nav-sub">
             <li class=""><a href="{{ route('Setting') }}">تنظیمات سیستم</a></li>
-        </ul>
+    </ul>
+    <hr>
     @endif
     </ul>
 </div>

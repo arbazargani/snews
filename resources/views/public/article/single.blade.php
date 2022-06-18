@@ -21,10 +21,10 @@
                                                         width: 100%;
                                                         ">
         <li><a href="{{ route('Home') }}">خانه</a></li>
-        <li><a href="{{ route('Blog') }}">بلاگ</a></li>
+        <li><a href="{{ route('Blog') }}" target="_blank">اخبار</a></li>
         @if(count($article[0]->category->all()))
             <li>
-                <a href="{{ route('Category > Archive', $article[0]->category->first()->slug) }}">{{ $article[0]->category->first()->name }}</a>
+                <a href="{{ route('Category > Archive', $article[0]->category->first()->slug) }}" target="_blank">{{ $article[0]->category->first()->name }}</a>
             </li>
         @else
             <li><a>بدون دسته‌بندی</a></li>

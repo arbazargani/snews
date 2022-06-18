@@ -41,7 +41,7 @@
                     @if(count($latestArticles) > 0)
                         <ul class="uk-list uk-list-hyphen">
                             @foreach($latestArticles as $item)
-                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}">{{ $item->title }}</a></li>
+                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}" target="_blank">{{ $item->title }}</a></li>
                             @endforeach
                         </ul>
                     @else
@@ -53,7 +53,7 @@
                     @if(count($notPopularArticles) > 0)
                         <ul class="uk-list uk-list-hyphen">
                             @foreach($notPopularArticles as $item)
-                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}">{{ $item->title }}</a></li>
+                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}" target="_blank">{{ $item->title }}</a></li>
                             @endforeach
                         </ul>
                     @else
@@ -65,7 +65,7 @@
                     @if(count($popularArticles) > 0)
                         <ul class="uk-list uk-list-hyphen">
                             @foreach($popularArticles as $item)
-                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}">{{ $item->title }}</a></li>
+                                <li><a class="uk-link-reset uk-text-meta theme-color-hover-red" href="{{ route('Article > Single', $item->slug) }}" target="_blank">{{ $item->title }}</a></li>
                             @endforeach
                         </ul>
                     @else

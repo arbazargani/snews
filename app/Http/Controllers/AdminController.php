@@ -12,6 +12,7 @@ use App\Article;
 use App\Page;
 use App\Comment;
 use App\Setting;
+use App\Category;
 
 class AdminController extends Controller
 {
@@ -54,5 +55,24 @@ class AdminController extends Controller
 
         
         return view('admin.home.index', compact(['articles', 'pages', 'comments', 'logs']));
+    }
+
+    public function Analytics(Request $request) {
+        $users = User::all();
+        $articles = Article::where('id', '>', 0);
+        $analytics = [];
+        $date = date('Y-m-d');
+        // return $date;
+        foreach($users as $user) {
+            $dataset = $articles
+                        ->where('created_at', "like", "%$date%")
+                        ->where('user_id', $user->id);
+            $analytics [$user->username] = [
+                'count' => $dataset->count(),
+                'hits' => $dataset->sum('views'),
+                'average' => (int) $dataset->average('views'),
+            ];
+        }
+        return view('admin.analytics.manage', compact(['analytics']));
     }
 }

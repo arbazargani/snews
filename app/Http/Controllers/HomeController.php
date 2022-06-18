@@ -119,6 +119,13 @@ class HomeController extends Controller
         ]));
     }
 
+
+    public function Archive() {
+        $articles = Article::latest()->paginate(100);
+        // return $articles;
+        return view('public.home.archive', compact(['articles']));
+    }
+
     /**
      * @param $query
      */
@@ -212,7 +219,10 @@ class HomeController extends Controller
 
     public function MenuStructureWithParents()
     {
-        $menu_structure = Category::where('id', '!=', '1')->where('parent', '!=', -1)->where('show_in_menu', '=', 1)->get()->groupBy('parent');
+        $menu_structure = Category::where('id', '!=', '1')
+                                    ->where('parent', '!=', -1)
+                                    ->where('show_in_menu', '=', 1)
+                                    ->get()->groupBy('parent');
         return $menu_structure;
         /**
         if (Cache::has('menu_structure')) {
@@ -310,5 +320,39 @@ class HomeController extends Controller
         $video = $ffmpeg->open($path);
         $frame = $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(42));
         $frame->save(Storage::disk('application_public')->path('uploads/articles/images/thumbs/thumb.jpg'));
+    }
+
+    public function ArchiveEngine(Request $request) {
+        $base = 'http://e-ka.ir';
+        if($request->has('version')) {
+
+            $single_version = $request['version'];
+            $data = file_get_contents("$base/$single_version");
+            $dom = new \DomDocument();
+            $dom->loadHTML($data);
+            $pages = [];
+            foreach($dom->getElementsByTagName('a') as $element) {
+                $fn = $element->nodeValue;
+                $href = $element->getAttribute('href');
+                if ( strpos($href, '.pdf') !== false || strpos($href, '.png') !== false || strpos($href, '.jpg') !== false || strpos($href, '.jpeg') !== false )
+                    $pages[$href] = $fn;
+            }
+            asort($pages, SORT_NATURAL);
+            $pages = array_chunk($pages, 2);
+            return view('public.home.newspaper', compact(['request', 'single_version', 'base', 'pages']));
+
+        } else {
+            $data = file_get_contents($base);
+            $dom = new \DomDocument();
+            $dom->loadHTML($data);
+            $versions = [];
+            foreach($dom->getElementsByTagName('a') as $element) {
+                if (is_numeric($element->nodeValue))
+                    $versions[] = $element->nodeValue;
+            }
+            arsort($versions);
+            return view('public.home.newspaper', compact(['request', 'versions', 'base']));
+        }
+        
     }
 }

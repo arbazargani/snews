@@ -53,4 +53,18 @@ class NewspaperController extends Controller
 
         }
     }
+
+    public static function getLatestVersionFromArchive() {
+        $base = 'http://e-ka.ir';
+            $data = file_get_contents($base);
+            $dom = new \DomDocument();
+            $dom->loadHTML($data);
+            $versions = [];
+            foreach($dom->getElementsByTagName('a') as $element) {
+                if (is_numeric($element->nodeValue))
+                    $versions[] = $element->nodeValue;
+            }
+            arsort($versions);
+            return $versions[array_key_first($versions)];
+    }
 }

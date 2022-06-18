@@ -38,10 +38,10 @@
                                     <h3 uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-visible@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
 {{--                                    @if(count($article->category->all()))--}}
 {{--                                        <p uk-slideshow-parallax="x: 200,-200" class="uk-margin-remove uk-text-meta">--}}
-{{--                                            در دسته <a href="{{ route('Category > Archive', $article->category->first()->slug) }}">{{ $article->category->first()->name }}</a>--}}
+{{--                                            در دسته <a href="{{ route('Category > Archive', $article->category->first()->slug) }}" target="_blank">{{ $article->category->first()->name }}</a>--}}
 {{--                                        </p>--}}
 {{--                                    @endif--}}
-                                    <h3 style="font-size: 13px !important;" uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-align-right uk-hidden@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
+                                    <h3 style="font-size: 13px !important;" uk-slideshow-parallax="x: 100,-100" class="uk-margin-remove uk-align-right uk-hidden@m"><a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}" target="_blank"><span class="uk-icon" uk-icon="arrow-right"></span> {{ $article->title }}</a></h3>
                                 </div>
                             </li>
                             @endif
@@ -74,17 +74,17 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" target="_blank" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
                                     <hr>
-                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}" target="_blank"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:
                                         @foreach($article->category->all() as $category)
 
-                                            <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                            <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}" target="_blank">{{ $category->name }}</a>
                                             @if(!$loop->last)
                                             ،
                                             @endif
@@ -94,7 +94,7 @@
                                     @endif
                                         </p>
                                         <p class="uk-text-truncate">
-                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left" target="_blank"><span uk-icon="arrow-right"></span></a>
                                             {{ $article->meta_description }}
                                         </p>
                                 </div>
@@ -104,7 +104,7 @@
                     </div>
                     @endforeach
                     <div class="uk-margin-small">
-                        <a href="/category/بانک-و-بیمه"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                        <a href="/category/بانک-و-بیمه" target="_blank"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
                     </div>
                 </div>
             <!-- bank and insurance latest -->
@@ -128,17 +128,17 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" target="_blank" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
                                     <hr>
-                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}" target="_blank"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:
                                             @foreach($article->category->all() as $category)
 
-                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}" target="_blank">{{ $category->name }}</a>
                                                 @if(!$loop->last)
                                                     ،
                                                 @endif
@@ -148,7 +148,7 @@
                                             @endif
                                         </p>
                                         <p class="uk-text-truncate">
-                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left" target="_blank"><span uk-icon="arrow-right"></span></a>
                                             {{ $article->meta_description }}
                                         </p>
                                 </div>
@@ -158,7 +158,7 @@
                     </div>
                 @endforeach
                 <div class="uk-margin-small">
-                    <a href="/category/صنعت-خودرو"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                    <a href="/category/صنعت-خودرو" target="_blank"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
                 </div>
             </div>
             <!-- car industry latest -->
@@ -180,17 +180,17 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" target="_blank" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
                                     <hr>
-                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}" target="_blank"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:
                                             @foreach($article->category->all() as $category)
 
-                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}" target="_blank">{{ $category->name }}</a>
                                                 @if(!$loop->last)
                                                     ،
                                                 @endif
@@ -200,7 +200,7 @@
                                             @endif
                                         </p>
                                         <p class="uk-text-truncate">
-                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left" target="_blank"><span uk-icon="arrow-right"></span></a>
                                             {{ $article->meta_description }}
                                         </p>
                                 </div>
@@ -210,7 +210,7 @@
                     </div>
                 @endforeach
                 <div class="uk-margin-small">
-                        <a href="/category/صنعت"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                        <a href="/category/صنعت" target="_blank"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
                     </div>
             </div>
             <!-- industry latest -->
@@ -232,17 +232,17 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}" target="_blank"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
                                     <hr>
-                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}" target="_blank"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:
                                             @foreach($article->category->all() as $category)
 
-                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}" target="_blank">{{ $category->name }}</a>
                                                 @if(!$loop->last)
                                                     ،
                                                 @endif
@@ -252,7 +252,7 @@
                                             @endif
                                         </p>
                                         <p class="uk-text-truncate">
-                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left" target="_blank"><span uk-icon="arrow-right"></span></a>
                                             {{ $article->meta_description }}
                                         </p>
                                 </div>
@@ -262,7 +262,7 @@
                     </div>
                 @endforeach
                 <div class="uk-margin-small">
-                    <a href="/category/معدن"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                    <a href="/category/معدن" target="_blank"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
                 </div>
             </div>
             <!-- mine latest -->
@@ -284,17 +284,17 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}" target="_blank"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
                                     <hr>
-                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}" target="_blank"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:
                                             @foreach($article->category->all() as $category)
 
-                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}" target="_blank">{{ $category->name }}</a>
                                                 @if(!$loop->last)
                                                     ،
                                                 @endif
@@ -304,7 +304,7 @@
                                             @endif
                                         </p>
                                         <p class="uk-text-truncate">
-                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left" target="_blank"><span uk-icon="arrow-right"></span></a>
                                             {{ $article->meta_description }}
                                         </p>
                                 </div>
@@ -314,7 +314,7 @@
                     </div>
                 @endforeach
                 <div class="uk-margin-small">
-                    <a href="/category/تجارت"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                    <a href="/category/تجارت" target="_blank"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
                 </div>
             </div>
             <!-- commerce latest -->
@@ -336,17 +336,17 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}" target="_blank"><img src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
                                     <hr>
-                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
+                                    <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}" target="_blank"><h3 class="uk-h5 uk-width-4-5@m">{{ $article->title }}</h3></a>
                                     @if(count($article->category->all()))
                                         <p class="uk-text-meta">در دسته:
                                             @foreach($article->category->all() as $category)
 
-                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a>
+                                                <a class="uk-link-reset" href="{{ route('Category > Archive', $category->slug) }}" target="_blank">{{ $category->name }}</a>
                                                 @if(!$loop->last)
                                                     ،
                                                 @endif
@@ -356,7 +356,7 @@
                                             @endif
                                         </p>
                                         <p class="uk-text-truncate">
-                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left"><span uk-icon="arrow-right"></span></a>
+                                            <a href="{{ route('Article > Single', $article->slug) }}" class="uk-badge uk-background-default uk-text-muted uk-float-left" target="_blank"><span uk-icon="arrow-right"></span></a>
                                             {{ $article->meta_description }}
                                         </p>
                                 </div>
@@ -366,7 +366,7 @@
                     </div>
                 @endforeach
                 <div class="uk-margin-small">
-                    <a href="/category/اقتصاد"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
+                    <a href="/category/اقتصاد" target="_blank"><span class="uk-float-left uk-text-meta">بیشتر <span uk-icon="icon: chevron-right"></span></span></a>
                 </div>
             </div>
             <!-- economy latest -->

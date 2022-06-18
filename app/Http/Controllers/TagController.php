@@ -104,6 +104,8 @@ class TagController extends Controller
                 $result = DB::table('tags')
                 ->whereRaw("`slug` LIKE '%" . urldecode($request->q) . "%'")
                 ->orWhereRaw("`name` LIKE '%" . urldecode($request->q) . "%'")
+                // ->whereRaw("`slug` LIKE '%" . $request->q . "%'")
+                // ->orWhereRaw("`name` LIKE '%" . $request->q . "%'")
                 ->get();
 //                echo json_encode($result[0]);
                 $result_array = [];

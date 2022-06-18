@@ -18,33 +18,37 @@
     <!-- socket - special archive -->
     @php
     if(\Illuminate\Support\Facades\Cache::has('newspaper')) {
-        $newspaper = \Illuminate\Support\Facades\Cache::get('newspaper');
+        $number = \App\Http\Controllers\NewspaperController::getLatestVersionFromArchive();
+        $version = \Illuminate\Support\Facades\Cache::get('newspaper');
     } else {
-        $newspaper = \App\Category::with(['article' => function($query) {
-                                            $query->where('state', 1)
-                                            ->latest();
-                                        }])
-                                        ->where('id', env('NEWSPAPER_CATEGORY_ID'))
-                                        ->get();
+        $number = \App\Http\Controllers\NewspaperController::getLatestVersionFromArchive();
+        $newspaper = [
+            'cover' => env('ARCHIVE_BASE_URL')."$number/frontpage_$number.jpg",
+            'title' => 'روزنامه صمت شماره ' . $number,
+            'slug' => route('Archive > Newspaper') . "?version=$number",
+        ];
+        $newspaper = (object) $newspaper;
+        $version = $newspaper;
         \Illuminate\Support\Facades\Cache::put('newspaper', $newspaper, now()->addMinutes(40));
     }
-        $version = (!count($newspaper) || !count($newspaper[0]->article)) ? null : $newspaper[0]->article[0];
     @endphp
     <!-- socket - newsppaer -->
     @if(!is_null($version))
         <div class="sidebar-element uk-margin-remove-top">
             <div class="uk-card uk-card-hover uk-card-body">
                 <h3 class="uk-card-title uk-text-meta">
-                    <a href="{{ Route('Category > Archive', 'آرشیو-روزنامه') }}" target="_blank">
+                    <a href="{{ Route('Archive > Newspaper') }}" target="_blank">
                         <span class="pulse"></span>
                         <span>آرشیو روزنامه</span>
                     </a>
                 </h3>
                 <hr class="uk-divider-small">
-                <img class="uk-border-rounded" src="{{ env('SITE_URL') . "/repository/" . strip_tags($version->content) . "/frontpage_" . strip_tags($version->content ) . ".jpg" }}" alt="{{ $version->title }}">
+                <a href="{{ route('Archive > Newspaper') . "?version=$number" }}" target="_blank">
+                    <img class="uk-border-rounded" src="{{ $version->cover }}" alt="{{ $version->title }}">
+                </a>
                 <hr>
 
-                <a href="{{ route('Article > Single', $version->slug) }}">
+                <a href="{{ route('Archive > Newspaper') . "?version=$number" }}" target="_blank">
                     <button class="uk-button uk-margin-small-top uk-text-center uk-button-text"><span
                             uk-icon="arrow-right"></span>
                         {{ $version->title }}

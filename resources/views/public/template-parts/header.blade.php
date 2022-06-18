@@ -18,7 +18,11 @@
             @foreach($menu_structure as $menu_parent => $menu_child)
                 @if($menu_parent !== -1)
                     <li>
+                        @if(\App\Category::find($menu_parent)->slug == 'آرشیو-روزنامه')
+                        <a style="font-family: Kit-light-fa-bold !important; color: white" href="{{ route('Archive > Newspaper') }}">آرشیو روزنامه</a>
+                        @else
                         <a style="font-family: Kit-light-fa-bold !important; color: white" href="{{ route('Category > Archive', \App\Category::find((int) $menu_parent)->slug) }}">{{ \App\Category::find($menu_parent)->name }}</a>
+                        @endif
                         <div class="uk-navbar-dropdown uk-navbar-dropdown">
                             <div class="uk-navbar-dropdown-grid" uk-grid>
                                 <div>

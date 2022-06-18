@@ -98,4 +98,8 @@ class User extends Authenticatable
     public function CanManageSettings() {
         return ($this->getRule() == 'system') ? true : false;
     }
+
+    public function CanUseAnalyticsPanel() {
+        return ($this->getRule() == 'system') ? true : false;
+    }
 }

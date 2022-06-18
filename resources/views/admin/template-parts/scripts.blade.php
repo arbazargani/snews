@@ -6,7 +6,8 @@
 {{-- TinyMCE --}}
 
 <!-- <script src="{{ asset('assets/js/tinymce.min.js') }}" referrerpolicy="origin"></script> -->
-<script src="https://cdn.tiny.cloud/1/nkf4wjrsf6g1am5any6qwcsniq35ahxf0rh9iozbyearhuzq/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- <script src="https://cdn.tiny.cloud/1/nkf4wjrsf6g1am5any6qwcsniq35ahxf0rh9iozbyearhuzq/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+<script src="{{ asset('assets/js/tmce.min.js') }}" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
         selector:'#content',

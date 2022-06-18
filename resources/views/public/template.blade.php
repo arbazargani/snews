@@ -145,11 +145,11 @@ $is_amp = (strpos($request_name, '> AMP') !== false && $request_segment_one == '
 <body class="uk-background-muted" id="top">
     @include('public.template-parts.date-bar')
     <!-- preloader -->
-    <div id="preloader" class="uk-overlay-primary uk-position-cover" style="z-index: 1111111">
+    <!-- <div id="preloader" class="uk-overlay-primary uk-position-cover" style="z-index: 1111111">
         <div class="uk-position-center">
             <span uk-spinner="ratio: 2"></span>
         </div>
-    </div>
+    </div> -->
     <!-- end preloader -->
         <div class="uk-section-primary theme-background-red uk-preserve-color">
             <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
@@ -216,7 +216,8 @@ $is_amp = (strpos($request_name, '> AMP') !== false && $request_segment_one == '
 		<!-- Advertise socket - position fixed -->
 		@include('public.template-parts.footer')
 		@include('public.template-parts.scripts')
-        <script>
+        <!-- preloader scripts -->
+        <!-- <script>
             const {
                 $,
                 once,
@@ -231,7 +232,8 @@ $is_amp = (strpos($request_name, '> AMP') !== false && $request_segment_one == '
                 transition(loader, { opacity: 0 });
                 once(loader, 'transitionend', () => remove(loader));
             };
-        </script>
+        </script> -->
+        <!-- end preloader scripts -->
     {!! $settings['end_body_codes']->value !!}
 </body>
 </html>

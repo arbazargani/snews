@@ -35,6 +35,8 @@ Route::get('/blog', function() {
     return redirect(route('Home'));
 })->name('Blog');
 
+Route::get('/news/archive', 'HomeController@Archive')->name('Home > Archive');
+
 Route::get('/article/{slug}', 'ArticleController@Show')->middleware('CheckPageState')->name('Article > Single');
 // Route::get('/amp/article/{slug}', 'ArticleController@Show')->middleware('CheckPageState')->name('Article > Single > AMP');
 Route::get('/direct/{id}', 'ArticleController@Direct')->name('Article > Direct');
@@ -116,7 +118,7 @@ Route::prefix('admin')->middleware('auth', 'HasAdminAccess', 'CheckPageState')->
     Route::post('gallery/edit/{id}/update', 'GalleryController@Update')->name('Gallery > Update');
     Route::post('gallery/delete/{id}', 'GalleryController@Delete')->name('Gallery > Delete');
 
-
+    Route::get('analytics', 'AdminController@Analytics')->name('Anayltics > Manage');
 
 });
 
@@ -188,3 +190,5 @@ Route::get('/vid', 'HomeController@Vid');
 
 
 Route::get('/tele', 'ArticleController@sendToTelegram');
+
+Route::get('/archive/newspaper', 'HomeController@ArchiveEngine')->name('Archive > Newspaper');
