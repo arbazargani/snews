@@ -62,10 +62,11 @@ class AdminController extends Controller
         $articles = Article::where('id', '>', 0);
         $analytics = [];
         $date = date('Y-m-d');
-        // return $date;
+        // return $users;
         foreach($users as $user) {
             $dataset = $articles
-                        ->where('created_at', "like", "%$date%")
+                        // ->where('created_at', "like", "%$date%")
+                        ->whereDate('created_at', Carbon::today())
                         ->where('user_id', $user->id);
             $analytics [$user->username] = [
                 'count' => $dataset->count(),
@@ -73,6 +74,7 @@ class AdminController extends Controller
                 'average' => (int) $dataset->average('views'),
             ];
         }
+
         return view('admin.analytics.manage', compact(['analytics']));
     }
 }
