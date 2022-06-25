@@ -74,8 +74,6 @@ class AdminController extends Controller
             ];
         }
 
-        return $analytics;
-
         return view('admin.analytics.manage', compact(['analytics']));
     }
 }
