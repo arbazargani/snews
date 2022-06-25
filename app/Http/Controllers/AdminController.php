@@ -13,6 +13,7 @@ use App\Page;
 use App\Comment;
 use App\Setting;
 use App\Category;
+use DB;
 
 class AdminController extends Controller
 {
@@ -59,21 +60,21 @@ class AdminController extends Controller
 
     public function Analytics(Request $request) {
         $users = User::all();
-        $articles = Article::where('id', '>', 0);
         $analytics = [];
         $date = date('Y-m-d');
-        // return $users;
         foreach($users as $user) {
-            $dataset = $articles
-                        // ->where('created_at', "like", "%$date%")
-                        ->whereDate('created_at', Carbon::today())
-                        ->where('user_id', $user->id);
+            $uid = $user->id;
+            $statement = "SELECT COUNT(*) as count, SUM(views) as sum, AVG(views) as avg FROM `articles` where created_at like '%$date%' AND user_id = $uid";
+            $mainset = DB::select(DB::raw($statement));
+            $dataset = $mainset[0];
             $analytics [$user->username] = [
-                'count' => $dataset->count(),
-                'hits' => $dataset->sum('views'),
-                'average' => (int) $dataset->average('views'),
+                'count' => $dataset->count,
+                'hits' => is_null($dataset->sum) ? 0 : $dataset->sum,
+                'average' => (int) $dataset->avg,
             ];
         }
+
+        return $analytics;
 
         return view('admin.analytics.manage', compact(['analytics']));
     }
