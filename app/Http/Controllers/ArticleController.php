@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use function Composer\Autoload\includeFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManager;
 
 
@@ -287,6 +288,11 @@ class ArticleController extends Controller
         if (!count($article) || ($article[0]->state !== 1)) {
             return abort('404', 'Not Found.');
         } else {
+
+            if (!is_null($article[0]->external_url)) {
+                return Redirect::to($article[0]->external_url, 301);
+            }
+
             Article::where('slug', '=', $slug)->increment('views');
 
             $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -397,6 +403,8 @@ class ArticleController extends Controller
 
         $article->meta_description = isset($request['meta-description']) ? $this->NoArabic($request['meta-description']) : '';
         $article->meta_robots = isset($request['meta-robots']) ? $request['meta-robots'] : 'index, follow';
+        $article->meta_canonical = isset($request['meta_canonical']) ? $request['meta_canonical'] : null;
+        $article->external_url = isset($request['external_url']) ? $request['external_url'] : null;
 
 
         $fileName = 'ghost.png';

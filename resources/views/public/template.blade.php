@@ -18,7 +18,11 @@ $is_amp = (strpos($request_name, '> AMP') !== false && $request_segment_one == '
 		<link rel="stylesheet" href="{{ asset('assets/3.7.2/css/uikit-rtl.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}" />
-		<link rel="canonical" href="{{ urldecode(url()->current()) }}" />
+        @if(isset($article) && !is_null($article[0]->meta_canonical))
+        <link rel="canonical" href="{{ $article[0]->meta_canonical }}" />
+        @else
+        <link rel="canonical" href="{{ urldecode(url()->current()) }}" />
+        @endif
 		<script src="{{ asset('assets/3.7.2/js/uikit.min.js') }}"></script>
 		<script src="{{ asset('assets/3.7.2/js/uikit-icons.min.js') }}"></script>
 

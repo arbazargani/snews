@@ -108,7 +108,15 @@
                                     </select>
                                     <div class="uk-alert-danger" uk-alert>
                                         <p>در صورتی که نوع خبر فیلم می‌باشد، از بخش تصویر نوشته در سمت چپ ویدیو خود را انتخاب نمایید.</p>
-                                    </div>                                </div>
+                                    </div>
+                                    <!-- article meta canonical -->
+                                    <div>
+                                        <label class="uk-form-label" for="meta_canonical">کنونیکال</label>
+                                        <input type="text" name="meta_canonical" id="meta_canonical" placeholder="لینک کنونیکال"
+                                               class="uk-input form-control @error('meta_canonical') is-invalid @enderror"
+                                               style="padding-left: 40px;" value="{{ $article->meta_canonical }}">
+                                    </div>
+                                </div>
                                 <div class="uk-width-1-2@m">
                                     <!-- article writer -->
                                     <div>
@@ -123,6 +131,13 @@
                                         <input type="text" name="gallery" id="gallery" placeholder="گالری خبر"
                                                class="uk-input form-control @error('gallery') is-invalid @enderror"
                                                style="padding-left: 40px;" value="{{ $article->gallery_id }}">
+                                    </div>
+                                    <!-- article external url -->
+                                    <div>
+                                        <label class="uk-form-label" for="external_url">لینک خارجی خبر</label>
+                                        <input type="text" name="external_url" id="external_url" placeholder="لینک خارجی خبر"
+                                               class="uk-input form-control @error('external_url') is-invalid @enderror"
+                                               style="padding-left: 40px;" value="{{ $article->external_url }}">
                                     </div>
                                 </div>
                             </div>
